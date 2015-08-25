@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.usp.suricato.models.Category;
+import br.usp.suricato.daos.CategoryDao;
 import br.usp.suricato.daos.ProductDao;
 import br.usp.suricato.models.Product;
-import br.usp.suricato.daos.CategoryDao;
 
 @Controller
 @RequestMapping("/products")
