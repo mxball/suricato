@@ -13,22 +13,19 @@ function cuteOkCancelPrompt(msg, callbackFunction, cancelCallback) {
 	} );
 }
 
-function createInput(name) {
+function createInput(type, name, id, value) {
 	var input = document.createElement('input');
+	input.type = type;
 	input.name = name;
+	input.id = id;
+	input.value = value;
 	return input;
 }
 
 function createRadioCor(cor) {
 	var div = document.createElement('div')
-	div.className = "campo-cor";
-	div.style.backgroundColor = "#" + cor;
-	var input = document.createElement('input');
-	input.type = "radio";
-	input.name = "cor";
-	input.value = "#" + cor;
-	input.id = "cor_" + cor;
-	div.appendChild(input);
+	div.className = "campo-cor " + cor;
+	div.appendChild(createInput("radio", "cor", "cor_" + cor, cor))
 	return div;
 }
 
@@ -44,7 +41,7 @@ function getMessage(coordenadas) {
 	comentario.textContent = "Comentário"
 	popup.appendChild(comentario);
 	
-	var inputComentario = createInput("comentario");
+	var inputComentario = createInput("text", "comentario");
 	popup.appendChild(inputComentario);
 	
 	var textoCor = document.createElement("p");
@@ -55,11 +52,11 @@ function getMessage(coordenadas) {
 		popup.appendChild(createRadioCor(cor));
 		popup.appendChild(document.createElement("br"));
 	});
-	popup.querySelector("#cor_FCF0AD").checked = true;
 	
 	cuteOkCancelPrompt(popup.outerHTML, function(result) {
 		var comentario = result.find("input[name='comentario']").val();
 		var cor = result.find("input[name='cor']:checked").val();
+		console.log(comentario + " " + cor);
 		printPostIt(comentario, cor, coordenadas);
 	});
 }
@@ -69,10 +66,10 @@ function printPostIt(mensagem, cor, coordenadas) {
 	var cursorY = (coordenadas.clientY * 100.0) / window.innerHeight;
 	var postIt = document.createElement('div');
 	postIt.classList.add("postIt");
-	
+
 	postIt.style.left = cursorX + "%";
 	postIt.style.top = cursorY + "%";
-	postIt.style.backgroundColor = cor;
+	postIt.classList.add(cor);
 	
 	var texto = document.createElement('p');
 	texto.textContent = mensagem;

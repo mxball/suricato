@@ -1,4 +1,4 @@
-label, .campo-cor {
+.campo-cor {
 	height: 2em;
 }
 
@@ -7,6 +7,39 @@ label, .campo-cor {
 	height: 11%;
 	border-radius: 2px;
 	box-shadow: 2px 2px 5px #888;
- 	position: absolute;
- 	font: bold 0.75em Arial;    
+	position: absolute;
+	font: bold 0.75em Arial;
+}
+
+
+.FCF0AD {
+	background-color: #FCF0AD;
+}
+
+.E9E74A {
+	background-color: #E9E74A;
+}
+
+.D0E17D {
+	background-color: #D0E17D;
+}
+
+.56C4E8 {
+	background-color: #56C4E8;
+}
+
+.CDDD73 {
+	background-color: #CDDD73;
+}
+
+.99C7BC {
+	background-color: #99C7BC;
+}
+
+.F9D6AC {
+	background-color: #F9D6AC;
+}
+
+.BAB7A9 {
+	background-color: #BAB7A9;
 }
