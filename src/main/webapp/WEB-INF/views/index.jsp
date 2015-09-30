@@ -3,43 +3,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 .postIt {
 	width: 100px;
 	height: 100px;
-	background-color: yellow;	
+	background-color: yellow;       
 }
 #lousa {
-	
+	width: 100vw;
+	height: 100vh;
 }
-#campo-feliz, #campo-triste{
-	width: 49%; 
-	height: 59%;
-	display: inline-block;
-	border-color: #000;
-	border-width: 5px;
-	border-style: solid;
-	margin: -5px;
+#lousa img {
+	width: 100%;
+	height: 100%;
 }
-#campo-duvidas {
-	width: 99%;
-	height: 40%;
-	border-color: #000;
-	border-width: 5px;
-	border-style: solid;
-	margin: -5px;
-}
-
-
 </style>
 <title>Home page</title>
 </head>
 <body>
 	<div id="lousa">
-		<canvas id="campo-feliz"></canvas>
-		<canvas id="campo-triste"></canvas>
-		<canvas id="campo-duvidas"></canvas>
+		<img src="<c:url value="/assets/images/gladSad.png"/>"/>
 	</div>
 	<script type="text/javascript">
 		function getMessage(coordenadas) {
@@ -63,7 +48,7 @@
 			postIt.appendChild(texto);
 			document.body.appendChild(postIt);
 		}
-		document.addEventListener("click", getMessage);
+		document.querySelector("#lousa").addEventListener("click", getMessage);
 	</script>
 </body>
 </html>
