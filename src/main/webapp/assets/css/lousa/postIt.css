@@ -1,0 +1,9 @@
+.postIt {
+	width: 6%;
+	height: 11%;
+	background-color: #FCF0AD;
+	border-radius: 2px;
+	box-shadow: 2px 2px 5px #888;
+ 	position: absolute;
+ 	font: bold 0.75em Arial;    
+}
