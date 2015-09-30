@@ -7,13 +7,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 .postIt {
-	width: 100px;
-	height: 100px;
-	background-color: yellow;       
+	width: 6%;
+	height: 11%;
+	background-color: #FCF0AD;
+	border-radius: 2px;
+	box-shadow: 2px 2px 5px #888;
+ 	position: absolute;
+ 	font: bold 0.75em Arial;    
 }
 #lousa {
 	width: 100vw;
 	height: 100vh;
+	position: absolute;
 }
 #lousa img {
 	width: 100%;
@@ -28,8 +33,10 @@
 	</div>
 	<script type="text/javascript">
 		function getMessage(coordenadas) {
-			var comentario = prompt("Adicionar Post-it: comentário");
-			printPostIt(comentario, coordenadas);
+			var comentario = prompt("Novo Post-it");
+			if(comentario != "") {
+				printPostIt(comentario, coordenadas);
+			}
 		}
 		function printPostIt(mensagem, coordenadas) {
 			var cursorX = coordenadas.clientX;
@@ -37,8 +44,6 @@
 			
 			var postIt = document.createElement('div');
 			postIt.classList.add("postIt");
-			postIt.style.position = "absolute";
-			console.log(cursorX + " " + cursorX)
 			postIt.style.left = cursorX + "px";
 			postIt.style.top = cursorY + "px";
 
@@ -46,7 +51,7 @@
 			texto.textContent = mensagem;
 
 			postIt.appendChild(texto);
-			document.body.appendChild(postIt);
+			document.querySelector("#lousa").appendChild(postIt);
 		}
 		document.querySelector("#lousa").addEventListener("click", getMessage);
 	</script>
