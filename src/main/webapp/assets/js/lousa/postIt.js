@@ -5,13 +5,15 @@ function getMessage(coordenadas) {
 		}
 	}
 	function printPostIt(mensagem, coordenadas) {
-		var cursorX = coordenadas.clientX;
-		var cursorY = coordenadas.clientY;
-		
+		var cursorX = (coordenadas.clientX * 100.0) / window.innerWidth;
+		var cursorY = (coordenadas.clientY * 100.0) / window.innerHeight;
+		console.log(cursorX + ", " + cursorY);
 		var postIt = document.createElement('div');
 		postIt.classList.add("postIt");
-		postIt.style.left = cursorX + "px";
-		postIt.style.top = cursorY + "px";
+		
+		
+		postIt.style.left = cursorX + "%";
+		postIt.style.top = cursorY + "%";
 
 		var texto = document.createElement('p');
 		texto.textContent = mensagem;
