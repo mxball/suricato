@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="<c:url value='/assets/css/jquery-impromptu.min.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/lousa/postIt.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/lousa/lousa.css'/>">
@@ -13,6 +14,8 @@
 		<div id="lousa">
 			<img src="<c:url value="/assets/images/gladSad.png"/>"/>
 		</div>
-		<script src="<c:url value='/assets/js/lousa/postIt.js'/>"></script>
 	</body>
+	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
+	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
+	<script src="<c:url value='/assets/js/lousa/postIt.js'/>"></script>
 </html>
