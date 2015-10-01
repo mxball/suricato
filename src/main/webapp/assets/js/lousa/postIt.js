@@ -24,7 +24,8 @@ function createInput(type, name, id, value) {
 
 function createRadioCor(cor) {
 	var div = document.createElement('div')
-	div.className = "campo-cor " + cor;
+	div.classList.add("campo-cor")
+	div.classList.add("cor" + cor);
 	div.appendChild(createInput("radio", "cor", "cor_" + cor, cor))
 	return div;
 }
@@ -56,7 +57,6 @@ function getMessage(coordenadas) {
 	cuteOkCancelPrompt(popup.outerHTML, function(result) {
 		var comentario = result.find("input[name='comentario']").val();
 		var cor = result.find("input[name='cor']:checked").val();
-		console.log(comentario + " " + cor);
 		printPostIt(comentario, cor, coordenadas);
 	});
 }
@@ -69,7 +69,7 @@ function printPostIt(mensagem, cor, coordenadas) {
 
 	postIt.style.left = cursorX + "%";
 	postIt.style.top = cursorY + "%";
-	postIt.classList.add(cor);
+	postIt.classList.add("cor" + cor);
 	
 	var texto = document.createElement('p');
 	texto.textContent = mensagem;
