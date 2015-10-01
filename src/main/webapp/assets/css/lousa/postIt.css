@@ -2,13 +2,32 @@
 	height: 2em;
 }
 
+.comentario {
+	word-wrap: break-word;
+}
+
 .postIt {
-	width: 6%;
-	height: 11%;
+	width: 8%;
+	height: 15%;
 	border-radius: 2px;
 	box-shadow: 2px 2px 5px #888;
 	position: absolute;
 	font: bold 0.75em Arial;
+}
+
+input[name="cor"] {
+	display: none;
+}
+.opcao-cor, input[name="cor"] + label {
+	width: 7em;
+	height: 7em;
+	margin-left: 1em;
+	display: inline-block;
+}
+
+input[name="cor"]:checked + label {
+	border: 3px solid rgba(0,0,0,0.3);
+	box-sizing: border-box;
 }
 
 

@@ -22,11 +22,23 @@ function createInput(type, name, id, value) {
 	return input;
 }
 
+function createTextarea(name) {
+	var textarea = document.createElement("textarea");
+	textarea.rows = 3;
+	textarea.cols = 45;
+	textarea.name = name;
+	textarea.maxLength = 100;
+	return textarea;
+}
+
 function createRadioCor(cor) {
-	var div = document.createElement('div')
-	div.classList.add("campo-cor")
-	div.classList.add("cor" + cor);
+	var div = document.createElement("div");
+	div.classList.add("opcao-cor");
 	div.appendChild(createInput("radio", "cor", "cor_" + cor, cor))
+	var label = document.createElement("label");
+	label.htmlFor = "cor_" + cor;
+	label.classList.add("cor" + cor);
+	div.appendChild(label);
 	return div;
 }
 
@@ -42,7 +54,7 @@ function getMessage(coordenadas) {
 	comentario.textContent = "Comentário"
 	popup.appendChild(comentario);
 	
-	var inputComentario = createInput("text", "comentario");
+	var inputComentario = createTextarea("comentario");
 	popup.appendChild(inputComentario);
 	
 	var textoCor = document.createElement("p");
@@ -51,11 +63,10 @@ function getMessage(coordenadas) {
 	
 	Array.prototype.forEach.call(cores, function(cor, index) {
 		popup.appendChild(createRadioCor(cor));
-		popup.appendChild(document.createElement("br"));
 	});
 	
 	cuteOkCancelPrompt(popup.outerHTML, function(result) {
-		var comentario = result.find("input[name='comentario']").val();
+		var comentario = result.find("[name='comentario']").val();
 		var cor = result.find("input[name='cor']:checked").val();
 		printPostIt(comentario, cor, coordenadas);
 	});
@@ -72,6 +83,7 @@ function printPostIt(mensagem, cor, coordenadas) {
 	postIt.classList.add("cor" + cor);
 	
 	var texto = document.createElement('p');
+	texto.classList.add("comentario");
 	texto.textContent = mensagem;
 
 	postIt.appendChild(texto);
