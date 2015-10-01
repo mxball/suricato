@@ -8,11 +8,11 @@
 		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/lousa/postIt.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/lousa/lousa.css'/>">
-		<title>Glad/Sad</title>
+		<title>Retrospectiva</title>
 	</head>
 	<body>
 		<div id="lousa">
-			<img src="<c:url value="/assets/images/gladSad.png"/>"/>
+			<img src="<c:url value="${lousa.endereco}"/>"/>
 		</div>
 	</body>
 	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
