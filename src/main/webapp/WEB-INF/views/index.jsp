@@ -14,7 +14,7 @@
 	<c:forEach items="${lousas}" var="lousa">
 		<input type="radio" name="endereco" value="${lousa.endereco}"/>
 		<p>${lousa.nome}</p>
-		<img src="<c:url value="${lousa.endereco}"/>">
+		<img src="<c:url value="${lousa.endereco}"/>"><br/>
 	</c:forEach>
 		<button type="submit">Nova lousa</button>
 	</form:form>
