@@ -68,6 +68,8 @@ function printPostIt(mensagem, cor, coordenadas) {
 	var cursorY = (coordenadas.clientY * 100.0) / window.innerHeight;
 	var postIt = document.createElement('div');
 	postIt.classList.add("postIt");
+	postIt.classList.add("ui-draggable");
+	postIt.classList.add("ui-draggable-handle");
 
 	postIt.style.left = cursorX + "%";
 	postIt.style.top = cursorY + "%";
@@ -79,4 +81,5 @@ function printPostIt(mensagem, cor, coordenadas) {
 
 	postIt.appendChild(texto);
 	document.querySelector("#lousa").appendChild(postIt);
+	$(".postIt").draggable();
 }
