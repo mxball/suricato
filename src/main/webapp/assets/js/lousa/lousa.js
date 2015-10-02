@@ -7,6 +7,8 @@ function getAcao(event) {
 		} else {
 			getTexto(event);
 		}
+	} else {
+		movePostIt();
 	}
 }
 
@@ -30,4 +32,8 @@ function createTextarea(name) {
 	textarea.name = name;
 	textarea.maxLength = 100;
 	return textarea;
+}
+
+function movePostIt() {
+	$(".postIt").draggable();
 }
