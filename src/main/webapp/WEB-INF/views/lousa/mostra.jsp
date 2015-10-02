@@ -14,8 +14,15 @@
 		<div id="lousa">
 			<img src="<c:url value="${lousa.endereco}"/>"/>
 		</div>
+		<div id="opcao">
+			<input type="radio" name="opcao-adiciona" class="adiciona" id="adiciona-postit" checked>
+			<label for="adiciona-postit"></label>
+			<input type="radio" name="opcao-adiciona" class="adiciona" id="adiciona-texto">
+			<label for="adiciona-texto"></label>
+		</div>
 	</body>
 	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
+	<script src="<c:url value='/assets/js/lousa/lousa.js'/>"></script>
 	<script src="<c:url value='/assets/js/lousa/postIt.js'/>"></script>
 </html>

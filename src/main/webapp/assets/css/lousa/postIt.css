@@ -4,11 +4,11 @@
 
 .comentario {
 	word-wrap: break-word;
+	padding: 0.3em;
 }
 
 .postIt {
 	width: 8%;
-	height: 15%;
 	border-radius: 2px;
 	box-shadow: 2px 2px 5px #888;
 	position: absolute;
@@ -29,7 +29,6 @@ input[name="cor"]:checked + label {
 	border: 3px solid rgba(0,0,0,0.3);
 	box-sizing: border-box;
 }
-
 
 .corFCF0AD {
 	background-color: #FCF0AD;

@@ -44,7 +44,7 @@ function createRadioCor(cor) {
 
 var cores = ["FCF0AD", "E9E74A", "D0E17D", "56C4E8", "CDDD73", "99C7BC", "F9D6AC", "BAB7A9"];
 
-function getMessage(coordenadas) {
+function getPostIt(coordenadas) {
 	var popup = document.createElement("fildset");
 	var legenda = document.createElement("legend");
 	legenda.textContent = "Novo Post-It";
@@ -89,4 +89,3 @@ function printPostIt(mensagem, cor, coordenadas) {
 	postIt.appendChild(texto);
 	document.querySelector("#lousa").appendChild(postIt);
 }
-document.querySelector("#lousa").addEventListener("click", getMessage);

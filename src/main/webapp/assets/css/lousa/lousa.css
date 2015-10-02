@@ -7,3 +7,36 @@
 	width: 100%;
 	height: 99%;
 }
+
+#opcao {
+	z-index: 10;
+}
+
+#opcao input[type="radio"] {
+	display: none;
+}
+
+.adiciona:checked + label:before {
+	border: 5px solid red;
+}
+
+#adiciona-postit + label:before {
+	content: "";
+	position: absolute;
+	width: 3em;
+	height: 3em;
+	background-size: 100% 100%;
+	background-image: url(../../../assets/images/postit.png);
+	background-repeat: no-repeat;
+}
+
+#adiciona-texto + label:before {
+	content: "";
+	position: absolute;
+	left: 5em;
+	width: 3em;
+	height: 3em;
+	background-size: 100% 100%;
+	background-image: url(../../../assets/images/postit.png);
+	background-repeat: no-repeat;
+}
