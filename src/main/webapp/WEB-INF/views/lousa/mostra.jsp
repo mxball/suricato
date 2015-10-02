@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div id="lousa">
-			<img src="<c:url value="${lousa.endereco}"/>"/>
+			<img id="atividade" src="<c:url value="${lousa.endereco}"/>"/>
 		</div>
 		<div id="opcao">
 			<input type="radio" name="opcao-adiciona" class="adiciona" id="adiciona-postit" checked>

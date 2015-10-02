@@ -40,3 +40,7 @@
 	background-image: url(../../../assets/images/postit.png);
 	background-repeat: no-repeat;
 }
+
+.texto {
+	position: absolute;
+}

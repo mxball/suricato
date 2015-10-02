@@ -9,6 +9,7 @@
 
 .postIt {
 	width: 8%;
+	min-height: 15%;
 	border-radius: 2px;
 	box-shadow: 2px 2px 5px #888;
 	position: absolute;

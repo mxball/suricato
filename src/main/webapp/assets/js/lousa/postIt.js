@@ -22,15 +22,6 @@ function createInput(type, name, id, value) {
 	return input;
 }
 
-function createTextarea(name) {
-	var textarea = document.createElement("textarea");
-	textarea.rows = 3;
-	textarea.cols = 45;
-	textarea.name = name;
-	textarea.maxLength = 100;
-	return textarea;
-}
-
 function createRadioCor(cor) {
 	var div = document.createElement("div");
 	div.classList.add("opcao-cor");
