@@ -4,8 +4,16 @@
 	position: absolute;
 }
 #lousa img {
-	width: 100%;
+	width: 90%;
 	height: 99%;
+	display: inline-block;
+}
+
+#menu {
+	width: 9%;
+	height: 99%;
+	display: inline-block;
+	background-color: #CCC;
 }
 
 #opcao {

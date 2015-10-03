@@ -1,3 +1,23 @@
+$(".novoPostIt").draggable({
+	helper: "clone"
+});
+
+$("#atividade").droppable({
+	accept: ".novoPostIt",
+    drop: function (e, ui) {
+    	
+    	var postIt = $(ui.draggable).clone();
+    	postIt.removeClass("novoPostIt");
+    	postIt.addClass("postIt");
+    	var cursorX = (e.clientX * 100.0) / window.innerWidth;
+    	var cursorY = (e.clientY * 100.0) / window.innerHeight;
+    	postIt.css('left', cursorX + "%");
+    	postIt.css('top', cursorY + "%");
+        postIt.appendTo($(this).parent());
+    }
+});
+
+
 function cuteOkCancelPrompt(msg, callbackFunction, cancelCallback) {
 	prompt = $.prompt(msg , {
 		buttons:{Ok:true,Cancel:false},

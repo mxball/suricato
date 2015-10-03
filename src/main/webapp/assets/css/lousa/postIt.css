@@ -16,6 +16,13 @@
 	font: bold 0.75em Arial;
 }
 
+.novoPostIt {
+	width: 6em;
+	height: 4em;
+	display: block;
+	margin: 0.5em;
+}
+
 input[name="cor"] {
 	display: none;
 }
@@ -61,4 +68,8 @@ input[name="cor"]:checked + label {
 
 .corBAB7A9 {
 	background-color: #BAB7A9;
+}
+
+.corFFFFFF {
+	background-color: #FFFFFF;
 }
