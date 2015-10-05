@@ -9,11 +9,17 @@
 
 .postIt {
 	width: 8%;
-	min-height: 15%;
+	height: 15%;
 	border-radius: 2px;
 	box-shadow: 2px 2px 5px #888;
 	position: absolute;
 	font: bold 0.75em Arial;
+}
+
+.postIt textarea {
+	width: 85%;
+	height: 85%;
+	margin: 5%;
 }
 
 .novoPostIt {

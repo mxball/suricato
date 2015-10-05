@@ -1,13 +1,7 @@
 document.querySelector("#lousa").addEventListener("click", getAcao);
 
 function getAcao(event) {
-	if(event.target.id == 'atividade'){
-		if(document.querySelector("#adiciona-postit").checked) {
-			getPostIt(event);
-		} else {
-			getTexto(event);
-		}
-	}
+	$(".postIt").draggable();
 }
 
 function getTexto(coordenadas) {
@@ -25,8 +19,6 @@ function getTexto(coordenadas) {
 
 function createTextarea(name) {
 	var textarea = document.createElement("textarea");
-	textarea.rows = 3;
-	textarea.cols = 45;
 	textarea.name = name;
 	textarea.maxLength = 100;
 	return textarea;
