@@ -1,11 +1,3 @@
-#menu .postIt {
-	width: 6.3em;
-	height: 4em;
-	display: block;
-	margin: 0.5em;
-	box-shadow: 4px 4px 5px rgba(33,33,33,.7);
-}
-
 .postIt:not(.draggable) {
 	width: 8%;
 	height: 15%;

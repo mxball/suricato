@@ -1,8 +1,4 @@
 #menu .comentario {
-	width: 6.3em;
-	height: 4em;
-	display: block;
-	margin: 0.5em;
 	box-sizing: border-box;
 	border: 4px double black;
 	background-color: white;
