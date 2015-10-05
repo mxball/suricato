@@ -12,7 +12,7 @@ $("#atividade").droppable({
     	var cursorY = (event.clientY * 100.0) / window.innerHeight;
     	postIt.css('left', cursorX + "%");
     	postIt.css('top', cursorY + "%");
-    	var comentario = createTextarea("comentario");
+    	var comentario = createTextarea("conteudo");
     	comentario.addEventListener('keydown', teclado); 
     	postIt.append(comentario);
         postIt.appendTo($(this).parent());
@@ -23,7 +23,7 @@ $("#atividade").droppable({
 function teclado(event) {
 	if (event.keyCode == 13) {
 		var texto = document.createElement('p');
-		texto.classList.add("comentario");
+		texto.classList.add("conteudo");
 		texto.textContent = this.value;
 		var postIt = this.parentNode;
 		postIt.removeChild(this);

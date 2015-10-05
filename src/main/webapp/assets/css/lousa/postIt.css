@@ -1,10 +1,8 @@
-.campo-cor {
-	height: 2em;
-}
-
-.comentario {
-	word-wrap: break-word;
-	padding: 0.3em;
+.novoPostIt {
+	width: 6em;
+	height: 4em;
+	display: block;
+	margin: 0.5em;
 }
 
 .postIt {
@@ -16,32 +14,15 @@
 	font: bold 0.75em Arial;
 }
 
+.postIt .conteudo {
+	word-wrap: break-word;
+	padding: 2%;
+}
+
 .postIt textarea {
 	width: 85%;
 	height: 85%;
 	margin: 5%;
-}
-
-.novoPostIt {
-	width: 6em;
-	height: 4em;
-	display: block;
-	margin: 0.5em;
-}
-
-input[name="cor"] {
-	display: none;
-}
-.opcao-cor, input[name="cor"] + label {
-	width: 7em;
-	height: 7em;
-	margin-left: 1em;
-	display: inline-block;
-}
-
-input[name="cor"]:checked + label {
-	border: 3px solid rgba(0,0,0,0.3);
-	box-sizing: border-box;
 }
 
 .corFCF0AD {
