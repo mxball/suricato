@@ -16,15 +16,15 @@
 		<div id="lousa">
 			<img id="atividade" src="<c:url value="${lousa.endereco}"/>"/>
 			<div id="menu">
-				<div class="draggable postIt corFCF0AD"></div>
-				<div class="draggable postIt corE9E74A"></div>
-				<div class="draggable postIt corD0E17D"></div>
-				<div class="draggable postIt cor56C4E8"></div>
-				<div class="draggable postIt corCDDD73"></div>
-				<div class="draggable postIt cor99C7BC"></div>
-				<div class="draggable postIt corF9D6AC"></div>
-				<div class="draggable postIt corBAB7A9"></div>
-				<div class="draggable comentario"></div>
+				<div class="draggable semConteudo postIt corFCF0AD"></div>
+				<div class="draggable semConteudo postIt corE9E74A"></div>
+				<div class="draggable semConteudo postIt corD0E17D"></div>
+				<div class="draggable semConteudo postIt cor56C4E8"></div>
+				<div class="draggable semConteudo postIt corCDDD73"></div>
+				<div class="draggable semConteudo postIt cor99C7BC"></div>
+				<div class="draggable semConteudo postIt corF9D6AC"></div>
+				<div class="draggable semConteudo postIt corBAB7A9"></div>
+				<div class="draggable semConteudo comentario"><span>Comentário</span></div>
 			</div>
 		</div>
 	</body>

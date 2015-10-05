@@ -3,7 +3,7 @@ document.querySelector("#lousa").addEventListener("click", getAcao);
 function getAcao(event) {
 	$(".postIt").draggable();
 	$(".comentario").draggable();
-}
+};
 
 $(".draggable").draggable({
 	helper: "clone"
@@ -14,6 +14,7 @@ $("#atividade").droppable({
     drop: function (event, ui) {
     	var postIt = $(ui.draggable).clone();
     	postIt.removeClass("draggable");
+    	postIt.children().remove();
     	var cursorX = (event.clientX * 100.0) / window.innerWidth;
     	var cursorY = (event.clientY * 100.0) / window.innerHeight;
     	postIt.css('left', cursorX + "%");
@@ -31,6 +32,7 @@ function teclado(event) {
 		texto.classList.add("conteudo");
 		texto.textContent = this.value;
 		var postIt = this.parentNode;
+		postIt.classList.remove("semConteudo");
 		postIt.removeChild(this);
 		postIt.appendChild(texto);
 	}	

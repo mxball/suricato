@@ -1,15 +1,15 @@
 #menu .postIt {
-	width: 6em;
+	width: 6.3em;
 	height: 4em;
 	display: block;
 	margin: 0.5em;
+	box-shadow: 4px 4px 5px rgba(33,33,33,.7);
 }
 
 .postIt:not(.draggable) {
 	width: 8%;
 	height: 15%;
-	border-radius: 2px;
-	box-shadow: 2px 2px 5px #888;
+	box-shadow: 2px 2px 5px rgba(33,33,33,.7);
 	position: absolute;
 	font: bold 0.75em Arial;
 	z-index: 10;
@@ -17,7 +17,7 @@
 
 .postIt:not(.draggable) .conteudo {
 	word-wrap: break-word;
-	padding: 2%;
+	padding: 8%;
 }
 
 .postIt:not(.draggable) textarea {

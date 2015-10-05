@@ -1,22 +1,26 @@
 #menu .comentario {
-	width: 6em;
+	width: 6.3em;
 	height: 4em;
 	display: block;
 	margin: 0.5em;
 	box-sizing: border-box;
-	border: 5px solid black;
+	border: 4px double black;
 	background-color: white;
+	position: relative;
+}
+
+#menu .comentario span {
+	position: absolute;
+	width: 100%;
+	top: 35%;
+	text-align: center;
 }
 
 .comentario:not(.draggable) {
 	width: 25%;
 	height: 10%;
-	border-radius: 2px;
-	box-shadow: 2px 2px 5px #888;
 	position: absolute;
 	font: bold 0.75em Arial;
-	box-sizing: border-box;
-	border: 5px solid black;
 	z-index: 10;
 }
 
@@ -26,7 +30,12 @@
 }
 
 .comentario:not(.draggable) textarea {
-	width: 96%;
-	height: 80%;
+	width: 100%;
+	height: 100%;
 	margin: 1%;
+	border: 3px double black;
+}
+
+.comentario:not(.semConteudo) {
+	border: 1px solid black;
 }
