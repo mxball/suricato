@@ -1,25 +1,26 @@
-.novoPostIt {
+#menu .postIt {
 	width: 6em;
 	height: 4em;
 	display: block;
 	margin: 0.5em;
 }
 
-.postIt {
+.postIt:not(.draggable) {
 	width: 8%;
 	height: 15%;
 	border-radius: 2px;
 	box-shadow: 2px 2px 5px #888;
 	position: absolute;
 	font: bold 0.75em Arial;
+	z-index: 10;
 }
 
-.postIt .conteudo {
+.postIt:not(.draggable) .conteudo {
 	word-wrap: break-word;
 	padding: 2%;
 }
 
-.postIt textarea {
+.postIt:not(.draggable) textarea {
 	width: 85%;
 	height: 85%;
 	margin: 5%;
@@ -55,8 +56,4 @@
 
 .corBAB7A9 {
 	background-color: #BAB7A9;
-}
-
-.corFFFFFF {
-	background-color: #FFFFFF;
 }

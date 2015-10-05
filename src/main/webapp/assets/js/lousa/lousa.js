@@ -2,19 +2,38 @@ document.querySelector("#lousa").addEventListener("click", getAcao);
 
 function getAcao(event) {
 	$(".postIt").draggable();
+	$(".comentario").draggable();
 }
 
-function getTexto(coordenadas) {
-	console.log("Teste " + coordenadas);
-	var cursorX = (coordenadas.clientX * 100.0) / window.innerWidth;
-	var cursorY = (coordenadas.clientY * 100.0) / window.innerHeight;
-	var text = createTextarea("comments");
+$(".draggable").draggable({
+	helper: "clone"
+});
 
-	text.style.left = cursorX + "%";
-	text.style.top = cursorY + "%";
-	text.classList.add("texto");
+$("#atividade").droppable({
+	accept: ".draggable",
+    drop: function (event, ui) {
+    	var postIt = $(ui.draggable).clone();
+    	postIt.removeClass("draggable");
+    	var cursorX = (event.clientX * 100.0) / window.innerWidth;
+    	var cursorY = (event.clientY * 100.0) / window.innerHeight;
+    	postIt.css('left', cursorX + "%");
+    	postIt.css('top', cursorY + "%");
+    	var comentario = createTextarea("conteudo");
+    	comentario.addEventListener('keydown', teclado); 
+    	postIt.append(comentario);
+        postIt.appendTo($(this).parent());
+    }
+});
 
-	document.querySelector("#lousa").appendChild(text);
+function teclado(event) {
+	if (event.keyCode == 13) {
+		var texto = document.createElement('p');
+		texto.classList.add("conteudo");
+		texto.textContent = this.value;
+		var postIt = this.parentNode;
+		postIt.removeChild(this);
+		postIt.appendChild(texto);
+	}	
 }
 
 function createTextarea(name) {
