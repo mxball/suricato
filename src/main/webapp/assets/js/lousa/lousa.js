@@ -28,12 +28,17 @@ $("#atividade").droppable({
 
 function teclado(event) {
 	if (event.keyCode == 13) {
+		var linkRemove = document.createElement('a');
+		linkRemove.onclick = removeElemento;
+		linkRemove.href = "#";
+		linkRemove.classList.add("remover");
 		var texto = document.createElement('p');
 		texto.classList.add("conteudo");
 		texto.textContent = this.value;
 		var postIt = this.parentNode;
 		postIt.classList.remove("semConteudo");
 		postIt.removeChild(this);
+		postIt.appendChild(linkRemove);
 		postIt.appendChild(texto);
 	}	
 }
@@ -43,4 +48,8 @@ function createTextarea(name) {
 	textarea.name = name;
 	textarea.maxLength = 100;
 	return textarea;
+}
+
+function removeElemento() {
+	this.parentNode.remove();
 }

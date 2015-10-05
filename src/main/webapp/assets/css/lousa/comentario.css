@@ -22,7 +22,7 @@
 
 .comentario:not(.draggable) .conteudo {
 	word-wrap: break-word;
-	padding: 2%;
+	padding: 5% 2% 2% 2%;
 }
 
 .comentario:not(.draggable) textarea {
@@ -34,4 +34,9 @@
 
 .comentario:not(.semConteudo) {
 	border: 1px solid black;
+}
+
+.comentario .remover:after {
+	right: 2%;
+	top: 25%;
 }

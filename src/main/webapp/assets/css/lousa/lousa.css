@@ -25,3 +25,15 @@
 	margin: 0.5em;
 	box-shadow: 4px 4px 5px rgba(33,33,33,.7);
 }
+
+.remover {
+	position: absolute;
+	width: 100%;
+	height: 20%;
+}
+
+.remover:after {
+	content: 'X';
+	position: absolute;
+	color: #CF000F;
+}

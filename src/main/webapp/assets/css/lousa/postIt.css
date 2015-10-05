@@ -9,13 +9,18 @@
 
 .postIt:not(.draggable) .conteudo {
 	word-wrap: break-word;
-	padding: 8%;
+	padding: 13% 5% 5% 5%;
 }
 
 .postIt:not(.draggable) textarea {
 	width: 85%;
 	height: 85%;
 	margin: 5%;
+}
+
+.postIt .remover:after {
+	right: 5%;
+	top: 20%;
 }
 
 .corFCF0AD {
