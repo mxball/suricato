@@ -11,18 +11,19 @@ $(".draggable").draggable({
 
 $("#atividade").droppable({
 	accept: ".draggable",
-    drop: function (event, ui) {
-    	var postIt = $(ui.draggable).clone();
-    	postIt.removeClass("draggable");
-    	postIt.children().remove();
-    	var cursorX = (event.clientX * 100.0) / window.innerWidth;
-    	var cursorY = (event.clientY * 100.0) / window.innerHeight;
-    	postIt.css('left', cursorX + "%");
-    	postIt.css('top', cursorY + "%");
-    	var comentario = createTextarea("conteudo");
-    	comentario.addEventListener('keydown', teclado); 
-    	postIt.append(comentario);
-        postIt.appendTo($(this).parent());
+	drop: function (event, ui) {
+		var draggable = $(ui.draggable).clone(true);
+		draggable.removeClass("draggable");
+		draggable.children().remove();
+		var posicaoEsquerda = (ui.offset.left * 100.0) / window.innerWidth;
+		var posicaoTopo = (ui.offset.top * 100.0) / window.innerHeight;
+		draggable.css('left', posicaoEsquerda + "%");
+		draggable.css('top', posicaoTopo + "%");
+		var limiteCaracteres = draggable.hasClass("postIt") ? 100 : 0;
+		var comentario = createTextarea("conteudo", limiteCaracteres);
+		comentario.addEventListener('keydown', teclado);
+		draggable.append(comentario);
+		draggable.appendTo($(this).parent());
     }
 });
 
@@ -43,10 +44,12 @@ function teclado(event) {
 	}	
 }
 
-function createTextarea(name) {
+function createTextarea(name, limiteCaracteres) {
 	var textarea = document.createElement("textarea");
 	textarea.name = name;
-	textarea.maxLength = 100;
+	if(limiteCaracteres > 0) {
+		textarea.maxLength = limiteCaracteres;
+	}
 	return textarea;
 }
 
