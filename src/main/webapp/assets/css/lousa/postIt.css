@@ -16,11 +16,13 @@
 	width: 85%;
 	height: 85%;
 	margin: 5%;
+	font-size: 120%;
 }
 
-.postIt .remover:after {
-	right: 5%;
-	top: 20%;
+
+.postIt .remover {
+	right: 8%;
+	top: 3%;
 }
 
 .corFCF0AD {

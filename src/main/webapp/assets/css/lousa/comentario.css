@@ -14,29 +14,31 @@
 
 .comentario:not(.draggable) {
 	width: 25%;
-	height: 10%;
+	min-height: 5%;
 	position: absolute;
 	font: bold 0.75em Arial;
 	z-index: 10;
+	background-color: #FFF;
 }
 
 .comentario:not(.draggable) .conteudo {
 	word-wrap: break-word;
-	padding: 5% 2% 2% 2%;
+	padding: 4% 2% 2% 2%;
 }
 
 .comentario:not(.draggable) textarea {
 	width: 100%;
 	height: 100%;
-	margin: 1%;
 	border: 3px double black;
+	box-sizing: border-box;
+	font-size: 120%;
 }
 
 .comentario:not(.semConteudo) {
 	border: 1px solid black;
 }
 
-.comentario .remover:after {
-	right: 2%;
-	top: 25%;
+.comentario .remover {
+	right: 0%;
+	top: 5%;
 }
