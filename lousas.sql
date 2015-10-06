@@ -1,3 +1,14 @@
-insert into Lousa (nome, endereco) values ("Glad and Sad", "/assets/images/gladSad.png");
+delete from Lousa;
+insert into Lousa (nome, endereco) values ("Confident or Aprehansive X People or Tech", "/assets/images/capt.png");
+insert into Lousa (nome, endereco) values ("Drop, add, keep, improve", "/assets/images/daki.png");
+insert into Lousa (nome, endereco) values ("Future direction, Lessons learned, Accomplishments and Problem areas", "/assets/images/flap.png");
+insert into Lousa (nome, endereco) values ("Dealing with Failure", "/assets/images/fmea.png");
 insert into Lousa (nome, endereco) values ("Starfish", "/assets/images/starfish.png");
+insert into Lousa (nome, endereco) values ("Glad and Sad", "/assets/images/gladSad.png");
+insert into Lousa (nome, endereco) values ("Lessons learned", "/assets/images/lessonsLearned.png");
+insert into Lousa (nome, endereco) values ("Liked, learned, lacked, longed for", "/assets/images/ls.png");
 insert into Lousa (nome, endereco) values ("Open the Box", "/assets/images/openTheBox.png");
+insert into Lousa (nome, endereco) values ("Plus, minus, interesting", "/assets/images/pmi.png");
+insert into Lousa (nome, endereco) values ("Repeat x Avoid", "/assets/images/repeatAvoid.png");
+insert into Lousa (nome, endereco) values ("Thumbs up, thumbs down, new ideas and recognition", "/assets/images/thumbsUpDown.png");
+insert into Lousa (nome, endereco) values ("Worked well, kinda Worked, didn’t Work", "/assets/images/www.png");
