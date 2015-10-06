@@ -12,7 +12,7 @@ $(".draggable").draggable({
 $("#atividade").droppable({
 	accept: ".draggable",
 	drop: function (event, ui) {
-		var draggable = $(ui.draggable).clone(true);
+		var draggable = $(ui.draggable).clone();
 		draggable.removeClass("draggable");
 		draggable.children().remove();
 		var posicaoEsquerda = (ui.offset.left * 100.0) / window.innerWidth;
