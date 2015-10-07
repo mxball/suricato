@@ -11,11 +11,15 @@
 </head>
 <body>
 	<form:form role="form" commandName="lousa" servletRelativeAction="/lousa/nova">
-	<c:forEach items="${lousas}" var="lousa">
-		<input type="radio" name="endereco" value="${lousa.endereco}"/>
-		<p>${lousa.nome}</p>
-		<img src="<c:url value="${lousa.endereco}"/>"><br/>
-	</c:forEach>
+		<c:forEach items="${lousas}" var="lousa" varStatus="status">
+			<input type="radio" name="endereco" value="${lousa.endereco}" id="atividade_${status.index}"/>
+			<div class="atividades">
+				<label for="atividade_${status.index}">
+					<h2>${lousa.nome}</h2>
+					<img src="<c:url value="${lousa.endereco}"/>"><br/>
+				</label>
+			</div>
+		</c:forEach>
 		<button type="submit">Nova lousa</button>
 	</form:form>
 </body>

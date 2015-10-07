@@ -1,50 +1,36 @@
-body {
-  background: #eee !important;
+input[name="endereco"] {
+	display: none;
 }
 
-.wrapper {
-  margin-top: 80px;
-  margin-bottom: 80px;
+input[name="endereco"] + .atividades label {
+	display: block;
 }
 
-.form-signin {
-  max-width: 380px;
-  padding: 15px 35px 45px;
-  margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 30px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 20px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+input[name="endereco"] + .atividades label h2 {
+	text-align: center;
+	font: bold 0.8em Arial;
 }
 
-img {
-	width: 10%;
-	height: 10%;
+input[name="endereco"] + .atividades label img {
+	display: block;
+	margin: 0 auto;
+	width: 70%;
 }
+
+input[name="endereco"] + .atividades {
+	border: 5px solid white;
+	box-sizing: border-box;
+}
+
+input[name="endereco"]:checked + .atividades {
+	border: 5px solid red;
+}
+
+.atividades {
+	display: inline-block;
+	width: 33%;
+	margin-bottom: 20px;
+	vertical-align: top;
+}
+
+
