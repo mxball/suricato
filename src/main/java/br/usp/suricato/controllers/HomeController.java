@@ -20,10 +20,11 @@ public class HomeController {
 		this.lousaDao = lousaDao;
 	}
 
-	@RequestMapping("/")
+	@RequestMapping(value={"/", "index"})
 	public String index(Model model) {
 		List<Lousa> lousas = lousaDao.lista();
 		model.addAttribute("lousas", lousas);
 		return "index";
 	}
+	
 }

@@ -10,6 +10,11 @@
 <title>Home page</title>
 </head>
 <body>
+	<c:url value="/logout" var="logoutUrl" />
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input type="submit" value="Logout">
+	</form>
 	<form:form role="form" commandName="lousa" servletRelativeAction="/lousa/nova">
 		<c:forEach items="${lousas}" var="lousa" varStatus="status">
 			<input type="radio" name="endereco" value="${lousa.endereco}" id="atividade_${status.index}"/>
