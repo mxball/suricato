@@ -5,16 +5,22 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="<c:url value='/assets/css/usuario/login.css'/>">
 		<title>Novo usuário</title>
 	</head>
 	<body>
-		<form action="<c:url value='/usuario/novo'/>">
-			<input type='hidden' name='permissao.id' value="1"/><br/>
-			<form:errors path='usuario.nome'/><br/>
-			Usuário: <input type='text' name='nome' value="${usuario.nome}"/><br/>
-			<form:errors path='usuario.senha'/><br/>
-			Senha: <input type='password' name='senha' value="${usuario.senha}"/><br/>
-			<input type="submit" value="Cadastrar"/>
-		</form>
+		<fieldset id="usuario">
+			<legend>Novo usuário</legend>
+			<form action="<c:url value='/usuario/novo'/>">
+				<input type='hidden' name='permissao.id' value="1"/>
+				<form:errors path='usuario.nome'/>
+				<label for="nome">Usuário:</label>
+				<input type='text' name='nome' id="nome" value="${usuario.nome}"/>
+				<form:errors path='usuario.senha'/>
+				<label for="senha">Senha:</label>
+				<input type='password' name='senha' id="senha" value="${usuario.senha}"/>
+				<input type="submit" value="Cadastrar"/>
+			</form>
+		</fieldset>
 	</body>
 </html>

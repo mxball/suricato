@@ -1,0 +1,29 @@
+#usuario {
+	width: 45%;
+	margin: 0 auto;
+}
+
+#usuario label {
+	display: inline-block;
+	width: 12%;
+	margin: 2% 0 2% 17%;
+}
+
+#usuario input {
+	width: 50%;
+}
+
+#usuario input[type="submit"] {
+	display: block;
+	margin-left: 30%;
+}
+
+#usuario a,
+#usuario span[id$="errors"] {
+	display: block;
+	margin: 2% 0 0 17%;
+}
+
+#usuario span[id$="errors"] {
+	color: #CF000F;
+}
