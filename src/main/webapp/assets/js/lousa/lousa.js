@@ -44,6 +44,25 @@ function teclado(event) {
 	}	
 }
 
+
+var SHIFT = false; 
+document.body.addEventListener('keyup', function(event){ console.log(event); 
+	//Shift+ENTER 
+	if(event.keyCode == 13 && SHIFT) { 
+		console.log('HAU'); 
+	} 
+	//Desligar Shift 
+	if (event.keyCode == 16) { 
+		SHIFT = false; 
+	} 
+}); 
+document.body.addEventListener('keydown', function(event) { 
+	if (event.keyCode == 16 && !SHIFT) { 
+		SHIFT = true; 
+	}; 
+}); 
+
+
 function createTextarea(name, limiteCaracteres) {
 	var textarea = document.createElement("textarea");
 	textarea.name = name;
