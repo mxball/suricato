@@ -1,3 +1,5 @@
+var numero = 10;
+
 document.querySelector("#lousa").addEventListener("click", getAcao);
 
 function getAcao(event) {
@@ -36,11 +38,17 @@ function teclado(event) {
 		var texto = document.createElement('p');
 		texto.classList.add("conteudo");
 		texto.textContent = this.value;
-		var postIt = this.parentNode;
-		postIt.classList.remove("semConteudo");
-		postIt.removeChild(this);
-		postIt.appendChild(linkRemove);
-		postIt.appendChild(texto);
+		var elemento = this.parentNode;
+		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].conteudo", "texto"));
+		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].posicaoHorizontal", elemento.style.left));
+		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].posicaoVertical", elemento.style.top	));
+		if(elemento.classList.contains("postIt")) {
+			elemento.appendChild(createInput("hidden", "postIts[" + numero + "].cor", "corFCF0AD"));
+		}
+		elemento.classList.remove("semConteudo");
+		elemento.removeChild(this);
+		elemento.appendChild(linkRemove);
+		elemento.appendChild(texto);
 	}	
 }
 
@@ -61,6 +69,14 @@ document.body.addEventListener('keydown', function(event) {
 		SHIFT = true; 
 	}; 
 }); 
+
+function createInput(type, name, value) {
+	var input = document.createElement('input');
+	input.type = type;
+	input.name = name;
+	input.value = value;
+	return input;
+}
 
 
 function createTextarea(name, limiteCaracteres) {

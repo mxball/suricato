@@ -19,4 +19,8 @@ public class LousaDao {
 		return manager.createQuery("select l from Lousa l", Lousa.class).getResultList();
 	}
 
+	public Lousa load(Integer id) {
+		return manager.find(Lousa.class, id);
+	}
+
 }

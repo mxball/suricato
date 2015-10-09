@@ -36,3 +36,8 @@
 	position: absolute;
 	color: #CF000F;
 }
+
+input[type="submit"] {
+	position: absolute;
+	z-index: 200;
+}

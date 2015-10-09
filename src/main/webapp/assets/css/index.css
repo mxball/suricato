@@ -1,28 +1,28 @@
-input[name="endereco"] {
+input[name="lousa.id"] {
 	display: none;
 }
 
-input[name="endereco"] + .atividades label {
+input[name="lousa.id"] + .atividades label {
 	display: block;
 }
 
-input[name="endereco"] + .atividades label h2 {
+input[name="lousa.id"] + .atividades label h2 {
 	text-align: center;
 	font: bold 0.8em Arial;
 }
 
-input[name="endereco"] + .atividades label img {
+input[name="lousa.id"] + .atividades label img {
 	display: block;
 	margin: 0 auto;
 	width: 70%;
 }
 
-input[name="endereco"] + .atividades {
+input[name="lousa.id"] + .atividades {
 	border: 5px solid white;
 	box-sizing: border-box;
 }
 
-input[name="endereco"]:checked + .atividades {
+input[name="lousa.id"]:checked + .atividades {
 	border: 5px solid red;
 }
 

@@ -15,9 +15,10 @@
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<input type="submit" value="Logout">
 	</form>
-	<form:form role="form" commandName="lousa" servletRelativeAction="/lousa/nova">
+	<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/nova">
+		<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>
 		<c:forEach items="${lousas}" var="lousa" varStatus="status">
-			<input type="radio" name="endereco" value="${lousa.endereco}" id="atividade_${status.index}"/>
+			<input type="radio" name="lousa.id" value="${lousa.id}" id="atividade_${status.index}"/>
 			<div class="atividades">
 				<label for="atividade_${status.index}">
 					<h2>${lousa.nome}</h2>

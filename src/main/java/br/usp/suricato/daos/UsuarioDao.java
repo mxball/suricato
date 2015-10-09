@@ -17,4 +17,8 @@ public class UsuarioDao {
 		manager.persist(usuario);
 	}
 
+	public Usuario buscaPorNome(String nome) {
+		return (Usuario) manager.createQuery("select u from Usuario u where u.nome = :nome").setParameter("nome", nome).getSingleResult();
+	}
+
 }
