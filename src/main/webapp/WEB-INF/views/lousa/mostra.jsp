@@ -14,17 +14,18 @@
 		<title>Retrospectiva</title>
 	</head>
 	<body>
-		<form:form role="form" id="retrospectiva" commandName="retrospectiva" servletRelativeAction="/retrospectiva/salvar" method="POST">
+		<form:form role="form" id="retrospectiva" modelAttribute="retrospectiva" servletRelativeAction="/retrospectiva/salvar" method="POST">
 			<input type="hidden" name="id" value="${retrospectiva.id}"/>
 			<input type="hidden" name="criador.id" value="${retrospectiva.criador.id}"/>
 			<div id="lousa">
 				<img id="atividade" src="<c:url value="${retrospectiva.lousa.endereco}"/>"/>
 				<input type="hidden" name="lousa.id" value="${retrospectiva.lousa.id}"/>
 				<input type="hidden" name="lousa.endereco" value="${retrospectiva.lousa.endereco}"/>
-				<c:forEach var="postIt" items="${retrospectiva.postIts}">
-					<div class="postIt corFCF0AD">
+				<c:forEach var="postIt" items="${retrospectiva.postIts}" varStatus="status">
+					<div class="postIt corFCF0AD" style="left: ${postIt.posicaoHorizontal}%; top: ${postIt.posicaoVertical}%;">
 						<a href="#" onclick="removeElemento" class="remover"></a>
 						<p class="conteudo">${postIt.conteudo}</p>
+						<input type="hidden" name="postIts[${status.index}].id" value="${postIt.id}"/>
 						<input type="hidden" name="postIts[${status.index}].conteudo" value="${postIt.conteudo}"/>
 						<input type="hidden" name="postIts[${status.index}].posicaoHorizontal" value="${postIt.posicaoHorizontal}"/>
 						<input type="hidden" name="postIts[${status.index}].posicaoVertical" value="${postIt.posicaoVertical}"/>

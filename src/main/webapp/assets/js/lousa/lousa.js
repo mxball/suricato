@@ -1,4 +1,4 @@
-var numero = 10;
+var numero = 0;
 
 document.querySelector("#lousa").addEventListener("click", getAcao);
 
@@ -39,9 +39,11 @@ function teclado(event) {
 		texto.classList.add("conteudo");
 		texto.textContent = this.value;
 		var elemento = this.parentNode;
-		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].conteudo", "texto"));
-		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].posicaoHorizontal", elemento.style.left));
-		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].posicaoVertical", elemento.style.top	));
+		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].conteudo", texto.textContent));
+		var posicaoHorizontal = elemento.style.left.replace("%", "");
+		var posicaoVertical = elemento.style.top.replace("%", "");
+		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].posicaoHorizontal", posicaoHorizontal));
+		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].posicaoVertical", posicaoVertical));
 		if(elemento.classList.contains("postIt")) {
 			elemento.appendChild(createInput("hidden", "postIts[" + numero + "].cor", "corFCF0AD"));
 		}
@@ -49,6 +51,7 @@ function teclado(event) {
 		elemento.removeChild(this);
 		elemento.appendChild(linkRemove);
 		elemento.appendChild(texto);
+		numero++;
 	}	
 }
 

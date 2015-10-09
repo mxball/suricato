@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,7 +29,7 @@ public class RetrospectivaController {
 	private LousaDao lousaDao;
 	
 	@RequestMapping(value="/salvar", method=RequestMethod.POST)
-	public String salvaRetrospectiva(Retrospectiva retrospectiva, Model model) {
+	public String salvaRetrospectiva(@ModelAttribute("retrospectiva") Retrospectiva retrospectiva, Model model) {
 		retrospectivaDao.atualiza(retrospectiva);
 		model.addAttribute("retrospectiva", retrospectiva);
 		return "lousa/mostra";

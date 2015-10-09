@@ -27,7 +27,6 @@ public class UserDetailsServiceDAO implements UserDetailsService {
 									.setParameter("nome", username)
 									.getSingleResult();
 		List<SimpleGrantedAuthority> authorities = Arrays.asList( new SimpleGrantedAuthority( usuario.getPermissao().getNome() ) );
-		System.out.println(usuario.getNome() + " " + usuario.getSenha() + " " + usuario.getPermissao().getNome());
 		return new User(usuario.getNome(), usuario.getSenha(), authorities);
 	}
 

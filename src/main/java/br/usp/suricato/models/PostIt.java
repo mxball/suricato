@@ -16,11 +16,11 @@ public class PostIt {
 	private String conteudo;
 
 	@NotNull
-	private Long posicaoHorizontal;
+	private Double posicaoHorizontal;
 
 	@NotNull
-	private Long posicaoVertical;
-	
+	private Double posicaoVertical;
+
 	@NotNull
 	private String cor;
 
@@ -40,19 +40,19 @@ public class PostIt {
 		this.conteudo = conteudo;
 	}
 
-	public Long getPosicaoHorizontal() {
+	public Double getPosicaoHorizontal() {
 		return posicaoHorizontal;
 	}
 
-	public void setPosicaoHorizontal(Long posicaoHorizontal) {
+	public void setPosicaoHorizontal(Double posicaoHorizontal) {
 		this.posicaoHorizontal = posicaoHorizontal;
 	}
 
-	public Long getPosicaoVertical() {
+	public Double getPosicaoVertical() {
 		return posicaoVertical;
 	}
 
-	public void setPosicaoVertical(Long posicaoVertical) {
+	public void setPosicaoVertical(Double posicaoVertical) {
 		this.posicaoVertical = posicaoVertical;
 	}
 
