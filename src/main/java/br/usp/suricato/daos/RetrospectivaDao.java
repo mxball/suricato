@@ -1,5 +1,7 @@
 package br.usp.suricato.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -28,12 +30,26 @@ public class RetrospectivaDao {
 
 	public void atualiza(Retrospectiva retrospectiva) {
 		for (PostIt postIt : retrospectiva.getPostIts()) {
+			postIt.setRetrospectiva(retrospectiva);
 			postItDao.saveOrUpdate(postIt);
 		}
 		for (Comentario comentario : retrospectiva.getComentarios()) {
+			comentario.setRetrospectiva(retrospectiva);
 			comentarioDao.saveOrUpdate(comentario);
 		}
-		manager.merge(retrospectiva);		
+		manager.merge(retrospectiva);
+	}
+
+	public List<Retrospectiva> listaRetrospectivasDoUsuario(String nome) {
+		return manager.createQuery("select r from Retrospectiva r where r.criador.nome = :nome", Retrospectiva.class)
+					.setParameter("nome", nome)
+					.getResultList();
+	}
+
+	public Retrospectiva load(Integer id) {
+		return manager.createQuery("select r from Retrospectiva r where r.id = :id", Retrospectiva.class)
+				.setParameter("id", id)
+				.getSingleResult();
 	}
 	
 }

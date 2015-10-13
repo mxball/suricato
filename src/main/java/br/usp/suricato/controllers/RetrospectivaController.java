@@ -30,12 +30,17 @@ public class RetrospectivaController {
 	
 	@Autowired
 	private LousaDao lousaDao;
+
+	@RequestMapping("/mostra")
+	public String mostraRetrospectiva(Integer id, Model model) {
+		model.addAttribute("retrospectiva", retrospectivaDao.load(id));
+		return "retrospectiva/mostra";
+	}
 	
 	@RequestMapping(value="/salvar", method=RequestMethod.POST)
 	public String salvaRetrospectiva(@ModelAttribute("retrospectiva") Retrospectiva retrospectiva, Model model) {
 		retrospectivaDao.atualiza(retrospectiva);
-		model.addAttribute("retrospectiva", retrospectiva);
-		return "retrospectiva/mostra";
+		return "redirect:mostra?id=" + retrospectiva.getId();
 	}
 	
 	@RequestMapping("/cria")
@@ -43,8 +48,7 @@ public class RetrospectivaController {
 		retrospectiva.setCriador(usuarioDao.buscaPorNome(retrospectiva.getCriador().getNome()));
 		retrospectiva.setLousa(lousaDao.load(retrospectiva.getLousa().getId()));
 		retrospectivaDao.salva(retrospectiva);
-		model.addAttribute("retrospectiva", retrospectiva);
-		return "retrospectiva/mostra";
+		return "redirect:mostra?id=" + retrospectiva.getId();
 	}
 	
 	@RequestMapping("/nova")
