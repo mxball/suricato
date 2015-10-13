@@ -1,0 +1,34 @@
+input[name="lousa.id"] {
+	display: none;
+}
+
+input[name="lousa.id"] + .atividades label {
+	display: block;
+}
+
+input[name="lousa.id"] + .atividades label h2 {
+	text-align: center;
+	font: bold 0.8em Arial;
+}
+
+input[name="lousa.id"] + .atividades label img {
+	display: block;
+	margin: 0 auto;
+	width: 70%;
+}
+
+input[name="lousa.id"] + .atividades {
+	border: 5px solid white;
+	box-sizing: border-box;
+}
+
+input[name="lousa.id"]:checked + .atividades {
+	border: 5px solid red;
+}
+
+.atividades {
+	display: inline-block;
+	width: 33%;
+	margin-bottom: 20px;
+	vertical-align: top;
+}

@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 	<link rel="stylesheet" href="<c:url value='/assets/css/index.css'/>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home page</title>
+	<title>Home page</title>
 </head>
 <body>
 	<c:url value="/logout" var="logoutUrl" />
@@ -15,18 +15,6 @@
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<input type="submit" value="Logout">
 	</form>
-	<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/nova">
-		<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>
-		<c:forEach items="${lousas}" var="lousa" varStatus="status">
-			<input type="radio" name="lousa.id" value="${lousa.id}" id="atividade_${status.index}"/>
-			<div class="atividades">
-				<label for="atividade_${status.index}">
-					<h2>${lousa.nome}</h2>
-					<img src="<c:url value="${lousa.endereco}"/>"><br/>
-				</label>
-			</div>
-		</c:forEach>
-		<button type="submit">Nova lousa</button>
-	</form:form>
+	<a href='<c:url value="/retrospectiva/nova"/>'>Nova retrospectiva</a>
 </body>
 </html>
