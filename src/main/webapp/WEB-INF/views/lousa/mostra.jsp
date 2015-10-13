@@ -17,12 +17,13 @@
 		<form:form role="form" id="retrospectiva" modelAttribute="retrospectiva" servletRelativeAction="/retrospectiva/salvar" method="POST">
 			<input type="hidden" name="id" value="${retrospectiva.id}"/>
 			<input type="hidden" name="criador.id" value="${retrospectiva.criador.id}"/>
-			<div id="lousa">
+			<div id="lousa" data-postIt-quantidade="${retrospectiva.postIts.size()}" 
+							data-comentario-quantidade="${retrospectiva.comentarios.size()}">
 				<img id="atividade" src="<c:url value="${retrospectiva.lousa.endereco}"/>"/>
 				<input type="hidden" name="lousa.id" value="${retrospectiva.lousa.id}"/>
 				<input type="hidden" name="lousa.endereco" value="${retrospectiva.lousa.endereco}"/>
 				<c:forEach var="postIt" items="${retrospectiva.postIts}" varStatus="status">
-					<div class="postIt corFCF0AD" style="left: ${postIt.posicaoHorizontal}%; top: ${postIt.posicaoVertical}%;">
+					<div class="postIt ${postIt.cor}" style="left: ${postIt.posicaoHorizontal}%; top: ${postIt.posicaoVertical}%;">
 						<a href="#" onclick="removeElemento" class="remover"></a>
 						<p class="conteudo">${postIt.conteudo}</p>
 						<input type="hidden" name="postIts[${status.index}].id" value="${postIt.id}"/>
@@ -32,10 +33,11 @@
 						<input type="hidden" name="postIts[${status.index}].cor" value="${postIt.cor}"/>
 					</div>
 				</c:forEach>
-				<c:forEach var="comentario" items="${retrospectiva.comentarios}">
-					<div class="comentario">
+				<c:forEach var="comentario" items="${retrospectiva.comentarios}" varStatus="status">
+					<div class="comentario" style="left: ${comentario.posicaoHorizontal}%; top: ${comentario.posicaoVertical}%;">
 						<a href="#" onclick="removeElemento" class="remover"></a>
 						<p class="conteudo">${comentario.conteudo}</p>
+						<input type="hidden" name="comentarios[${status.index}].id" value="${comentario.id}"/>
 						<input type="hidden" name="comentarios[${status.index}].conteudo" value="${comentario.conteudo}"/>
 						<input type="hidden" name="comentarios[${status.index}].posicaoHorizontal" value="${comentario.posicaoHorizontal}"/>
 						<input type="hidden" name="comentarios[${status.index}].posicaoVertical" value="${comentario.posicaoVertical}"/>

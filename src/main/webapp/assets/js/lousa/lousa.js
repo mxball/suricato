@@ -1,6 +1,8 @@
-var numero = 0;
+var lousa = document.querySelector("#lousa");
+var numeroPostIts = lousa.dataset.postitQuantidade;
+var numeroComentarios = lousa.dataset.comentarioQuantidade;
 
-document.querySelector("#lousa").addEventListener("click", getAcao);
+lousa.addEventListener("click", getAcao);
 
 function getAcao(event) {
 	$(".postIt").draggable();
@@ -39,19 +41,24 @@ function teclado(event) {
 		texto.classList.add("conteudo");
 		texto.textContent = this.value;
 		var elemento = this.parentNode;
-		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].conteudo", texto.textContent));
 		var posicaoHorizontal = elemento.style.left.replace("%", "");
 		var posicaoVertical = elemento.style.top.replace("%", "");
-		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].posicaoHorizontal", posicaoHorizontal));
-		elemento.appendChild(createInput("hidden", "postIts[" + numero + "].posicaoVertical", posicaoVertical));
 		if(elemento.classList.contains("postIt")) {
-			elemento.appendChild(createInput("hidden", "postIts[" + numero + "].cor", "corFCF0AD"));
+			elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].conteudo", texto.textContent));
+			elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoHorizontal", posicaoHorizontal));
+			elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoVertical", posicaoVertical));
+			elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].cor", elemento.className.match(/\bcor[^\s]+\b/)));
+			numeroPostIts++;
+		} else if(elemento.classList.contains("comentario")) {
+			elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].conteudo", texto.textContent));
+			elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoHorizontal", posicaoHorizontal));
+			elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoVertical", posicaoVertical));
+			numeroComentarios++;
 		}
 		elemento.classList.remove("semConteudo");
 		elemento.removeChild(this);
 		elemento.appendChild(linkRemove);
 		elemento.appendChild(texto);
-		numero++;
 	}	
 }
 
