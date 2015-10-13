@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -22,10 +23,10 @@ public class Retrospectiva {
 	@NotNull
 	private Lousa lousa;
 
-	@ManyToMany
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="retrospectiva")
 	private List<PostIt> postIts = new ArrayList<>();
 
-	@ManyToMany
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="retrospectiva")
 	private List<Comentario> comentarios = new ArrayList<>();
 	
 	@ManyToOne
