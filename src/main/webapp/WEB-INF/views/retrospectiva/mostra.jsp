@@ -8,9 +8,9 @@
 		<link rel="stylesheet" href="<c:url value='/assets/css/jquery-impromptu.min.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/jquery-ui.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
-		<link rel="stylesheet" href="<c:url value='/assets/css/lousa/lousa.css'/>">
-		<link rel="stylesheet" href="<c:url value='/assets/css/lousa/postIt.css'/>">
-		<link rel="stylesheet" href="<c:url value='/assets/css/lousa/comentario.css'/>">
+		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/lousa.css'/>">
+		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/postIt.css'/>">
+		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/comentario.css'/>">
 		<title>Retrospectiva</title>
 	</head>
 	<body>
@@ -61,5 +61,5 @@
 	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
-	<script src="<c:url value='/assets/js/lousa/lousa.js'/>"></script>
+	<script src="<c:url value='/assets/js/retrospectiva/lousa.js'/>"></script>
 </html>
