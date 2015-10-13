@@ -2,11 +2,18 @@ var lousa = document.querySelector("#lousa");
 var numeroPostIts = lousa.dataset.postitQuantidade;
 var numeroComentarios = lousa.dataset.comentarioQuantidade;
 
+window.onload = getAcao;
 lousa.addEventListener("click", getAcao);
 
-function getAcao(event) {
-	$(".postIt").draggable();
-	$(".comentario").draggable();
+function getAcao() {
+	$(".comConteudo").draggable({
+		stop: function (event, ui) {
+			var posicaoEsquerda = (ui.offset.left * 100.0) / window.innerWidth;
+			var posicaoTopo = (ui.offset.top * 100.0) / window.innerHeight;
+			this.querySelector("[name$='posicaoHorizontal']").value = posicaoEsquerda;
+			this.querySelector("[name$='posicaoVertical']").value = posicaoTopo; 
+		}
+	});
 };
 
 $(".draggable").draggable({
@@ -56,6 +63,7 @@ function teclado(event) {
 			numeroComentarios++;
 		}
 		elemento.classList.remove("semConteudo");
+		elemento.classList.add("comConteudo");
 		elemento.removeChild(this);
 		elemento.appendChild(linkRemove);
 		elemento.appendChild(texto);
