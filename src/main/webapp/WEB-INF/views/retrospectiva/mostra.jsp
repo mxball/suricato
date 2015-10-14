@@ -24,23 +24,25 @@
 				<input type="hidden" name="lousa.endereco" value="${retrospectiva.lousa.endereco}"/>
 				<c:forEach var="postIt" items="${retrospectiva.postIts}" varStatus="status">
 					<div class="postIt comConteudo ${postIt.cor}" style="left: ${postIt.posicaoHorizontal}%; top: ${postIt.posicaoVertical}%;">
-						<a href="#" onclick="removeElemento" class="remover"></a>
+						<a href="#" class="remover"></a>
 						<p class="conteudo">${postIt.conteudo}</p>
 						<input type="hidden" name="postIts[${status.index}].id" value="${postIt.id}"/>
 						<input type="hidden" name="postIts[${status.index}].conteudo" value="${postIt.conteudo}"/>
 						<input type="hidden" name="postIts[${status.index}].posicaoHorizontal" value="${postIt.posicaoHorizontal}"/>
 						<input type="hidden" name="postIts[${status.index}].posicaoVertical" value="${postIt.posicaoVertical}"/>
 						<input type="hidden" name="postIts[${status.index}].cor" value="${postIt.cor}"/>
+						<input type="hidden" name="postIts[${status.index}].excluir" value="${postIt.excluir}"/>
 					</div>
 				</c:forEach>
 				<c:forEach var="comentario" items="${retrospectiva.comentarios}" varStatus="status">
 					<div class="comentario comConteudo" style="left: ${comentario.posicaoHorizontal}%; top: ${comentario.posicaoVertical}%;">
-						<a href="#" onclick="removeElemento" class="remover"></a>
+						<a href="#" class="remover"></a>
 						<p class="conteudo">${comentario.conteudo}</p>
 						<input type="hidden" name="comentarios[${status.index}].id" value="${comentario.id}"/>
 						<input type="hidden" name="comentarios[${status.index}].conteudo" value="${comentario.conteudo}"/>
 						<input type="hidden" name="comentarios[${status.index}].posicaoHorizontal" value="${comentario.posicaoHorizontal}"/>
 						<input type="hidden" name="comentarios[${status.index}].posicaoVertical" value="${comentario.posicaoVertical}"/>
+						<input type="hidden" name="comentarios[${status.index}].excluir" value="${comentario.excluir}"/>
 					</div>
 				</c:forEach>
 				<div id="menu">

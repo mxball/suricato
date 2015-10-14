@@ -22,6 +22,8 @@ public class Comentario {
 	@NotNull
 	private Double posicaoVertical;
 	
+	private boolean excluir;
+	
 	@ManyToOne
 	private Retrospectiva retrospectiva;
 
@@ -63,6 +65,14 @@ public class Comentario {
 
 	public void setRetrospectiva(Retrospectiva retrospectiva) {
 		this.retrospectiva = retrospectiva;
+	}
+
+	public boolean isExcluir() {
+		return excluir;
+	}
+
+	public void setExcluir(boolean excluir) {
+		this.excluir = excluir;
 	}
 
 }

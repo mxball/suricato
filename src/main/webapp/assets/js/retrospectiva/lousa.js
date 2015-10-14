@@ -76,6 +76,7 @@ function adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical)
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].conteudo", texto));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoHorizontal", posicaoHorizontal));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoVertical", posicaoVertical));
+	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].excluir", false));
 	numeroComentarios++;
 }
 
@@ -84,6 +85,7 @@ function adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical) {
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoHorizontal", posicaoHorizontal));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoVertical", posicaoVertical));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].cor", elemento.className.match(/\bcor[^\s]+\b/)));
+	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].excluir", false));
 	numeroPostIts++;
 }
 
@@ -122,6 +124,9 @@ function createTextarea(name, limiteCaracteres) {
 	return textarea;
 }
 
+$(".remover").click(removeElemento);
+
 function removeElemento() {
-	this.parentNode.remove();
+	$(this.parentNode).css('display', 'none');
+	$(this.parentNode).find("input[name$='excluir']").val('true');
 }

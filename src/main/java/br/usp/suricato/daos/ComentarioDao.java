@@ -19,6 +19,10 @@ public class ComentarioDao {
 		} else {
 			manager.merge(comentario);
 		}
+		if(comentario.isExcluir()){
+			Comentario aExcluir = manager.getReference(Comentario.class, comentario.getId());
+			manager.remove(aExcluir);
+		}
 	}
 	
 }

@@ -19,6 +19,10 @@ public class PostItDao {
 		} else {
 			manager.merge(postIt);
 		}
+		if(postIt.isExcluir()){
+			PostIt aExcluir = manager.getReference(PostIt.class, postIt.getId());
+			manager.remove(aExcluir);
+		}
 	}
 	
 }
