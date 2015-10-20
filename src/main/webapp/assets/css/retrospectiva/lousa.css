@@ -1,3 +1,12 @@
+html {
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+	user-select: none;
+}
+
 #lousa {
 	width: 100vw;
 	height: 100vh;
@@ -8,6 +17,9 @@
 	width: 90%;
 	height: 99%;
 	display: inline-block;
+	user-drag: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
 }
 
 #menu {

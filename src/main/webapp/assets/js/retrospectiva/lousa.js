@@ -35,6 +35,7 @@ $("#atividade").droppable({
 		comentario.addEventListener('keydown', teclado);
 		draggable.append(comentario);
 		draggable.appendTo($(this).parent());
+		comentario.focus();
     }
 });
 
