@@ -15,18 +15,21 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<input type="submit" value="Logout">
 		</form>
+		<div id="formLousa">
 		<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/cria">
 			<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>
-			<c:forEach items="${lousas}" var="lousa" varStatus="status">
-				<input type="radio" name="lousa.id" value="${lousa.id}" id="atividade_${status.index}"/>
-				<div class="atividades">
-					<label for="atividade_${status.index}">
-						<h2>${lousa.nome}</h2>
-						<img src="<c:url value="${lousa.endereco}"/>"><br/>
-					</label>
-				</div>
-			</c:forEach>
+			<select name="lousa.id"  id="idLousa" onchange="mostraLousa()">
+				<c:forEach items="${lousas}" var="lousa" varStatus="status">
+					<option value="${lousa.id}" id="atividade_${status.index}" data-url="${lousa.endereco}">${lousa.nome}</option>
+				</c:forEach>
+			</select>
+			<img id="imagem" src=""/>
 			<button type="submit">Criar</button>
 		</form:form>
+		</div>
 	</body>
+	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
+	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
+	<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
+	<script src="<c:url value='/assets/js/nova.js'/>"></script>
 </html>

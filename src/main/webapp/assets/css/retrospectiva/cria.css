@@ -32,3 +32,8 @@ input[name="lousa.id"]:checked + .atividades {
 	margin-bottom: 20px;
 	vertical-align: top;
 }
+
+img {
+	width: 50%;
+	margin: 0 auto;
+}
