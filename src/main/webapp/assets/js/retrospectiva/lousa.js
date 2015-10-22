@@ -55,6 +55,7 @@ function teclado(event) {
 		elemento.removeChild(this);
 		elemento.appendChild(createLinkRemove());
 		elemento.appendChild(createConteudo(texto));
+		elemento.click(getAcao);
 	}	
 }
 

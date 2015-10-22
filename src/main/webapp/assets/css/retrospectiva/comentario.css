@@ -12,12 +12,15 @@
 	text-align: center;
 }
 
+.comentario {
+	z-index: 20;
+}
+
 .comentario:not(.draggable) {
 	width: 25%;
 	min-height: 5%;
 	position: absolute;
 	font: bold 0.75em Arial;
-	z-index: 10;
 	background-color: #FFF;
 }
 
