@@ -91,6 +91,9 @@ public class Retrospectiva {
 	}
 	
 	public boolean isAberta() {
+		if(this.dataFim == null) {
+			return true;
+		}
 		return this.dataFim.isAfter(LocalDate.now()) || this.dataFim.isEqual(LocalDate.now());
 	}
 
