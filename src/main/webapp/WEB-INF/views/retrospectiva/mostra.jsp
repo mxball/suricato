@@ -36,13 +36,17 @@
 				</c:forEach>
 				<c:forEach var="comentario" items="${retrospectiva.comentarios}" varStatus="status">
 					<div class="comentario comConteudo" style="left: ${comentario.posicaoHorizontal}%; top: ${comentario.posicaoVertical}%;">
-						<a href="#" class="remover"></a>
-						<p class="conteudo">${comentario.conteudo}</p>
 						<input type="hidden" name="comentarios[${status.index}].id" value="${comentario.id}"/>
 						<input type="hidden" name="comentarios[${status.index}].conteudo" value="${comentario.conteudo}"/>
 						<input type="hidden" name="comentarios[${status.index}].posicaoHorizontal" value="${comentario.posicaoHorizontal}"/>
 						<input type="hidden" name="comentarios[${status.index}].posicaoVertical" value="${comentario.posicaoVertical}"/>
+						<input type="hidden" name="comentarios[${status.index}].largura" value="${comentario.largura}"/>
+						<input type="hidden" name="comentarios[${status.index}].altura" value="${comentario.altura}"/>
 						<input type="hidden" name="comentarios[${status.index}].excluir" value="${comentario.excluir}"/>
+						<a href="#" class="remover"></a>
+						<p class="conteudo" style="width: ${comentario.largura}px; min-height: ${comentario.altura}px;">
+							${comentario.conteudo}
+						</p>
 					</div>
 				</c:forEach>
 				<div id="menu">

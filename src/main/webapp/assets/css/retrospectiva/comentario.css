@@ -17,8 +17,6 @@
 }
 
 .comentario:not(.draggable) {
-	width: 25%;
-	min-height: 5%;
 	position: absolute;
 	font: bold 0.75em Arial;
 	background-color: #FFF;
@@ -26,7 +24,7 @@
 
 .comentario:not(.draggable) .conteudo {
 	word-wrap: break-word;
-	padding: 4% 2% 2% 2%;
+	padding: 1.5em 0.5em 0.5em 0.5em;
 }
 
 .comentario:not(.draggable) textarea {
@@ -42,6 +40,6 @@
 }
 
 .comentario .remover {
-	right: 0%;
-	top: 5%;
+	right: 0.1em;
+	top: 0.3em;
 }

@@ -40,7 +40,7 @@ html {
 
 .remover {
 	position: absolute;
-	width: 4%;
+	width: 1em;
 }
 
 .remover:after {
