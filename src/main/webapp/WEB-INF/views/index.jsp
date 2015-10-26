@@ -16,6 +16,7 @@
 		<input type="submit" value="Logout">
 	</form>
 	<a href='<c:url value="/retrospectiva/nova"/>'>Nova retrospectiva</a>
+	<a href='<c:url value="/time/novo"/>'>Novo time</a>
 	<fieldset>
 		<legend>Retrospectivas em aberto</legend>
 		<c:forEach var="retrospectiva" items="${retrospectivasAbertas}">
