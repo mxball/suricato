@@ -1,11 +1,17 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="suricato" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Nova retrospectiva</title>
+		<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
+		<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
+		<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
+		<link rel="stylesheet" href="<c:url value='/assets/css/jquery-impromptu.min.css'/>">
+		<link rel="stylesheet" href="<c:url value='/assets/css/jquery-ui.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/cria.css'/>">
 	</head>
@@ -18,6 +24,8 @@
 		<div id="formLousa">
 		<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/cria">
 			<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>
+			Data fim:
+			<suricato:calendario id="dataFim"/>
 			<select name="lousa.id"  id="idLousa" onchange="mostraLousa()">
 				<c:forEach items="${lousas}" var="lousa" varStatus="status">
 					<option value="${lousa.id}" id="atividade_${status.index}" data-url="${lousa.endereco}">${lousa.nome}</option>

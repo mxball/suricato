@@ -1,5 +1,6 @@
 package br.usp.suricato.daos;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -40,10 +41,18 @@ public class RetrospectivaDao {
 		manager.merge(retrospectiva);
 	}
 
-	public List<Retrospectiva> listaRetrospectivasDoUsuario(String nome) {
-		return manager.createQuery("select r from Retrospectiva r where r.criador.nome = :nome", Retrospectiva.class)
+	public List<Retrospectiva> listaRetrospectivasAbertasDoUsuario(String nome) {
+		return manager.createQuery("select r from Retrospectiva r where r.criador.nome = :nome and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
 					.setParameter("nome", nome)
+					.setParameter("hoje", LocalDate.now())
 					.getResultList();
+	}
+	
+	public List<Retrospectiva> listaRetrospectivasEncerradasDoUsuario(String nome) {
+		return manager.createQuery("select r from Retrospectiva r where r.criador.nome = :nome and r.dataFim < :hoje", Retrospectiva.class)
+				.setParameter("nome", nome)
+				.setParameter("hoje", LocalDate.now())
+				.getResultList();
 	}
 
 	public Retrospectiva load(Integer id) {

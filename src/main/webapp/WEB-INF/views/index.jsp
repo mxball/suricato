@@ -16,8 +16,17 @@
 		<input type="submit" value="Logout">
 	</form>
 	<a href='<c:url value="/retrospectiva/nova"/>'>Nova retrospectiva</a>
-	<c:forEach var="retrospectiva" items="${retrospectivas}">
-		<a href='<c:url value="/retrospectiva/mostra?id=${retrospectiva.id}"/>'><img src="<c:url value="${retrospectiva.lousa.endereco}"/>"></a>
-	</c:forEach>
+	<fieldset>
+		<legend>Retrospectivas em aberto</legend>
+		<c:forEach var="retrospectiva" items="${retrospectivasAbertas}">
+			<a href='<c:url value="/retrospectiva/mostra?id=${retrospectiva.id}"/>'><img src="<c:url value="${retrospectiva.lousa.endereco}"/>"></a>
+		</c:forEach>
+	</fieldset>
+	<fieldset>
+		<legend>Retrospectivas encerradas</legend>
+		<c:forEach var="retrospectiva" items="${retrospectivasEncerradas}">
+			<a href='<c:url value="/retrospectiva/mostra?id=${retrospectiva.id}"/>'><img src="<c:url value="${retrospectiva.lousa.endereco}"/>"></a>
+		</c:forEach>
+	</fieldset>
 </body>
 </html>

@@ -19,8 +19,10 @@ public class HomeController {
 	
 	@RequestMapping(value={"/", "/index"})
 	public String index(Model model, Principal principal) {
-		List<Retrospectiva> retrospectivas = retrospectivaDao.listaRetrospectivasDoUsuario(principal.getName());
-		model.addAttribute("retrospectivas", retrospectivas);
+		List<Retrospectiva> retrospectivasAbertas = retrospectivaDao.listaRetrospectivasAbertasDoUsuario(principal.getName());
+		List<Retrospectiva> retrospectivasEncerradas = retrospectivaDao.listaRetrospectivasEncerradasDoUsuario(principal.getName());
+		model.addAttribute("retrospectivasAbertas", retrospectivasAbertas);
+		model.addAttribute("retrospectivasEncerradas", retrospectivasEncerradas);
 		return "index";
 	}
 	

@@ -49,19 +49,23 @@
 						</p>
 					</div>
 				</c:forEach>
-				<div id="menu">
-					<div class="draggable semConteudo postIt corFCF0AD"></div>
-					<div class="draggable semConteudo postIt corE9E74A"></div>
-					<div class="draggable semConteudo postIt corD0E17D"></div>
-					<div class="draggable semConteudo postIt cor56C4E8"></div>
-					<div class="draggable semConteudo postIt corCDDD73"></div>
-					<div class="draggable semConteudo postIt cor99C7BC"></div>
-					<div class="draggable semConteudo postIt corF9D6AC"></div>
-					<div class="draggable semConteudo postIt corBAB7A9"></div>
-					<div class="draggable semConteudo comentario"><span>Comentário</span></div>
-				</div>
+				<c:if test="${retrospectiva.aberta}">
+					<div id="menu">
+						<div class="draggable semConteudo postIt corFCF0AD"></div>
+						<div class="draggable semConteudo postIt corE9E74A"></div>
+						<div class="draggable semConteudo postIt corD0E17D"></div>
+						<div class="draggable semConteudo postIt cor56C4E8"></div>
+						<div class="draggable semConteudo postIt corCDDD73"></div>
+						<div class="draggable semConteudo postIt cor99C7BC"></div>
+						<div class="draggable semConteudo postIt corF9D6AC"></div>
+						<div class="draggable semConteudo postIt corBAB7A9"></div>
+						<div class="draggable semConteudo comentario"><span>Comentário</span></div>
+					</div>
+				</c:if>
 			</div>
-			<input type="submit" value="Salvar"/>
+			<c:if test="${retrospectiva.aberta}">
+				<input type="submit" value="Salvar"/>
+			</c:if>
 		</form:form>
 	</body>
 	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>

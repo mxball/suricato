@@ -1,5 +1,6 @@
 package br.usp.suricato.models;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Retrospectiva {
@@ -32,6 +35,9 @@ public class Retrospectiva {
 	@ManyToOne
 	@NotNull
 	private Usuario criador;
+	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private LocalDate dataFim;
 
 	public Integer getId() {
 		return id;
@@ -71,6 +77,18 @@ public class Retrospectiva {
 
 	public void setCriador(Usuario criador) {
 		this.criador = criador;
+	}
+
+	public LocalDate getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(LocalDate dataFim) {
+		this.dataFim = dataFim;
+	}
+	
+	public boolean isAberta() {
+		return this.dataFim.isAfter(LocalDate.now()) || this.dataFim.isEqual(LocalDate.now());
 	}
 
 }
