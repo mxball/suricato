@@ -1,6 +1,6 @@
 package br.usp.suricato.controllers;
 
-import java.util.List;
+import java.security.Principal;
 
 import javax.transaction.Transactional;
 
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.usp.suricato.daos.LousaDao;
 import br.usp.suricato.daos.RetrospectivaDao;
 import br.usp.suricato.daos.UsuarioDao;
-import br.usp.suricato.models.Lousa;
 import br.usp.suricato.models.Retrospectiva;
 
 @Controller
@@ -52,9 +51,9 @@ public class RetrospectivaController {
 	}
 	
 	@RequestMapping("/nova")
-	public String novaRetrospectiva(Model model) {
-		List<Lousa> lousas = lousaDao.lista();
-		model.addAttribute("lousas", lousas);
+	public String novaRetrospectiva(Model model, Principal principal) {
+		model.addAttribute("lousas", lousaDao.lista());
+		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
 		return "retrospectiva/nova";
 	}
 	

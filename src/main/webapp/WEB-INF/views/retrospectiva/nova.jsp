@@ -26,6 +26,13 @@
 			<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>
 			Data fim:
 			<suricato:calendario id="dataFim"/>
+			Time: 
+			<select name="time.id">
+				<option checked>Nenhum</option>
+				<c:forEach var="time" items="${usuario.times}">
+					<option value="${time.id}">${time.nome}</option>
+				</c:forEach>
+			</select>
 			<select name="lousa.id"  id="idLousa" onchange="mostraLousa()">
 				<c:forEach items="${lousas}" var="lousa" varStatus="status">
 					<option value="${lousa.id}" id="atividade_${status.index}" data-url="${lousa.endereco}">${lousa.nome}</option>

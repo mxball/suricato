@@ -38,6 +38,9 @@ public class Retrospectiva {
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataFim;
+	
+	@ManyToOne
+	private Time time;
 
 	public Integer getId() {
 		return id;
@@ -89,6 +92,14 @@ public class Retrospectiva {
 	
 	public boolean isAberta() {
 		return this.dataFim.isAfter(LocalDate.now()) || this.dataFim.isEqual(LocalDate.now());
+	}
+
+	public Time getTime() {
+		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
 	}
 
 }
