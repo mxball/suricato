@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.usp.suricato.daos.TimeDao;
 import br.usp.suricato.daos.UsuarioDao;
 import br.usp.suricato.models.Time;
+import br.usp.suricato.models.Usuario;
 
 @Controller
 @RequestMapping("/time")
@@ -42,5 +43,21 @@ public class TimeController {
 		timeDao.save(time);
 		return "redirect:/index";
 	}
+
+	@RequestMapping("/mostra")
+	public String mostra(@ModelAttribute("time") Time time, Model model) {
+		model.addAttribute("time", timeDao.load(time.getId()));
+		return "time/mostra";
+	}
+
+	@RequestMapping("/adicionaUsuario")
+	public String adicionaIntegrante(@ModelAttribute("usuario") Usuario usuario) {
+		Usuario usuarioLoaded = usuarioDao.buscaPorNome(usuario.getNome());
+		Time timeLoaded = timeDao.load(usuario.getTimes().get(0).getId());
+		timeLoaded.getIntegrantes().add(usuarioLoaded);
+		timeDao.atualiza(timeLoaded);
+		return "redirect:/time/mostra?id=" + timeLoaded.getId();
+	}
+	
 	
 }

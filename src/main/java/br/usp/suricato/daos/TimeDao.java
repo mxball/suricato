@@ -6,7 +6,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import br.usp.suricato.models.Time;
-import br.usp.suricato.models.Usuario;
 
 @Repository
 public class TimeDao {
@@ -16,6 +15,14 @@ public class TimeDao {
 
 	public void save(Time time) {
 		manager.persist(time);
+	}
+
+	public Time load(Integer id) {
+		return manager.find(Time.class, id);
+	}
+
+	public void atualiza(Time timeLoaded) {
+		manager.merge(timeLoaded);
 	}
 	
 	

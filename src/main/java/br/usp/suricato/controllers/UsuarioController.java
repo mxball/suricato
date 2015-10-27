@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.usp.suricato.daos.PermissaoDao;
 import br.usp.suricato.daos.UsuarioDao;
@@ -66,6 +67,12 @@ public class UsuarioController {
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accesssDenied() {
 	  return "erro/403";
+	}
+	
+	@RequestMapping(value = "/usuario/busca", method = RequestMethod.GET)
+	public @ResponseBody List<Usuario> busca(@RequestParam("term") String nome) {
+		System.out.println(nome);
+		return usuarioDao.listaUsuariosComNomeParecidoCom(nome);
 	}
 	
 }

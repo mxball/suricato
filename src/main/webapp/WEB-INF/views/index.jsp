@@ -14,6 +14,9 @@
 	<%@include file="header.jsp" %>
 	<a href='<c:url value="/retrospectiva/nova"/>'>Nova retrospectiva</a>
 	<a href='<c:url value="/time/novo"/>'>Novo time</a>
+	<c:forEach var="time" items="${usuario.times}">
+		<a href='<c:url value="/time/mostra?id=${time.id}"/>'>${time.nome}</a>
+	</c:forEach>
 	<fieldset>
 		<legend>Retrospectivas em aberto</legend>
 		<c:forEach var="retrospectiva" items="${retrospectivasAbertas}">
