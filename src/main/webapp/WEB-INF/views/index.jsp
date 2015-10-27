@@ -6,15 +6,12 @@
 <head>
 	<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 	<link rel="stylesheet" href="<c:url value='/assets/css/index.css'/>">
+	<link rel="stylesheet" href="<c:url value='/assets/css/header.css'/>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Home page</title>
 </head>
 <body>
-	<c:url value="/logout" var="logoutUrl" />
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<input type="submit" value="Logout">
-	</form>
+	<%@include file="header.jsp" %>
 	<a href='<c:url value="/retrospectiva/nova"/>'>Nova retrospectiva</a>
 	<a href='<c:url value="/time/novo"/>'>Novo time</a>
 	<fieldset>
