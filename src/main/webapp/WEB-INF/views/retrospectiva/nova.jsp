@@ -8,13 +8,11 @@
 		<title>Nova retrospectiva</title>
 		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/cria.css'/>">
+	<link rel="stylesheet" href="<c:url value='/assets/css/header.css'/>">
+		<link rel="stylesheet" href="<c:url value='/assets/css/nova.css'/>">
 	</head>
 	<body>
-		<c:url value="/logout" var="logoutUrl" />
-		<form action="${logoutUrl}" method="post" id="logoutForm">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<input type="submit" value="Logout">
-		</form>
+		<%@include file="../header.jsp" %>
 		<div id="formLousa">
 		<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/cria">
 			<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>

@@ -11,9 +11,11 @@
 		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/lousa.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/postIt.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/comentario.css'/>">
+		<link rel="stylesheet" href="<c:url value='/assets/css/header.css'/>">
 		<title>Retrospectiva</title>
 	</head>
 	<body>
+		<%@include file="../header.jsp" %>
 		<form:form role="form" id="retrospectiva" modelAttribute="retrospectiva" servletRelativeAction="/retrospectiva/salvar" method="POST">
 			<input type="hidden" name="id" value="${retrospectiva.id}"/>
 			<input type="hidden" name="criador.id" value="${retrospectiva.criador.id}"/>

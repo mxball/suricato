@@ -1,4 +1,5 @@
 target/suricato-1.0.0-SNAPSHOT/WEB-INF/lib/*.jar
+target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 /target/
 .classpath
 .settings/*
