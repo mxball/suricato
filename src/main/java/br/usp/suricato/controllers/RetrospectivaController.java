@@ -50,6 +50,9 @@ public class RetrospectivaController {
 	
 	@RequestMapping("/cria")
 	public String criaRestrospectiva(Retrospectiva retrospectiva, Model model) {
+		if(retrospectiva.getTime().getId() == null) {
+			retrospectiva.setTime(null);
+		}
 		retrospectiva.setCriador(usuarioDao.buscaPorNome(retrospectiva.getCriador().getNome()));
 		retrospectiva.setLousa(lousaDao.load(retrospectiva.getLousa().getId()));
 		retrospectivaDao.salva(retrospectiva);
