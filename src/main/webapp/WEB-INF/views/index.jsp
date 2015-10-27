@@ -19,15 +19,33 @@
 	</c:forEach>
 	<fieldset>
 		<legend>Retrospectivas em aberto</legend>
-		<c:forEach var="retrospectiva" items="${retrospectivasAbertas}">
+		<c:forEach var="retrospectiva" items="${usuario.retrospectivasAbertas}">
 			<a href='<c:url value="/retrospectiva/mostra?id=${retrospectiva.id}"/>'><img src="<c:url value="${retrospectiva.lousa.endereco}"/>"></a>
 		</c:forEach>
 	</fieldset>
 	<fieldset>
 		<legend>Retrospectivas encerradas</legend>
-		<c:forEach var="retrospectiva" items="${retrospectivasEncerradas}">
+		<c:forEach var="retrospectiva" items="${usuario.retrospectivasEncerradas}">
 			<a href='<c:url value="/retrospectiva/mostra?id=${retrospectiva.id}"/>'><img src="<c:url value="${retrospectiva.lousa.endereco}"/>"></a>
 		</c:forEach>
 	</fieldset>
+	<c:forEach var="time" items="${usuario.times}">
+		<c:if test="${not empty time.retrospectivasAbertas}">
+			<fieldset>
+				<legend>Retrospectivas abertas do ${time.nome}</legend>
+				<c:forEach var="retrospectiva" items="${time.retrospectivasAbertas}">
+					<a href='<c:url value="/retrospectiva/mostra?id=${retrospectiva.id}"/>'><img src="<c:url value="${retrospectiva.lousa.endereco}"/>"></a>
+				</c:forEach>
+			</fieldset>
+		</c:if>
+		<c:if test="${not empty time.retrospectivasEncerradas}">
+			<fieldset>
+				<legend>Retrospectivas encerradas do ${time.nome}</legend>
+				<c:forEach var="retrospectiva" items="${time.retrospectivasEncerradas}">
+					<a href='<c:url value="/retrospectiva/mostra?id=${retrospectiva.id}"/>'><img src="<c:url value="${retrospectiva.lousa.endereco}"/>"></a>
+				</c:forEach>
+			</fieldset>
+		</c:if>
+	</c:forEach>
 </body>
 </html>

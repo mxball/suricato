@@ -2,6 +2,7 @@ package br.usp.suricato.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -42,6 +44,9 @@ public class Usuario {
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="Time_Usuario", joinColumns=@JoinColumn(name="usuario_id"), inverseJoinColumns=@JoinColumn(name="time_id"))
 	private List<Time> times = new ArrayList<>();
+	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="criador")
+	private List<Retrospectiva> restrospectvas;
 
 	public Integer getId() {
 		return id;
@@ -89,6 +94,22 @@ public class Usuario {
 
 	public void setTimes(List<Time> times) {
 		this.times = times;
+	}
+
+	public List<Retrospectiva> getRestrospectvas() {
+		return restrospectvas;
+	}
+
+	public void setRestrospectvas(List<Retrospectiva> restrospectvas) {
+		this.restrospectvas = restrospectvas;
+	}
+	
+	public List<Retrospectiva> getRetrospectivasAbertas() {
+		return this.restrospectvas.stream().filter(retro -> retro.isAberta()).collect(Collectors.toList());
+	}
+	
+	public List<Retrospectiva> getRetrospectivasEncerradas() {
+		return this.restrospectvas.stream().filter(retro -> !retro.isAberta()).collect(Collectors.toList());
 	}
 	
 }
