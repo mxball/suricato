@@ -45,16 +45,21 @@ function teclado(event) {
 		var posicaoHorizontal = elemento.style.left.replace("%", "");
 		var posicaoVertical = elemento.style.top.replace("%", "");
 		var texto = this.value;
+		var largura = this.clientWidth;
+		var altura = this.clientHeight;
 		if(elemento.classList.contains("postIt")) {
 			adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical);
 		} else if(elemento.classList.contains("comentario")) {
-			adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical);
+			adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura);
 		}
 		elemento.classList.remove("semConteudo");
 		elemento.classList.add("comConteudo");
 		elemento.removeChild(this);
 		elemento.appendChild(createLinkRemove());
-		elemento.appendChild(createConteudo(texto));
+		var conteudo = createConteudo(texto);
+		conteudo.style.width = largura + "px";
+		conteudo.style.minHeight = altura + "px";
+		elemento.appendChild(conteudo);
 		elemento.click(getAcao);
 	}	
 }
@@ -74,10 +79,12 @@ function createLinkRemove() {
 	return linkRemove;
 }
 
-function adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical){
+function adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura){
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].conteudo", texto));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoHorizontal", posicaoHorizontal));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoVertical", posicaoVertical));
+	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].largura", largura));
+	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].altura", altura));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].excluir", false));
 	numeroComentarios++;
 }

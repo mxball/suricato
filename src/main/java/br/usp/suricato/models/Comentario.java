@@ -21,9 +21,15 @@ public class Comentario {
 
 	@NotNull
 	private Double posicaoVertical;
-	
+
+	@NotNull
+	private Integer largura;
+
+	@NotNull
+	private Integer altura;
+
 	private boolean excluir;
-	
+
 	@ManyToOne
 	private Retrospectiva retrospectiva;
 
@@ -73,6 +79,22 @@ public class Comentario {
 
 	public void setExcluir(boolean excluir) {
 		this.excluir = excluir;
+	}
+
+	public Integer getLargura() {
+		return largura;
+	}
+
+	public void setLargura(Integer largura) {
+		this.largura = largura;
+	}
+
+	public Integer getAltura() {
+		return altura;
+	}
+
+	public void setAltura(Integer altura) {
+		this.altura = altura;
 	}
 
 }
