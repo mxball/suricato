@@ -7,11 +7,14 @@
 li{
 	float:left;
 	display: inline-block;
-	margin: 0.5em 1em 0.5em 0;
-	font-size: 20px;
-	font-color: #00FF00;
+	margin: 0.5em 1em 0.5em 1em;
 	vertical-align: center;
 } 
+
+a{
+	font-size: 20px;
+	color: #ffffff;
+}
 
 #container + *{
 	clear:left;

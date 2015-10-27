@@ -13,11 +13,6 @@
 </head>
 <body>
 	<%@include file="header.jsp" %>
-	<a href='<c:url value="/retrospectiva/nova"/>'>Nova retrospectiva</a>
-	<a href='<c:url value="/time/novo"/>'>Novo time</a>
-	<c:forEach var="time" items="${usuario.times}">
-		<a href='<c:url value="/time/mostra?id=${time.id}"/>'>${time.nome}</a>
-	</c:forEach>
 	<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasAbertas}" legenda="Retrospectivas em aberto"/>
 	<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasEncerradas}" legenda="Retrospectivas encerradas"/>
 	<c:forEach var="time" items="${usuario.times}">

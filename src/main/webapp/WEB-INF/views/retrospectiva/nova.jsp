@@ -22,6 +22,8 @@
 		<div id="formLousa">
 		<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/cria">
 			<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>
+			Nome:
+			<input name="nome" type="text">
 			Data fim:
 			<suricato:calendario id="dataFim"/>
 			Time: 
