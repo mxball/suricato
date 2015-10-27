@@ -15,6 +15,7 @@ import br.usp.suricato.daos.LousaDao;
 import br.usp.suricato.daos.RetrospectivaDao;
 import br.usp.suricato.daos.UsuarioDao;
 import br.usp.suricato.models.Retrospectiva;
+import br.usp.suricato.models.Usuario;
 
 @Controller
 @Transactional
@@ -31,8 +32,13 @@ public class RetrospectivaController {
 	private LousaDao lousaDao;
 
 	@RequestMapping("/mostra")
-	public String mostraRetrospectiva(Integer id, Model model) {
-		model.addAttribute("retrospectiva", retrospectivaDao.load(id));
+	public String mostraRetrospectiva(Integer id, Model model, Principal principal) {
+		Retrospectiva retrospectiva = retrospectivaDao.load(id);
+		Usuario usuario = usuarioDao.buscaPorNome(principal.getName());
+		if(!retrospectiva.isUsuarioAutorizado(usuario)) {
+			return "redirect:/index";
+		}
+		model.addAttribute("retrospectiva", retrospectiva);
 		return "retrospectiva/mostra";
 	}
 	

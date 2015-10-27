@@ -105,4 +105,11 @@ public class Retrospectiva {
 		this.time = time;
 	}
 
+	public boolean isUsuarioAutorizado(Usuario usuario) {
+		if(this.criador.equals(usuario) || (this.time != null && this.time.getIntegrantes().contains(usuario))) {
+			return true;
+		}
+		return false;
+	}
+
 }
