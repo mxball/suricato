@@ -28,7 +28,7 @@
 			<suricato:calendario id="dataFim"/>
 			Time: 
 			<select name="time.id">
-				<option checked>Nenhum</option>
+				<option value="" checked>Nenhum</option>
 				<c:forEach var="time" items="${usuario.times}">
 					<option value="${time.id}">${time.nome}</option>
 				</c:forEach>
