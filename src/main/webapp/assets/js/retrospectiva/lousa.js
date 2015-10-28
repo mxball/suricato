@@ -11,7 +11,10 @@ function getAcao() {
 			var posicaoEsquerda = (ui.offset.left * 100.0) / window.innerWidth;
 			var posicaoTopo = (ui.offset.top * 100.0) / window.innerHeight;
 			this.querySelector("[name$='posicaoHorizontal']").value = posicaoEsquerda;
-			this.querySelector("[name$='posicaoVertical']").value = posicaoTopo; 
+			this.querySelector("[name$='posicaoVertical']").value = posicaoTopo;
+			var id = ui.helper.attr("id").split('_')[1];
+			var tipoElemento = ui.helper.attr("id").split('_')[0];
+			enviaMensagem(tipoElemento + "|atualiza|" + id + "|" + posicaoEsquerda + "|" + posicaoTopo);
 		}
 	});
 };
@@ -158,7 +161,7 @@ connection.onmessage = function(mensagemServidor) {
 		if(operacao == "remove") {
 			var id = argumentos[2];
 			$("#lousa #" + tipoElemento + "_" + id).remove();
-		} else {
+		} else if(operacao == "adiciona") {
 			var elemento = document.createElement("div");
 			elemento.classList.add(tipoElemento);
 			elemento.classList.add("comConteudo");
@@ -187,6 +190,10 @@ connection.onmessage = function(mensagemServidor) {
 			elemento.appendChild(conteudo);
 			elemento.click(getAcao);
 			lousa.appendChild(elemento);
+		} else {
+			var id = argumentos[2];
+			var elemento = $("#lousa #" + tipoElemento + "_" + id);
+			elemento.css({top: argumentos[4] + "%", left: argumentos[3] + "%"});
 		}
 	}
 	

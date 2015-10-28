@@ -56,9 +56,7 @@ public class RetrospectivaDao {
 	}
 
 	public Retrospectiva load(Integer id) {
-		return manager.createQuery("select r from Retrospectiva r where r.id = :id", Retrospectiva.class)
-				.setParameter("id", id)
-				.getSingleResult();
+		return manager.find(Retrospectiva.class, id);
 	}
 	
 }

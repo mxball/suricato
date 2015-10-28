@@ -48,5 +48,14 @@ public class ComentarioDao {
 	public Comentario load(int id) {
 		return manager.find(Comentario.class, id);
 	}
+
+	public void updateAsync(Comentario comentario) {
+		EntityManagerFactory managerFactory = manager.getEntityManagerFactory();
+		EntityManager entityManager = managerFactory.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.merge(comentario);
+		transaction.commit();
+	}
 	
 }

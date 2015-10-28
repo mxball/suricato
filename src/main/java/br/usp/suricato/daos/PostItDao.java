@@ -49,4 +49,13 @@ public class PostItDao {
 		return manager.find(PostIt.class, id);
 	}
 
+	public void updateAsync(PostIt postIt) {
+		EntityManagerFactory managerFactory = manager.getEntityManagerFactory();
+		EntityManager entityManager = managerFactory.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.merge(postIt);
+		transaction.commit();
+	}
+
 }

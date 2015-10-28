@@ -1,9 +1,12 @@
 package br.usp.suricato.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -27,7 +30,8 @@ public class PostIt {
 	@NotNull
 	private String cor;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)  
+	@JoinColumn(name="retrospectiva_id")
 	private Retrospectiva retrospectiva;
 
 	/**

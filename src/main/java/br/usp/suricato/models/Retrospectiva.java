@@ -1,8 +1,8 @@
 package br.usp.suricato.models;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,10 +30,10 @@ public class Retrospectiva {
 	private Lousa lousa;
 
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="retrospectiva", cascade = CascadeType.ALL)
-	private List<PostIt> postIts = new ArrayList<>();
+	private Set<PostIt> postIts = new HashSet<>();
 
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="retrospectiva", cascade = CascadeType.ALL)
-	private List<Comentario> comentarios = new ArrayList<>();
+	private Set<Comentario> comentarios = new HashSet<>();
 	
 	@ManyToOne
 	@NotNull
@@ -61,19 +61,20 @@ public class Retrospectiva {
 		this.lousa = lousa;
 	}
 
-	public List<PostIt> getPostIts() {
+	public Set<PostIt> getPostIts() {
+		System.out.println(postIts.size());
 		return postIts;
 	}
 
-	public void setPostIts(List<PostIt> postIts) {
+	public void setPostIts(Set<PostIt> postIts) {
 		this.postIts = postIts;
 	}
 
-	public List<Comentario> getComentarios() {
+	public Set<Comentario> getComentarios() {
 		return comentarios;
 	}
 
-	public void setComentarios(List<Comentario> comentarios) {
+	public void setComentarios(Set<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
 
