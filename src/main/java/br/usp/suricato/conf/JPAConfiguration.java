@@ -42,7 +42,7 @@ public class JPAConfiguration
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
       dataSource.setDriverClassName("com.mysql.jdbc.Driver");
       dataSource.setUrl("jdbc:mysql://localhost/suricato");
-      dataSource.setUsername("root");
+      dataSource.setUsername("suricato");
       dataSource.setPassword("");
       return dataSource;
    }
