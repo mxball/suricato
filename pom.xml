@@ -68,6 +68,16 @@
 		<version>4.0.2.RELEASE</version>
 		<scope>compile</scope>
 	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-websocket</artifactId>
+		<version>4.0.1.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-messaging</artifactId>
+		<version>4.0.1.RELEASE</version>
+	</dependency>
     <dependency>
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-servlet-api</artifactId>
@@ -132,6 +142,16 @@
 		<groupId>org.codehaus.jackson</groupId>
 		<artifactId>jackson-mapper-asl</artifactId>
 		<version>1.9.13</version>
+	</dependency>
+	<dependency>
+    	<groupId>com.fasterxml.jackson.core</groupId>
+    	<artifactId>jackson-core</artifactId>
+    	<version>2.3.0</version>
+	</dependency>
+	<dependency>
+    	<groupId>com.fasterxml.jackson.core</groupId>
+    	<artifactId>jackson-databind</artifactId>
+    	<version>2.3.0</version>
 	</dependency>
   </dependencies>
   <build>

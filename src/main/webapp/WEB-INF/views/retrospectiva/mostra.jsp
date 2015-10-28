@@ -74,4 +74,24 @@
 	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
 	<script src="<c:url value='/assets/js/retrospectiva/lousa.js'/>"></script>
+    <script type="text/javascript">
+	    var mensagemEnviada = "";
+		var connection = new WebSocket('ws://localhost:8080/suricato/echo');
+		connection.onerror = function(error) {
+			console.log('WebSocket Error ' + error);
+		}
+		connection.onmessage = function(mensagemServidor) {
+			console.log(mensagemServidor.data.toString());
+			if(mensagemServidor.data.toString() == mensagemEnviada) {
+				alert("Aviso enviado");
+			}
+		}
+		document.querySelector('#envia').onclick = function(){
+			var sala = document.querySelector('#sala').value;
+			var problema = document.querySelector('#problema').value;
+			mensagemEnviada = sala + "|" + problema;
+			connection.send(mensagemEnviada);
+		}
+    </script>
+	
 </html>
