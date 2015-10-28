@@ -25,7 +25,7 @@
 				<input type="hidden" name="lousa.id" value="${retrospectiva.lousa.id}"/>
 				<input type="hidden" name="lousa.endereco" value="${retrospectiva.lousa.endereco}"/>
 				<c:forEach var="postIt" items="${retrospectiva.postIts}" varStatus="status">
-					<div class="postIt comConteudo ${postIt.cor}" style="left: ${postIt.posicaoHorizontal}%; top: ${postIt.posicaoVertical}%;">
+					<div id="postIt_${postIt.id}" class="postIt comConteudo ${postIt.cor}" style="left: ${postIt.posicaoHorizontal}%; top: ${postIt.posicaoVertical}%;">
 						<a href="#" class="remover"></a>
 						<p class="conteudo">${postIt.conteudo}</p>
 						<input type="hidden" name="postIts[${status.index}].id" value="${postIt.id}"/>
@@ -37,7 +37,7 @@
 					</div>
 				</c:forEach>
 				<c:forEach var="comentario" items="${retrospectiva.comentarios}" varStatus="status">
-					<div class="comentario comConteudo" style="left: ${comentario.posicaoHorizontal}%; top: ${comentario.posicaoVertical}%;">
+					<div id="comentario_${comentario.id}" class="comentario comConteudo" style="left: ${comentario.posicaoHorizontal}%; top: ${comentario.posicaoVertical}%;">
 						<input type="hidden" name="comentarios[${status.index}].id" value="${comentario.id}"/>
 						<input type="hidden" name="comentarios[${status.index}].conteudo" value="${comentario.conteudo}"/>
 						<input type="hidden" name="comentarios[${status.index}].posicaoHorizontal" value="${comentario.posicaoHorizontal}"/>

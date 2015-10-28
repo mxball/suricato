@@ -36,4 +36,17 @@ public class PostItDao {
 		transaction.commit();
 	}
 
+	public void removeAsync(PostIt postIt) {
+		EntityManagerFactory managerFactory = manager.getEntityManagerFactory();
+		EntityManager entityManager = managerFactory.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.createQuery("delete from PostIt where id = :id").setParameter("id", postIt.getId()).executeUpdate();
+		transaction.commit();		
+	}
+
+	public PostIt load(int id) {
+		return manager.find(PostIt.class, id);
+	}
+
 }

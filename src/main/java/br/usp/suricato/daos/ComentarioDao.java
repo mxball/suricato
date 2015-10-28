@@ -35,5 +35,18 @@ public class ComentarioDao {
 		entityManager.persist(comentario);	
 		transaction.commit();		
 	}
+
+	public void removeAsync(Comentario comentario) {
+		EntityManagerFactory managerFactory = manager.getEntityManagerFactory();
+		EntityManager entityManager = managerFactory.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.createQuery("delete from Comentario where id = :id").setParameter("id", comentario.getId()).executeUpdate();
+		transaction.commit();
+	}
+
+	public Comentario load(int id) {
+		return manager.find(Comentario.class, id);
+	}
 	
 }

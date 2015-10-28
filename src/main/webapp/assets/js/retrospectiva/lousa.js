@@ -48,7 +48,7 @@ function teclado(event) {
 		var largura = this.clientWidth;
 		var altura = this.clientHeight;
 		if(elemento.classList.contains("postIt")) {
-			enviaMensagem("postit|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
+			enviaMensagem("postIt|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
 		} else if(elemento.classList.contains("comentario")) {
 			enviaMensagem("comentario|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + largura + "|" + altura);
 		}
@@ -140,8 +140,10 @@ function createTextarea(name, limiteCaracteres) {
 $(".remover").click(removeElemento);
 
 function removeElemento() {
-	$(this.parentNode).css('display', 'none');
-	$(this.parentNode).find("input[name$='excluir']").val('true');
+	var elemento = $(this.parentNode);
+	var id = elemento.attr("id").split('_')[1];
+	var tipoElemento = elemento.attr("id").split('_')[0];
+	enviaMensagem("remover|" + tipoElemento + "|" + id);
 }
 
 
@@ -158,25 +160,34 @@ connection.onerror = function(error) {
 connection.onmessage = function(mensagemServidor) {
 	var mensagem = mensagemServidor.data.toString()
 	console.log(mensagemServidor.data.toString());
-	var argumentos = mensagem.split("|");
-	var elemento = document.createElement("div");
-	var tipoElemento = argumentos[0];
-	console.log(tipoElemento);
-	elemento.classList.add(tipoElemento);
-	elemento.classList.add("comConteudo");
-	if(tipoElemento == "postit") {
-		elemento.classList.add(argumentos[4]);
-		adicionaPostIt(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[5]);
-	} else if(tipoElemento == "comentario")  {
-		elemento.style.width = argumentos[4] + "px";
-		elemento.style.minHeight = argumentos[5] + "px";
-		adicionaComentario(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[4], argumentos[5], argumentos[6]);
+	if(mensagem != "Ping") {
+		var argumentos = mensagem.split("|");
+		if(argumentos[0] == "remover") {
+			$("#lousa #" + argumentos[1] + "_" + argumentos[2]).remove();
+		} else {
+			var elemento = document.createElement("div");
+			var tipoElemento = argumentos[0];
+			console.log(tipoElemento);
+			elemento.classList.add(tipoElemento);
+			elemento.classList.add("comConteudo");
+			if(tipoElemento == "postIt") {
+				elemento.classList.add(argumentos[4]);
+				elemento.id = "postIt_" + argumentos[5];
+				adicionaPostIt(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[5]);
+			} else if(tipoElemento == "comentario")  {
+				elemento.style.width = argumentos[4] + "px";
+				elemento.style.minHeight = argumentos[5] + "px";
+				elemento.id = "comentario_" + argumentos[6];
+				adicionaComentario(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[4], argumentos[5], argumentos[6]);
+			}
+			elemento.style.left = argumentos[2] + "%";
+			elemento.style.top = argumentos[3] + "%";
+			elemento.appendChild(createLinkRemove());
+			var conteudo = createConteudo(argumentos[1]);
+			elemento.appendChild(conteudo);
+			elemento.click(getAcao);
+			lousa.appendChild(elemento);
+		}
 	}
-	elemento.style.left = argumentos[2] + "%";
-	elemento.style.top = argumentos[3] + "%";
-	elemento.appendChild(createLinkRemove());
-	var conteudo = createConteudo(argumentos[1]);
-	elemento.appendChild(conteudo);
-	elemento.click(getAcao);
-	lousa.appendChild(elemento);
+	
 }

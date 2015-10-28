@@ -45,16 +45,30 @@ public class RetrospectivaEndpoint {
 		if(retrospectiva.isUsuarioAutorizado(usuario)) {
 			System.out.println(mensagem);
 			String[] conteudos = mensagem.split("\\|");
-			if(conteudos[0].equals("postit")) {
+			if(conteudos[0].equals("postIt")) {
 				PostItDao postItDao = ApplicationContextHolder.ctx.getBean(PostItDao.class);
 				PostIt postIt = new PostIt(conteudos[1], Double.parseDouble(conteudos[2]), Double.parseDouble(conteudos[3]), conteudos[4], retrospectiva);
 				postItDao.saveAsync(postIt);
 				channel.send(mensagem + "|" + postIt.getId());
-			} else {
+			} else if(conteudos[0].equals("comentario")) {
 				ComentarioDao comentarioDao = ApplicationContextHolder.ctx.getBean(ComentarioDao.class);
 				Comentario comentario = new Comentario(conteudos[1], Double.parseDouble(conteudos[2]), Double.parseDouble(conteudos[3]), Integer.parseInt(conteudos[4]), Integer.parseInt(conteudos[5]), retrospectiva);
 				comentarioDao.saveAsync(comentario);
 				channel.send(mensagem + "|" + comentario.getId());
+			} else if(conteudos[0].equals("remover")) {
+				if(conteudos[1].equals("postIt")) {
+					PostItDao postItDao = ApplicationContextHolder.ctx.getBean(PostItDao.class);
+					postItDao.load(Integer.parseInt(conteudos[2]));
+					PostIt postIt = postItDao.load(Integer.parseInt(conteudos[2]));
+					postItDao.removeAsync(postIt);
+					channel.send(mensagem);
+				} else if(conteudos[1].equals("comentario")) {
+					ComentarioDao comentarioDao = ApplicationContextHolder.ctx.getBean(ComentarioDao.class);
+					Comentario comentario = comentarioDao.load(Integer.parseInt(conteudos[2]));
+					System.out.println(comentario);
+					comentarioDao.removeAsync(comentario);
+					channel.send(mensagem);
+				}
 			}
 		}
 	}
