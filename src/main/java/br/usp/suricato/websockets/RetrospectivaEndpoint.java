@@ -15,9 +15,8 @@ import br.usp.suricato.daos.UsuarioDao;
 import br.usp.suricato.models.Comentario;
 import br.usp.suricato.models.PostIt;
 import br.usp.suricato.models.Retrospectiva;
-import br.usp.suricato.models.Usuario;
 
-@ServerEndpoint("/retroespectiva/asndjkahsdjhds/{retrospectivaId}/{nomeUsuario}")
+@ServerEndpoint("/retrospectiva/asndjkahsdjhds/{retrospectivaId}/{nomeUsuario}")
 public class RetrospectivaEndpoint {
 
 	@Inject
@@ -28,9 +27,8 @@ public class RetrospectivaEndpoint {
 							@PathParam("nomeUsuario") String nomeUsuario) {
 		UsuarioDao usuarioDao = ApplicationContextHolder.ctx.getBean(UsuarioDao.class);
 		RetrospectivaDao retrospectivaDao = ApplicationContextHolder.ctx.getBean(RetrospectivaDao.class);
-		Usuario usuario = usuarioDao.buscaPorNome(nomeUsuario);
 		Retrospectiva retrospectiva = retrospectivaDao.load(retrospectivaId);
-		if(retrospectiva.isUsuarioAutorizado(usuario)) {
+		if(retrospectiva.isPublica() || (nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
 			channel.add(session);
 		}
 	}
@@ -40,9 +38,8 @@ public class RetrospectivaEndpoint {
 							@PathParam("nomeUsuario") String nomeUsuario, String mensagem) {
 		UsuarioDao usuarioDao = ApplicationContextHolder.ctx.getBean(UsuarioDao.class);
 		RetrospectivaDao retrospectivaDao = ApplicationContextHolder.ctx.getBean(RetrospectivaDao.class);
-		Usuario usuario = usuarioDao.buscaPorNome(nomeUsuario);
 		Retrospectiva retrospectiva = retrospectivaDao.load(retrospectivaId);
-		if(retrospectiva.isUsuarioAutorizado(usuario)) {
+		if(retrospectiva.isPublica() || (nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
 			String[] conteudos = mensagem.split("\\|");
 			if(conteudos[0].equals("postIt")) {
 				PostItDao postItDao = ApplicationContextHolder.ctx.getBean(PostItDao.class);

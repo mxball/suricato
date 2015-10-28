@@ -44,6 +44,8 @@ public class Retrospectiva {
 	
 	@ManyToOne
 	private Time time;
+	
+	private boolean publica = false;
 
 	public Integer getId() {
 		return id;
@@ -130,6 +132,14 @@ public class Retrospectiva {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public boolean isPublica() {
+		return publica;
+	}
+
+	public void setPublica(boolean publica) {
+		this.publica = publica;
 	}
 
 }

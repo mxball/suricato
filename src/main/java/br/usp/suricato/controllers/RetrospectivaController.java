@@ -34,9 +34,11 @@ public class RetrospectivaController {
 	@RequestMapping("/mostra")
 	public String mostraRetrospectiva(Integer id, Model model, Principal principal) {
 		Retrospectiva retrospectiva = retrospectivaDao.load(id);
-		Usuario usuario = usuarioDao.buscaPorNome(principal.getName());
-		if(!retrospectiva.isUsuarioAutorizado(usuario)) {
-			return "redirect:/index";
+		if(!retrospectiva.isPublica()) {
+			Usuario usuario = usuarioDao.buscaPorNome(principal.getName());
+			if(!retrospectiva.isUsuarioAutorizado(usuario) && !retrospectiva.isPublica()) {
+				return "redirect:/index";
+			}
 		}
 		model.addAttribute("retrospectiva", retrospectiva);
 		return "retrospectiva/mostra";

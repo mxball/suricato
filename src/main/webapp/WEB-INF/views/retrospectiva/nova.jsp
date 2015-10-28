@@ -33,6 +33,7 @@
 					<option value="${time.id}">${time.nome}</option>
 				</c:forEach>
 			</select>
+			Pública: <input type="checkbox" name="publica" value="true">
 			<select name="lousa.id"  id="idLousa" onchange="mostraLousa()">
 				<c:forEach items="${lousas}" var="lousa" varStatus="status">
 					<option value="${lousa.id}" id="atividade_${status.index}" data-url="${lousa.endereco}">${lousa.nome}</option>
