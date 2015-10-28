@@ -15,7 +15,6 @@
 		<title>Retrospectiva</title>
 	</head>
 	<body>
-		<%@include file="../header.jsp" %>
 		<form:form role="form" id="retrospectiva" modelAttribute="retrospectiva" servletRelativeAction="/retrospectiva/salvar" method="POST">
 			<input type="hidden" name="id" id="retrospectiva-id" data-usuario-nome="${pageContext.request.userPrincipal.name}" value="${retrospectiva.id}"/>
 			<input type="hidden" name="criador.id" value="${retrospectiva.criador.id}"/>
@@ -65,14 +64,10 @@
 					</div>
 				</c:if>
 			</div>
-			<c:if test="${retrospectiva.aberta}">
-				<input type="submit" value="Salvar"/>
-			</c:if>
 		</form:form>
-	</body>
 	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
+	</body>
 	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
 	<script src="<c:url value='/assets/js/retrospectiva/lousa.js'/>"></script>
-	
 </html>

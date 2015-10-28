@@ -43,13 +43,11 @@ public class RetrospectivaEndpoint {
 		Usuario usuario = usuarioDao.buscaPorNome(nomeUsuario);
 		Retrospectiva retrospectiva = retrospectivaDao.load(retrospectivaId);
 		if(retrospectiva.isUsuarioAutorizado(usuario)) {
-			System.out.println(mensagem);
 			String[] conteudos = mensagem.split("\\|");
 			if(conteudos[0].equals("postIt")) {
 				PostItDao postItDao = ApplicationContextHolder.ctx.getBean(PostItDao.class);
 				if(conteudos[1].equals("adiciona")) {
 					PostIt postIt = new PostIt(conteudos[2], Double.parseDouble(conteudos[3]), Double.parseDouble(conteudos[4]), conteudos[5], retrospectiva);
-					System.out.println(postIt);
 					postItDao.saveAsync(postIt);
 					channel.send(mensagem + "|" + postIt.getId());
 				} else if(conteudos[1].equals("remove")) {

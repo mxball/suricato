@@ -30,7 +30,7 @@ public class PostIt {
 	@NotNull
 	private String cor;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)  
+	@ManyToOne  
 	@JoinColumn(name="retrospectiva_id")
 	private Retrospectiva retrospectiva;
 

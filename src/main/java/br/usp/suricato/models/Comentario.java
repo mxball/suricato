@@ -33,7 +33,7 @@ public class Comentario {
 
 	private boolean excluir;
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="retrospectiva_id")
 	private Retrospectiva retrospectiva;
 
