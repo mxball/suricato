@@ -40,7 +40,7 @@ public class RetrospectivaDao {
 		}
 		manager.merge(retrospectiva);
 	}
-
+	
 	public List<Retrospectiva> listaRetrospectivasAbertasDoUsuario(String nome) {
 		return manager.createQuery("select r from Retrospectiva r where r.criador.nome = :nome and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
 					.setParameter("nome", nome)

@@ -30,6 +30,19 @@ public class PostIt {
 	@ManyToOne
 	private Retrospectiva retrospectiva;
 
+	/**
+	 * @deprecated
+	 */
+	public PostIt(){}
+	
+	public PostIt(String conteudo, Double posicaoHorizontal, Double posicaoVertical, String cor, Retrospectiva retrospectiva) {
+		this.conteudo = conteudo;
+		this.posicaoHorizontal = posicaoHorizontal;
+		this.posicaoVertical = posicaoVertical;
+		this.cor = cor;
+		this.retrospectiva = retrospectiva;
+	}
+
 	public Integer getId() {
 		return id;
 	}

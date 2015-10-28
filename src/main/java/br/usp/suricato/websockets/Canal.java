@@ -7,8 +7,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.websocket.Session;
 
+@ApplicationScoped
 public class Canal {
 	private List<Session> users = new ArrayList<>();
 

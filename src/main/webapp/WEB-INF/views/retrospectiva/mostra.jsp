@@ -17,7 +17,7 @@
 	<body>
 		<%@include file="../header.jsp" %>
 		<form:form role="form" id="retrospectiva" modelAttribute="retrospectiva" servletRelativeAction="/retrospectiva/salvar" method="POST">
-			<input type="hidden" name="id" value="${retrospectiva.id}"/>
+			<input type="hidden" name="id" id="retrospectiva-id" data-usuario-nome="${pageContext.request.userPrincipal.name}" value="${retrospectiva.id}"/>
 			<input type="hidden" name="criador.id" value="${retrospectiva.criador.id}"/>
 			<div id="lousa" data-postIt-quantidade="${retrospectiva.postIts.size()}" 
 							data-comentario-quantidade="${retrospectiva.comentarios.size()}">
@@ -74,24 +74,5 @@
 	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
 	<script src="<c:url value='/assets/js/retrospectiva/lousa.js'/>"></script>
-    <script type="text/javascript">
-	    var mensagemEnviada = "";
-		var connection = new WebSocket('ws://localhost:8080/suricato/echo');
-		connection.onerror = function(error) {
-			console.log('WebSocket Error ' + error);
-		}
-		connection.onmessage = function(mensagemServidor) {
-			console.log(mensagemServidor.data.toString());
-			if(mensagemServidor.data.toString() == mensagemEnviada) {
-				alert("Aviso enviado");
-			}
-		}
-		document.querySelector('#envia').onclick = function(){
-			var sala = document.querySelector('#sala').value;
-			var problema = document.querySelector('#problema').value;
-			mensagemEnviada = sala + "|" + problema;
-			connection.send(mensagemEnviada);
-		}
-    </script>
 	
 </html>

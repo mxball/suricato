@@ -47,20 +47,25 @@ function teclado(event) {
 		var texto = this.value;
 		var largura = this.clientWidth;
 		var altura = this.clientHeight;
-		if(elemento.classList.contains("postIt")) {
-			adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical);
-		} else if(elemento.classList.contains("comentario")) {
+		enviaMensagem("postit|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
+//		if(elemento.classList.contains("postIt")) {
+//			adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical);
+//			enviaMensagem("postit|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
+//		} else 
+			if(elemento.classList.contains("comentario")) {
 			adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura);
 		}
-		elemento.classList.remove("semConteudo");
-		elemento.classList.add("comConteudo");
-		elemento.removeChild(this);
-		elemento.appendChild(createLinkRemove());
-		var conteudo = createConteudo(texto);
-		conteudo.style.width = largura + "px";
-		conteudo.style.minHeight = altura + "px";
-		elemento.appendChild(conteudo);
-		elemento.click(getAcao);
+		elemento.style.display = 'none';
+		
+//		elemento.classList.remove("semConteudo");
+//		elemento.classList.add("comConteudo");
+//		elemento.removeChild(this);
+//		elemento.appendChild(createLinkRemove());
+//		var conteudo = createConteudo(texto);
+//		conteudo.style.width = largura + "px";
+//		conteudo.style.minHeight = altura + "px";
+//		elemento.appendChild(conteudo);
+//		elemento.click(getAcao);
 	}	
 }
 
@@ -89,12 +94,13 @@ function adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical,
 	numeroComentarios++;
 }
 
-function adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical) {
+function adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical, id) {
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].conteudo", texto));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoHorizontal", posicaoHorizontal));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoVertical", posicaoVertical));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].cor", elemento.className.match(/\bcor[^\s]+\b/)));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].excluir", false));
+	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].id", id));
 	numeroPostIts++;
 }
 
@@ -138,4 +144,33 @@ $(".remover").click(removeElemento);
 function removeElemento() {
 	$(this.parentNode).css('display', 'none');
 	$(this.parentNode).find("input[name$='excluir']").val('true');
+}
+
+
+var retrospectiva = document.querySelector("#retrospectiva-id");
+var retrospectivaId = retrospectiva.value;
+var usuarioNome = retrospectiva.dataset.usuarioNome;
+var connection = new WebSocket('ws://localhost:8080/suricato/retroespectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
+function enviaMensagem(mensagem) {
+	connection.send(mensagem);
+}
+connection.onerror = function(error) {
+	console.log('WebSocket Error ' + error);
+}
+connection.onmessage = function(mensagemServidor) {
+	var mensagem = mensagemServidor.data.toString()
+	console.log(mensagemServidor.data.toString());
+	var argumentos = mensagem.split("|");
+	var elemento = document.createElement("div");
+	elemento.classList.add("postIt");
+	elemento.classList.add("comConteudo");
+	elemento.classList.add(argumentos[4]);
+	elemento.style.left = argumentos[2] + "%";
+	elemento.style.top = argumentos[3] + "%";
+	adicionaPostIt(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[5])
+	elemento.appendChild(createLinkRemove());
+	var conteudo = createConteudo(argumentos[1]);
+	elemento.appendChild(conteudo);
+	elemento.click(getAcao);
+	lousa.appendChild(elemento);
 }
