@@ -47,13 +47,10 @@ function teclado(event) {
 		var texto = this.value;
 		var largura = this.clientWidth;
 		var altura = this.clientHeight;
-		enviaMensagem("postit|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
-//		if(elemento.classList.contains("postIt")) {
-//			adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical);
-//			enviaMensagem("postit|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
-//		} else 
-			if(elemento.classList.contains("comentario")) {
-			adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura);
+		if(elemento.classList.contains("postIt")) {
+			enviaMensagem("postit|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
+		} else if(elemento.classList.contains("comentario")) {
+			enviaMensagem("comentario|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + largura + "|" + altura);
 		}
 		elemento.style.display = 'none';
 		
@@ -84,13 +81,14 @@ function createLinkRemove() {
 	return linkRemove;
 }
 
-function adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura){
+function adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura, id){
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].conteudo", texto));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoHorizontal", posicaoHorizontal));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoVertical", posicaoVertical));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].largura", largura));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].altura", altura));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].excluir", false));
+	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].id", id));
 	numeroComentarios++;
 }
 
@@ -162,12 +160,20 @@ connection.onmessage = function(mensagemServidor) {
 	console.log(mensagemServidor.data.toString());
 	var argumentos = mensagem.split("|");
 	var elemento = document.createElement("div");
-	elemento.classList.add("postIt");
+	var tipoElemento = argumentos[0];
+	console.log(tipoElemento);
+	elemento.classList.add(tipoElemento);
 	elemento.classList.add("comConteudo");
-	elemento.classList.add(argumentos[4]);
+	if(tipoElemento == "postit") {
+		elemento.classList.add(argumentos[4]);
+		adicionaPostIt(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[5]);
+	} else if(tipoElemento == "comentario")  {
+		elemento.style.width = argumentos[4] + "px";
+		elemento.style.minHeight = argumentos[5] + "px";
+		adicionaComentario(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[4], argumentos[5], argumentos[6]);
+	}
 	elemento.style.left = argumentos[2] + "%";
 	elemento.style.top = argumentos[3] + "%";
-	adicionaPostIt(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[5])
 	elemento.appendChild(createLinkRemove());
 	var conteudo = createConteudo(argumentos[1]);
 	elemento.appendChild(conteudo);

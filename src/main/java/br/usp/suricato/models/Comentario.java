@@ -33,6 +33,21 @@ public class Comentario {
 	@ManyToOne
 	private Retrospectiva retrospectiva;
 
+	/**
+	 * @deprecated
+	 */
+	public Comentario() {}
+	
+	public Comentario(String conteudo, double posicaoHorizontal, double posicaoVertical,
+			int largura, int altura, Retrospectiva retrospectiva) {
+		this.conteudo = conteudo;
+		this.posicaoHorizontal = posicaoHorizontal;
+		this.posicaoVertical = posicaoVertical;
+		this.largura = largura;
+		this.altura = altura;
+		this.retrospectiva = retrospectiva;
+	}
+
 	public Integer getId() {
 		return id;
 	}

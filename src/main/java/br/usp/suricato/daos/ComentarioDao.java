@@ -1,6 +1,8 @@
 package br.usp.suricato.daos;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
@@ -23,6 +25,15 @@ public class ComentarioDao {
 			Comentario aExcluir = manager.getReference(Comentario.class, comentario.getId());
 			manager.remove(aExcluir);
 		}
+	}
+
+	public void saveAsync(Comentario comentario) {
+		EntityManagerFactory managerFactory = manager.getEntityManagerFactory();
+		EntityManager entityManager = managerFactory.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.persist(comentario);	
+		transaction.commit();		
 	}
 	
 }

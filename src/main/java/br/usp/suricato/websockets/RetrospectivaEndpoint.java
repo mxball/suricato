@@ -8,9 +8,11 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import br.usp.suricato.conf.ApplicationContextHolder;
+import br.usp.suricato.daos.ComentarioDao;
 import br.usp.suricato.daos.PostItDao;
 import br.usp.suricato.daos.RetrospectivaDao;
 import br.usp.suricato.daos.UsuarioDao;
+import br.usp.suricato.models.Comentario;
 import br.usp.suricato.models.PostIt;
 import br.usp.suricato.models.Retrospectiva;
 import br.usp.suricato.models.Usuario;
@@ -43,13 +45,17 @@ public class RetrospectivaEndpoint {
 		if(retrospectiva.isUsuarioAutorizado(usuario)) {
 			System.out.println(mensagem);
 			String[] conteudos = mensagem.split("\\|");
-			for (String string : conteudos) {
-				System.out.println(string);
+			if(conteudos[0].equals("postit")) {
+				PostItDao postItDao = ApplicationContextHolder.ctx.getBean(PostItDao.class);
+				PostIt postIt = new PostIt(conteudos[1], Double.parseDouble(conteudos[2]), Double.parseDouble(conteudos[3]), conteudos[4], retrospectiva);
+				postItDao.saveAsync(postIt);
+				channel.send(mensagem + "|" + postIt.getId());
+			} else {
+				ComentarioDao comentarioDao = ApplicationContextHolder.ctx.getBean(ComentarioDao.class);
+				Comentario comentario = new Comentario(conteudos[1], Double.parseDouble(conteudos[2]), Double.parseDouble(conteudos[3]), Integer.parseInt(conteudos[4]), Integer.parseInt(conteudos[5]), retrospectiva);
+				comentarioDao.saveAsync(comentario);
+				channel.send(mensagem + "|" + comentario.getId());
 			}
-			PostItDao postItDao = ApplicationContextHolder.ctx.getBean(PostItDao.class);
-			PostIt postIt = new PostIt(conteudos[1], Double.parseDouble(conteudos[2]), Double.parseDouble(conteudos[3]), conteudos[4], retrospectiva);
-			postItDao.saveAsync(postIt);
-			channel.send(mensagem + "|" + postIt.getId());
 		}
 	}
 
