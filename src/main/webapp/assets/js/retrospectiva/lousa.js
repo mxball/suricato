@@ -48,21 +48,11 @@ function teclado(event) {
 		var largura = this.clientWidth;
 		var altura = this.clientHeight;
 		if(elemento.classList.contains("postIt")) {
-			enviaMensagem("postIt|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
+			enviaMensagem("postIt|adiciona|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
 		} else if(elemento.classList.contains("comentario")) {
-			enviaMensagem("comentario|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + largura + "|" + altura);
+			enviaMensagem("comentario|adiciona|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + largura + "|" + altura);
 		}
 		elemento.style.display = 'none';
-		
-//		elemento.classList.remove("semConteudo");
-//		elemento.classList.add("comConteudo");
-//		elemento.removeChild(this);
-//		elemento.appendChild(createLinkRemove());
-//		var conteudo = createConteudo(texto);
-//		conteudo.style.width = largura + "px";
-//		conteudo.style.minHeight = altura + "px";
-//		elemento.appendChild(conteudo);
-//		elemento.click(getAcao);
 	}	
 }
 
@@ -92,11 +82,11 @@ function adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical,
 	numeroComentarios++;
 }
 
-function adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical, id) {
+function adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical, cor, id) {
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].conteudo", texto));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoHorizontal", posicaoHorizontal));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoVertical", posicaoVertical));
-	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].cor", elemento.className.match(/\bcor[^\s]+\b/)));
+	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].cor", cor));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].excluir", false));
 	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].id", id));
 	numeroPostIts++;
@@ -143,7 +133,7 @@ function removeElemento() {
 	var elemento = $(this.parentNode);
 	var id = elemento.attr("id").split('_')[1];
 	var tipoElemento = elemento.attr("id").split('_')[0];
-	enviaMensagem("remover|" + tipoElemento + "|" + id);
+	enviaMensagem(tipoElemento + "|remove|" + id);
 }
 
 
@@ -152,6 +142,7 @@ var retrospectivaId = retrospectiva.value;
 var usuarioNome = retrospectiva.dataset.usuarioNome;
 var connection = new WebSocket('ws://localhost:8080/suricato/retroespectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
 function enviaMensagem(mensagem) {
+	console.log(mensagem);
 	connection.send(mensagem);
 }
 connection.onerror = function(error) {
@@ -162,28 +153,37 @@ connection.onmessage = function(mensagemServidor) {
 	console.log(mensagemServidor.data.toString());
 	if(mensagem != "Ping") {
 		var argumentos = mensagem.split("|");
-		if(argumentos[0] == "remover") {
-			$("#lousa #" + argumentos[1] + "_" + argumentos[2]).remove();
+		var tipoElemento = argumentos[0];
+		var operacao = argumentos[1];
+		if(operacao == "remove") {
+			var id = argumentos[2];
+			$("#lousa #" + tipoElemento + "_" + id).remove();
 		} else {
 			var elemento = document.createElement("div");
-			var tipoElemento = argumentos[0];
-			console.log(tipoElemento);
 			elemento.classList.add(tipoElemento);
 			elemento.classList.add("comConteudo");
+			var texto = argumentos[2];
+			var posicaoHorizontal = argumentos[3];
+			var posicaoVertical = argumentos[4];
 			if(tipoElemento == "postIt") {
-				elemento.classList.add(argumentos[4]);
-				elemento.id = "postIt_" + argumentos[5];
-				adicionaPostIt(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[5]);
+				var cor = argumentos[5];
+				var id = argumentos[6];
+				elemento.classList.add(cor);
+				elemento.id = "postIt_" + id;
+				adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical, cor, id);
 			} else if(tipoElemento == "comentario")  {
-				elemento.style.width = argumentos[4] + "px";
-				elemento.style.minHeight = argumentos[5] + "px";
-				elemento.id = "comentario_" + argumentos[6];
-				adicionaComentario(elemento, argumentos[1], argumentos[2], argumentos[3], argumentos[4], argumentos[5], argumentos[6]);
+				var largura = argumentos[5];
+				var altura = argumentos[6];
+				var id = argumentos[7];
+				elemento.style.width = largura + "px";
+				elemento.style.minHeight = altura + "px";
+				elemento.id = "comentario_" + id;
+				adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura, id);
 			}
-			elemento.style.left = argumentos[2] + "%";
-			elemento.style.top = argumentos[3] + "%";
+			elemento.style.left = posicaoHorizontal + "%";
+			elemento.style.top = posicaoVertical + "%";
 			elemento.appendChild(createLinkRemove());
-			var conteudo = createConteudo(argumentos[1]);
+			var conteudo = createConteudo(texto);
 			elemento.appendChild(conteudo);
 			elemento.click(getAcao);
 			lousa.appendChild(elemento);

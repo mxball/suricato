@@ -124,4 +124,15 @@ public class PostIt {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "PostIt [id=" + id + ", conteudo=" + conteudo
+				+ ", posicaoHorizontal=" + posicaoHorizontal
+				+ ", posicaoVertical=" + posicaoVertical + ", excluir="
+				+ excluir + ", cor=" + cor + ", retrospectiva=" + retrospectiva
+				+ "]";
+	}
+
+	
+	
 }
