@@ -96,10 +96,11 @@ function adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical, cor
 }
 
 var SHIFT = false; 
-document.body.addEventListener('keyup', function(event){ console.log(event); 
+document.body.addEventListener('keyup', function(event){ 
+//	console.log(event); 
 	//Shift+ENTER 
 	if(event.keyCode == 13 && SHIFT) { 
-		console.log('HAU'); 
+//		console.log('HAU'); 
 	} 
 	//Desligar Shift 
 	if (event.keyCode == 16) { 
@@ -153,7 +154,6 @@ connection.onerror = function(error) {
 }
 connection.onmessage = function(mensagemServidor) {
 	var mensagem = mensagemServidor.data.toString()
-	console.log(mensagemServidor.data.toString());
 	if(mensagem != "Ping") {
 		var argumentos = mensagem.split("|");
 		var tipoElemento = argumentos[0];
@@ -188,8 +188,8 @@ connection.onmessage = function(mensagemServidor) {
 			elemento.appendChild(createLinkRemove());
 			var conteudo = createConteudo(texto);
 			elemento.appendChild(conteudo);
-			elemento.click(getAcao);
 			lousa.appendChild(elemento);
+			elemento.click(getAcao);
 		} else {
 			var id = argumentos[2];
 			var elemento = $("#lousa #" + tipoElemento + "_" + id);

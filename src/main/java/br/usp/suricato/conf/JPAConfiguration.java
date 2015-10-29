@@ -42,7 +42,7 @@ public class JPAConfiguration
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
       dataSource.setDriverClassName("com.mysql.jdbc.Driver");
       dataSource.setUrl("jdbc:mysql://localhost/suricato");
-      dataSource.setUsername("suricato");
+      dataSource.setUsername("root");
       dataSource.setPassword("");
       return dataSource;
    }
@@ -66,6 +66,7 @@ public class JPAConfiguration
       Properties properties = new Properties();
       properties.setProperty("hibernate.hbm2ddl.auto", "update");
       properties.setProperty("hibernate.show_sql", "true");
+	  properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
       return properties;
    }
 }

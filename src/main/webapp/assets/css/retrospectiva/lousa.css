@@ -41,6 +41,7 @@ html {
 .remover {
 	position: absolute;
 	width: 1em;
+	font-size: 1em;
 }
 
 .remover:after {
