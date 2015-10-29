@@ -57,6 +57,11 @@ public class RetrospectivaEndpoint {
 					postIt.setPosicaoVertical(Double.parseDouble(conteudos[4]));
 					postItDao.updateAsync(postIt);
 					channel.send(mensagem);
+				} else if(conteudos[1].equals("texto")) {
+					PostIt postIt = postItDao.load(Integer.parseInt(conteudos[2]));
+					postIt.setConteudo(conteudos[3]);
+					postItDao.updateAsync(postIt);
+					channel.send(mensagem);
 				}
 			} else if(conteudos[0].equals("comentario")) {
 				ComentarioDao comentarioDao = ApplicationContextHolder.ctx.getBean(ComentarioDao.class);
@@ -72,6 +77,13 @@ public class RetrospectivaEndpoint {
 					Comentario comentario = comentarioDao.load(Integer.parseInt(conteudos[2]));
 					comentario.setPosicaoHorizontal(Double.parseDouble(conteudos[3]));
 					comentario.setPosicaoVertical(Double.parseDouble(conteudos[4]));
+					comentarioDao.updateAsync(comentario);
+					channel.send(mensagem);
+				}  else if(conteudos[1].equals("texto")) {
+					Comentario comentario = comentarioDao.load(Integer.parseInt(conteudos[2]));
+					comentario.setConteudo(conteudos[3]);
+					comentario.setLargura(Integer.parseInt(conteudos[4]));
+					comentario.setAltura(Integer.parseInt(conteudos[5]));
 					comentarioDao.updateAsync(comentario);
 					channel.send(mensagem);
 				}

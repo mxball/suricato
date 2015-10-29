@@ -42,12 +42,28 @@ html {
 	position: absolute;
 	width: 1em;
 	font-size: 1em;
+	right: 0.1em;
+	top: 0.4em;
 }
 
 .remover:after {
 	content: 'X';
 	position: absolute;
 	color: #CF000F;
+}
+
+.editar {
+	position: absolute;
+	width: 2em;
+	font-size: 1em;
+	right: 2.5em;
+	top: 0.4em;
+}
+
+.editar:after {
+	content: 'Editar';
+	position: absolute;
+	color: #663399;
 }
 
 input[type="submit"] {

@@ -38,8 +38,3 @@
 .comentario:not(.semConteudo) {
 	border: 1px solid black;
 }
-
-.comentario .remover {
-	right: 0.1em;
-	top: 0.3em;
-}

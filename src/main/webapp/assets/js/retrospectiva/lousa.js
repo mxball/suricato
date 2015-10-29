@@ -74,6 +74,14 @@ function createLinkRemove() {
 	return linkRemove;
 }
 
+function createLinkEdita() {
+	var linkEdita = document.createElement('a');
+	linkEdita.onclick = editaElemento;
+	linkEdita.href = "#";
+	linkEdita.classList.add("editar");
+	return linkEdita;
+}
+
 function adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura, id){
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].conteudo", texto));
 	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoHorizontal", posicaoHorizontal));
@@ -128,6 +136,7 @@ function createTextarea(name, limiteCaracteres) {
 	if(limiteCaracteres > 0) {
 		textarea.maxLength = limiteCaracteres;
 	}
+	textarea.value = "";
 	return textarea;
 }
 
@@ -140,6 +149,35 @@ function removeElemento() {
 	enviaMensagem(tipoElemento + "|remove|" + id);
 }
 
+$(".editar").click(editaElemento);
+
+function editaElemento() {
+	var elemento = $(this.parentNode);
+	var limiteCaracteres = elemento.hasClass("postIt") ? 100 : 0;
+	var comentario = createTextarea("conteudo", limiteCaracteres);
+	var id = elemento.attr("id").split('_')[1];
+	var tipoElemento = elemento.attr("id").split('_')[0];
+	comentario.addEventListener('keydown', function() {
+		if (event.keyCode == 13) {
+			var largura = comentario.style.width.replace("px", "");
+			var altura = comentario.style.height.replace("px", "");
+			enviaMensagem(tipoElemento + "|texto|" + id + "|" + comentario.value + "|" + largura + "|" + altura);
+		}
+	});
+	var conteudo = $(elemento).find(".conteudo");
+	if(tipoElemento == "comentario") {
+		comentario.style.width = elemento.width() + "px";
+		comentario.style.height = elemento.height() + "px";
+	}
+	comentario.value = conteudo.text();
+	conteudo.remove();
+	elemento.addClass("semConteudo");
+	elemento.removeClass("comConteudo");
+	$(elemento).find(".editar").remove();
+	$(elemento).find(".remover").remove();
+	elemento.append(comentario);
+	comentario.focus();	
+}
 
 var retrospectiva = document.querySelector("#retrospectiva-id");
 var retrospectivaId = retrospectiva.value;
@@ -186,14 +224,29 @@ connection.onmessage = function(mensagemServidor) {
 			elemento.style.left = posicaoHorizontal + "%";
 			elemento.style.top = posicaoVertical + "%";
 			elemento.appendChild(createLinkRemove());
+			elemento.appendChild(createLinkEdita());
 			var conteudo = createConteudo(texto);
 			elemento.appendChild(conteudo);
 			lousa.appendChild(elemento);
 			elemento.click(getAcao);
-		} else {
+		} else if(operacao == "atualiza") {
 			var id = argumentos[2];
 			var elemento = $("#lousa #" + tipoElemento + "_" + id);
 			elemento.css({top: argumentos[4] + "%", left: argumentos[3] + "%"});
+		} else if(operacao == "texto") {
+			var id = argumentos[2];
+			var texto = argumentos[3];
+			var largura = argumentos[4];
+			var altura = argumentos[5];
+			var elemento = $("#lousa #" + tipoElemento + "_" + id);
+			elemento.css({width: largura + "px", minHeight: altura + "px"});
+			elemento.removeClass("semConteudo");
+			elemento.addClass("comConteudo");
+			elemento.append(createLinkRemove());
+			elemento.append(createLinkEdita());
+			var conteudo = createConteudo(texto);
+			elemento.append(conteudo);
+			elemento.find("textarea").remove();
 		}
 	}
 	
