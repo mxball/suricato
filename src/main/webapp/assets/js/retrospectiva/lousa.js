@@ -157,8 +157,9 @@ function editaElemento() {
 	var comentario = createTextarea("conteudo", limiteCaracteres);
 	var id = elemento.attr("id").split('_')[1];
 	var tipoElemento = elemento.attr("id").split('_')[0];
-	comentario.addEventListener('keydown', function() {
+	comentario.addEventListener('keydown', function(event) {
 		if (event.keyCode == 13) {
+			comentario.disabled = true;
 			var largura = comentario.style.width.replace("px", "");
 			var altura = comentario.style.height.replace("px", "");
 			enviaMensagem(tipoElemento + "|texto|" + id + "|" + comentario.value + "|" + largura + "|" + altura);
@@ -244,6 +245,7 @@ connection.onmessage = function(mensagemServidor) {
 			elemento.addClass("comConteudo");
 			elemento.append(createLinkRemove());
 			elemento.append(createLinkEdita());
+			elemento.find(".conteudo").remove();
 			var conteudo = createConteudo(texto);
 			elemento.append(conteudo);
 			elemento.find("textarea").remove();
