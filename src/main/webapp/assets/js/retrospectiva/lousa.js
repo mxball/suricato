@@ -185,7 +185,6 @@ var retrospectivaId = retrospectiva.value;
 var usuarioNome = retrospectiva.dataset.usuarioNome;
 var connection = new WebSocket('ws://localhost:8080/suricato/retrospectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
 function enviaMensagem(mensagem) {
-	console.log(mensagem);
 	connection.send(mensagem);
 }
 connection.onerror = function(error) {

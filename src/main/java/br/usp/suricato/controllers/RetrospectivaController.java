@@ -35,7 +35,7 @@ public class RetrospectivaController {
 	public String mostraRetrospectiva(Integer id, Model model, Principal principal) {
 		Retrospectiva retrospectiva = retrospectivaDao.load(id);
 		if(!retrospectiva.isPublica()) {
-			Usuario usuario = usuarioDao.buscaPorNome(principal.getName());
+			Usuario usuario = (principal == null) ? new Usuario() : usuarioDao.buscaPorNome(principal.getName());
 			if(!retrospectiva.isUsuarioAutorizado(usuario) && !retrospectiva.isPublica()) {
 				return "redirect:/index";
 			}

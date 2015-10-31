@@ -28,7 +28,7 @@ public class RetrospectivaEndpoint {
 		UsuarioDao usuarioDao = ApplicationContextHolder.ctx.getBean(UsuarioDao.class);
 		RetrospectivaDao retrospectivaDao = ApplicationContextHolder.ctx.getBean(RetrospectivaDao.class);
 		Retrospectiva retrospectiva = retrospectivaDao.load(retrospectivaId);
-		if(retrospectiva.isPublica() || (nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
+		if(retrospectiva.isPublica() || (!nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
 			channel.add(session);
 		}
 	}
@@ -39,7 +39,7 @@ public class RetrospectivaEndpoint {
 		UsuarioDao usuarioDao = ApplicationContextHolder.ctx.getBean(UsuarioDao.class);
 		RetrospectivaDao retrospectivaDao = ApplicationContextHolder.ctx.getBean(RetrospectivaDao.class);
 		Retrospectiva retrospectiva = retrospectivaDao.load(retrospectivaId);
-		if(retrospectiva.isPublica() || (nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
+		if(retrospectiva.isPublica() || (!nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
 			String[] conteudos = mensagem.split("\\|");
 			if(conteudos[0].equals("postIt")) {
 				PostItDao postItDao = ApplicationContextHolder.ctx.getBean(PostItDao.class);
