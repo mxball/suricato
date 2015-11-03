@@ -2,7 +2,9 @@ package br.usp.suricato.websockets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,15 +13,19 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.websocket.EncodeException;
 import javax.websocket.Session;
 
+import br.usp.suricato.models.Retrospectiva;
+
 @ApplicationScoped
 public class Canal {
-	private List<Session> users = new ArrayList<>();
+	private Map<Retrospectiva, List<Session>> mapaUsuarios = new HashMap<>();
 
-	public void send(String message) {
+	public void enviaMensagemParaTodos(String message) {
 		try {
-			for (Session user : users) {
-				if (user.isOpen()) {
-					user.getBasicRemote().sendText(message);
+			for (List<Session> lista : mapaUsuarios.values()) {
+				for (Session usuarios : lista) {
+					if (usuarios.isOpen()) {
+						usuarios.getBasicRemote().sendText(message);
+					}
 				}
 			}
 		} catch (IOException e) {
@@ -27,11 +33,11 @@ public class Canal {
 		}
 	}
 	
-	public void send(ConteudoJson conteudo) {
+	public void enviaMensagem(ConteudoJson conteudo, Retrospectiva retrospectiva) {
 		try {
-			for (Session user : users) {
-				if (user.isOpen()) {
-					user.getBasicRemote().sendObject(conteudo);
+			for (Session usuarios : mapaUsuarios.get(retrospectiva)) {
+				if (usuarios.isOpen()) {
+					usuarios.getBasicRemote().sendObject(conteudo);
 				}
 			}
 		} catch (IOException | EncodeException e) {
@@ -39,20 +45,22 @@ public class Canal {
 		}
 	}
 
-	public void add(Session session) {
-		users.add(session);
+	public void adiciona(Session session, Retrospectiva retrospectiva) {
+		if(mapaUsuarios.containsKey(retrospectiva)) {
+			mapaUsuarios.get(retrospectiva).add(session);
+		} else {
+			ArrayList<Session> lista = new ArrayList<>();
+			lista.add(session);
+			mapaUsuarios.put(retrospectiva, lista);
+		}
 	}
 
-	public void remove(Session session) {
-		users.remove(session);
-	}
-	
 	@PostConstruct
 	public void ping() {
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
-				send("Ping");
+				enviaMensagemParaTodos("Ping");
 			}
 		}, 15000, 15000);
 	}

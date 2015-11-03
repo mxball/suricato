@@ -29,7 +29,7 @@ public class RetrospectivaEndpoint {
 		RetrospectivaDao retrospectivaDao = ApplicationContextHolder.ctx.getBean(RetrospectivaDao.class);
 		Retrospectiva retrospectiva = retrospectivaDao.load(retrospectivaId);
 		if(retrospectiva.isPublica() || (!nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
-			channel.add(session);
+			channel.adiciona(session, retrospectiva);
 		}
 	}
 	
@@ -41,7 +41,7 @@ public class RetrospectivaEndpoint {
 		Retrospectiva retrospectiva = retrospectivaDao.load(retrospectivaId);
 		if(retrospectiva.isPublica() || (!nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
 			AtualizaRetrospectiva.paraContexto(ApplicationContextHolder.ctx).atualiza(retrospectiva, conteudo);
-			channel.send(conteudo);
+			channel.enviaMensagem(conteudo, retrospectiva);
 		}
 	}
 
