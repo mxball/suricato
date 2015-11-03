@@ -7,7 +7,7 @@ function getAcao() {
 		stop: function (event, ui) {
 			var conteudo = new Conteudo($(ui.helper), "atualiza");
 			conteudo.setId(ui.helper.attr("id").split('_')[1]);
-			conteudo.setTexto(ui.helper.find("p").text());
+			conteudo.setTexto(ui.helper.find("p").html());
 			enviaMensagem(conteudo);
 		}
 	});
@@ -29,27 +29,41 @@ $("#atividade").droppable({
 		draggable.css('top', posicaoTopo + "%");
 		var limiteCaracteres = draggable.hasClass("postIt") ? 100 : 0;
 		var comentario = createTextarea("conteudo", limiteCaracteres);
-		comentario.addEventListener('keydown', teclado);
+		comentario.addEventListener('keydown', tecladoKeyDown);
 		draggable.append(comentario);
 		draggable.appendTo($(this).parent());
 		comentario.focus();
     }
 });
 
-function teclado(event) {
-	if (event.keyCode == 13) {
+var SHIFT = false; 
+
+function tecladoKeyDown(event) {
+	if (event.keyCode == 13 && !SHIFT) {
 		var elemento = this.parentNode;
 		var conteudo = new Conteudo($(elemento), "adiciona");
-		conteudo.setTexto(this.value);
+		conteudo.setTexto(this.value.replace(/\n/g, '<br/>'));
 		enviaMensagem(conteudo);
 		elemento.style.display = 'none';
-	}	
+	} 
 }
+
+document.body.addEventListener("keydown", function(event) {
+	if(event.keyCode == 16){
+		SHIFT = true;
+	}
+});
+
+document.body.addEventListener("keyup", function(event) {
+	if(event.keyCode == 16){
+		SHIFT = false;
+	}
+});
 
 function createConteudo(texto) {
 	var conteudo = document.createElement('p');
 	conteudo.classList.add("conteudo");
-	conteudo.textContent = texto;
+	conteudo.innerHTML = texto;
 	return conteudo;
 }
 
@@ -68,24 +82,6 @@ function createLinkEdita() {
 	linkEdita.classList.add("editar");
 	return linkEdita;
 }
-
-var SHIFT = false; 
-document.body.addEventListener('keyup', function(event){ 
-//	console.log(event); 
-	//Shift+ENTER 
-	if(event.keyCode == 13 && SHIFT) { 
-//		console.log('HAU'); 
-	} 
-	//Desligar Shift 
-	if (event.keyCode == 16) { 
-		SHIFT = false; 
-	} 
-}); 
-document.body.addEventListener('keydown', function(event) { 
-	if (event.keyCode == 16 && !SHIFT) { 
-		SHIFT = true; 
-	}; 
-}); 
 
 function createTextarea(name, limiteCaracteres) {
 	var textarea = document.createElement("textarea");
@@ -115,11 +111,11 @@ function editaElemento() {
 	var id = elemento.attr("id").split('_')[1];
 	var tipoElemento = elemento.attr("id").split('_')[0];
 	comentario.addEventListener('keydown', function(event) {
-		if (event.keyCode == 13) {
+		if (event.keyCode == 13 && !SHIFT) {
 			comentario.disabled = true;
 			var conteudo = new Conteudo(elemento, "atualiza");
 			conteudo.setId(id);
-			conteudo.setTexto(comentario.value);
+			conteudo.setTexto(comentario.value.replace(/\n/g, '<br/>'));
 			if(tipoElemento == "comentario") {
 				conteudo.setLargura(comentario.style.width.replace("px", ""));
 				conteudo.setAltura(comentario.style.height.replace("px", ""));
@@ -132,7 +128,7 @@ function editaElemento() {
 		comentario.style.width = elemento.width() + "px";
 		comentario.style.height = elemento.height() + "px";
 	}
-	comentario.value = conteudo.text();
+	comentario.value = conteudo.html().replace(/\<br\>/g, "\n");
 	conteudo.remove();
 	elemento.addClass("semConteudo");
 	elemento.removeClass("comConteudo");
