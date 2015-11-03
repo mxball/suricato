@@ -1,17 +1,10 @@
 var lousa = document.querySelector("#lousa");
-var numeroPostIts = lousa.dataset.postitQuantidade;
-var numeroComentarios = lousa.dataset.comentarioQuantidade;
-
 window.onload = getAcao;
 lousa.addEventListener("click", getAcao);
 
 function getAcao() {
 	$(".comConteudo").draggable({
 		stop: function (event, ui) {
-			var posicaoEsquerda = (ui.offset.left * 100.0) / window.innerWidth;
-			var posicaoTopo = (ui.offset.top * 100.0) / window.innerHeight;
-			this.querySelector("[name$='posicaoHorizontal']").value = posicaoEsquerda;
-			this.querySelector("[name$='posicaoVertical']").value = posicaoTopo;
 			var conteudo = new Conteudo($(ui.helper), "atualiza");
 			conteudo.setId(ui.helper.attr("id").split('_')[1]);
 			conteudo.setTexto(ui.helper.find("p").text());
@@ -76,27 +69,6 @@ function createLinkEdita() {
 	return linkEdita;
 }
 
-function adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura, id){
-	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].conteudo", texto));
-	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoHorizontal", posicaoHorizontal));
-	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].posicaoVertical", posicaoVertical));
-	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].largura", largura));
-	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].altura", altura));
-	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].excluir", false));
-	elemento.appendChild(createInput("hidden", "comentarios[" + numeroComentarios + "].id", id));
-	numeroComentarios++;
-}
-
-function adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical, cor, id) {
-	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].conteudo", texto));
-	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoHorizontal", posicaoHorizontal));
-	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].posicaoVertical", posicaoVertical));
-	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].cor", cor));
-	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].excluir", false));
-	elemento.appendChild(createInput("hidden", "postIts[" + numeroPostIts + "].id", id));
-	numeroPostIts++;
-}
-
 var SHIFT = false; 
 document.body.addEventListener('keyup', function(event){ 
 //	console.log(event); 
@@ -114,15 +86,6 @@ document.body.addEventListener('keydown', function(event) {
 		SHIFT = true; 
 	}; 
 }); 
-
-function createInput(type, name, value) {
-	var input = document.createElement('input');
-	input.type = type;
-	input.name = name;
-	input.value = value;
-	return input;
-}
-
 
 function createTextarea(name, limiteCaracteres) {
 	var textarea = document.createElement("textarea");
@@ -222,9 +185,8 @@ function Conteudo(elemento, operacao) {
 	
 }
 
-var retrospectiva = document.querySelector("#retrospectiva-id");
-var retrospectivaId = retrospectiva.value;
-var usuarioNome = retrospectiva.dataset.usuarioNome;
+var retrospectivaId = lousa.dataset.retrospectivaId;
+var usuarioNome = lousa.dataset.usuarioNome;
 var connection = new WebSocket('ws://localhost:8080/suricato/retrospectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
 function enviaMensagem(conteudo) {
 	connection.send(JSON.stringify(conteudo.getJson()));
@@ -246,12 +208,10 @@ connection.onmessage = function(mensagemServidor) {
 			if(json.tipoConteudo == "postIt") {
 				elemento.classList.add(json.cor);
 				elemento.id = "postIt_" + json.id;
-				adicionaPostIt(elemento, json.texto, json.posicaoHorizontal, json.posicaoVertical, json.cor, json.id);
 			} else if(json.tipoConteudo == "comentario")  {
 				elemento.style.width = json.largura + "px";
 				elemento.style.minHeight = json.altura + "px";
 				elemento.id = "comentario_" + json.id;
-				adicionaComentario(elemento, json.texto, json.posicaoHorizontal, json.posicaoVertical, json.largura, json.altura, json.id);
 			}
 			elemento.style.left = json.posicaoHorizontal + "%";
 			elemento.style.top = json.posicaoVertical + "%";
@@ -261,7 +221,6 @@ connection.onmessage = function(mensagemServidor) {
 			elemento.appendChild(conteudo);
 			lousa.appendChild(elemento);
 			elemento.click(getAcao);
-			console.log(elemento)
 		} else if(json.operacao == "remove") {
 			$("#lousa #" + json.tipoConteudo + "_" + json.id).remove();
 		}
