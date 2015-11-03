@@ -22,26 +22,27 @@ public class PostIt {
 
 	@NotNull
 	private Double posicaoVertical;
-	
-	private boolean excluir;
 
 	@NotNull
 	private String cor;
-	
-	@ManyToOne  
-	@JoinColumn(name="retrospectiva_id")
+
+	@ManyToOne
+	@JoinColumn(name = "retrospectiva_id")
 	private Retrospectiva retrospectiva;
 
-	public PostIt(){}
-	
-	public PostIt(String conteudo, Double posicaoHorizontal, Double posicaoVertical, String cor) {
+	public PostIt() {
+	}
+
+	public PostIt(String conteudo, Double posicaoHorizontal,
+			Double posicaoVertical, String cor) {
 		this.conteudo = conteudo;
 		this.posicaoHorizontal = posicaoHorizontal;
 		this.posicaoVertical = posicaoVertical;
 		this.cor = cor;
 	}
-	
-	public PostIt(String conteudo, Double posicaoHorizontal, Double posicaoVertical, String cor, Retrospectiva retrospectiva) {
+
+	public PostIt(String conteudo, Double posicaoHorizontal,
+			Double posicaoVertical, String cor, Retrospectiva retrospectiva) {
 		this(conteudo, posicaoHorizontal, posicaoVertical, cor);
 		this.retrospectiva = retrospectiva;
 	}
@@ -94,14 +95,6 @@ public class PostIt {
 		this.retrospectiva = retrospectiva;
 	}
 
-	public boolean isExcluir() {
-		return excluir;
-	}
-
-	public void setExcluir(boolean excluir) {
-		this.excluir = excluir;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -131,11 +124,8 @@ public class PostIt {
 	public String toString() {
 		return "PostIt [id=" + id + ", conteudo=" + conteudo
 				+ ", posicaoHorizontal=" + posicaoHorizontal
-				+ ", posicaoVertical=" + posicaoVertical + ", excluir="
-				+ excluir + ", cor=" + cor + ", retrospectiva=" + retrospectiva
-				+ "]";
+				+ ", posicaoVertical=" + posicaoVertical + ", cor=" + cor
+				+ ", retrospectiva=" + retrospectiva + "]";
 	}
 
-	
-	
 }

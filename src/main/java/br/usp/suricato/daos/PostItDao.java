@@ -15,18 +15,6 @@ public class PostItDao {
 	@PersistenceContext
 	private EntityManager manager;
 
-	public void saveOrUpdate(PostIt postIt) {
-		if(postIt.getId() == null) {
-			manager.persist(postIt);
-		} else {
-			manager.merge(postIt);
-		}
-		if(postIt.isExcluir()){
-			PostIt aExcluir = manager.getReference(PostIt.class, postIt.getId());
-			manager.remove(aExcluir);
-		}
-	}
-	
 	public void saveAsync(PostIt postIt) {
 		EntityManagerFactory managerFactory = manager.getEntityManagerFactory();
 		EntityManager entityManager = managerFactory.createEntityManager();

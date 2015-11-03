@@ -29,8 +29,6 @@ public class Comentario {
 	@NotNull
 	private Integer altura;
 
-	private boolean excluir;
-
 	@ManyToOne
 	@JoinColumn(name="retrospectiva_id")
 	private Retrospectiva retrospectiva;
@@ -93,14 +91,6 @@ public class Comentario {
 
 	public void setRetrospectiva(Retrospectiva retrospectiva) {
 		this.retrospectiva = retrospectiva;
-	}
-
-	public boolean isExcluir() {
-		return excluir;
-	}
-
-	public void setExcluir(boolean excluir) {
-		this.excluir = excluir;
 	}
 
 	public Integer getLargura() {

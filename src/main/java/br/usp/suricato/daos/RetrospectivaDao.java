@@ -9,8 +9,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import br.usp.suricato.models.Comentario;
-import br.usp.suricato.models.PostIt;
 import br.usp.suricato.models.Retrospectiva;
 
 @Repository
@@ -29,18 +27,6 @@ public class RetrospectivaDao {
 		manager.persist(retrospectiva);
 	}
 
-	public void atualiza(Retrospectiva retrospectiva) {
-		for (PostIt postIt : retrospectiva.getPostIts()) {
-			postIt.setRetrospectiva(retrospectiva);
-			postItDao.saveOrUpdate(postIt);
-		}
-		for (Comentario comentario : retrospectiva.getComentarios()) {
-			comentario.setRetrospectiva(retrospectiva);
-			comentarioDao.saveOrUpdate(comentario);
-		}
-		manager.merge(retrospectiva);
-	}
-	
 	public List<Retrospectiva> listaRetrospectivasAbertasDoUsuario(String nome) {
 		return manager.createQuery("select r from Retrospectiva r where r.criador.nome = :nome and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
 					.setParameter("nome", nome)

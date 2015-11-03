@@ -15,18 +15,6 @@ public class ComentarioDao {
 	@PersistenceContext
 	private EntityManager manager;
 
-	public void saveOrUpdate(Comentario comentario) {
-		if(comentario.getId() == null) {
-			manager.persist(comentario);
-		} else {
-			manager.merge(comentario);
-		}
-		if(comentario.isExcluir()){
-			Comentario aExcluir = manager.getReference(Comentario.class, comentario.getId());
-			manager.remove(aExcluir);
-		}
-	}
-
 	public void saveAsync(Comentario comentario) {
 		EntityManagerFactory managerFactory = manager.getEntityManagerFactory();
 		EntityManager entityManager = managerFactory.createEntityManager();
