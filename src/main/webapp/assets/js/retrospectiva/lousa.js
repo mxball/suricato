@@ -12,9 +12,10 @@ function getAcao() {
 			var posicaoTopo = (ui.offset.top * 100.0) / window.innerHeight;
 			this.querySelector("[name$='posicaoHorizontal']").value = posicaoEsquerda;
 			this.querySelector("[name$='posicaoVertical']").value = posicaoTopo;
-			var id = ui.helper.attr("id").split('_')[1];
-			var tipoElemento = ui.helper.attr("id").split('_')[0];
-			enviaMensagem(tipoElemento + "|atualiza|" + id + "|" + posicaoEsquerda + "|" + posicaoTopo);
+			var conteudo = new Conteudo($(ui.helper), "atualiza");
+			conteudo.setId(ui.helper.attr("id").split('_')[1]);
+			conteudo.setTexto(ui.helper.find("p").text());
+			enviaMensagem(conteudo);
 		}
 	});
 };
@@ -45,16 +46,9 @@ $("#atividade").droppable({
 function teclado(event) {
 	if (event.keyCode == 13) {
 		var elemento = this.parentNode;
-		var posicaoHorizontal = elemento.style.left.replace("%", "");
-		var posicaoVertical = elemento.style.top.replace("%", "");
-		var texto = this.value;
-		var largura = this.clientWidth;
-		var altura = this.clientHeight;
-		if(elemento.classList.contains("postIt")) {
-			enviaMensagem("postIt|adiciona|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + elemento.className.match(/\bcor[^\s]+\b/));
-		} else if(elemento.classList.contains("comentario")) {
-			enviaMensagem("comentario|adiciona|" + texto + "|" + posicaoHorizontal + "|" + posicaoVertical + "|" + largura + "|" + altura);
-		}
+		var conteudo = new Conteudo($(elemento), "adiciona");
+		conteudo.setTexto(this.value);
+		enviaMensagem(conteudo);
 		elemento.style.display = 'none';
 	}	
 }
@@ -144,9 +138,9 @@ $(".remover").click(removeElemento);
 
 function removeElemento() {
 	var elemento = $(this.parentNode);
-	var id = elemento.attr("id").split('_')[1];
-	var tipoElemento = elemento.attr("id").split('_')[0];
-	enviaMensagem(tipoElemento + "|remove|" + id);
+	var conteudo = new Conteudo(elemento, "remove");
+	conteudo.setId(elemento.attr("id").split('_')[1]);
+	enviaMensagem(conteudo);
 }
 
 $(".editar").click(editaElemento);
@@ -160,9 +154,14 @@ function editaElemento() {
 	comentario.addEventListener('keydown', function(event) {
 		if (event.keyCode == 13) {
 			comentario.disabled = true;
-			var largura = comentario.style.width.replace("px", "");
-			var altura = comentario.style.height.replace("px", "");
-			enviaMensagem(tipoElemento + "|texto|" + id + "|" + comentario.value + "|" + largura + "|" + altura);
+			var conteudo = new Conteudo(elemento, "atualiza");
+			conteudo.setId(id);
+			conteudo.setTexto(comentario.value);
+			if(tipoElemento == "comentario") {
+				conteudo.setLargura(comentario.style.width.replace("px", ""));
+				conteudo.setAltura(comentario.style.height.replace("px", ""));
+			}
+			enviaMensagem(conteudo);
 		}
 	});
 	var conteudo = $(elemento).find(".conteudo");
@@ -180,75 +179,91 @@ function editaElemento() {
 	comentario.focus();	
 }
 
+function Conteudo(elemento, operacao) {
+	this.tipoConteudo = elemento.hasClass("postIt") ? "postIt" : "comentario";
+	this.operacao = operacao;
+	this.id = 0;
+	this.texto = "";
+	this.posicaoHorizontal = (elemento.offset().left * 100.0) / window.innerWidth;
+	this.posicaoVertical = (elemento.offset().top* 100.0) / window.innerHeight;
+	this.largura = elemento.width();
+	this.altura = elemento.height(); 
+	this.cor = elemento.hasClass("postIt") ? elemento.attr("class").match(/\bcor[^\s]+\b/)[0] : "";
+	
+	this.setId = function(id) {
+		this.id = parseInt(id);
+	}
+	
+	this.setTexto = function(texto) {
+		this.texto = texto;
+	}
+	
+	this.setLargura = function(largura) {
+		this.largura = parseInt(largura);
+	}
+	
+	this.setAltura = function(altura) {
+		this.altura = parseInt(altura);
+	}
+	
+	this.getJson = function() {
+		return {
+			'tipoConteudo'		: this.tipoConteudo,
+			'operacao'          : this.operacao,
+			'id'                : this.id,
+			'texto'             : this.texto,
+			'posicaoHorizontal' : this.posicaoHorizontal,
+			'posicaoVertical'   : this.posicaoVertical,
+			'largura'           : this.largura,
+			'altura'            : this.altura,
+			'cor'               : this.cor
+		};
+	}
+	
+}
+
 var retrospectiva = document.querySelector("#retrospectiva-id");
 var retrospectivaId = retrospectiva.value;
 var usuarioNome = retrospectiva.dataset.usuarioNome;
 var connection = new WebSocket('ws://localhost:8080/suricato/retrospectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
-function enviaMensagem(mensagem) {
-	connection.send(mensagem);
+function enviaMensagem(conteudo) {
+	connection.send(JSON.stringify(conteudo.getJson()));
 }
 connection.onerror = function(error) {
 	console.log('WebSocket Error ' + error);
 }
 connection.onmessage = function(mensagemServidor) {
-	var mensagem = mensagemServidor.data.toString()
+	var mensagem = mensagemServidor.data.toString();
 	if(mensagem != "Ping") {
-		var argumentos = mensagem.split("|");
-		var tipoElemento = argumentos[0];
-		var operacao = argumentos[1];
-		if(operacao == "remove") {
-			var id = argumentos[2];
-			$("#lousa #" + tipoElemento + "_" + id).remove();
-		} else if(operacao == "adiciona") {
-			var elemento = document.createElement("div");
-			elemento.classList.add(tipoElemento);
-			elemento.classList.add("comConteudo");
-			var texto = argumentos[2];
-			var posicaoHorizontal = argumentos[3];
-			var posicaoVertical = argumentos[4];
-			if(tipoElemento == "postIt") {
-				var cor = argumentos[5];
-				var id = argumentos[6];
-				elemento.classList.add(cor);
-				elemento.id = "postIt_" + id;
-				adicionaPostIt(elemento, texto, posicaoHorizontal, posicaoVertical, cor, id);
-			} else if(tipoElemento == "comentario")  {
-				var largura = argumentos[5];
-				var altura = argumentos[6];
-				var id = argumentos[7];
-				elemento.style.width = largura + "px";
-				elemento.style.minHeight = altura + "px";
-				elemento.id = "comentario_" + id;
-				adicionaComentario(elemento, texto, posicaoHorizontal, posicaoVertical, largura, altura, id);
+		var json = JSON.parse(mensagemServidor.data);
+		if(json.operacao == "adiciona" || json.operacao == "atualiza") {
+			if(json.operacao == "atualiza") {
+				$("#lousa #" + json.tipoConteudo + "_" + json.id).remove();
 			}
-			elemento.style.left = posicaoHorizontal + "%";
-			elemento.style.top = posicaoVertical + "%";
+			var elemento = document.createElement("div");
+			elemento.classList.add(json.tipoConteudo);
+			elemento.classList.add("comConteudo");
+			if(json.tipoConteudo == "postIt") {
+				elemento.classList.add(json.cor);
+				elemento.id = "postIt_" + json.id;
+				adicionaPostIt(elemento, json.texto, json.posicaoHorizontal, json.posicaoVertical, json.cor, json.id);
+			} else if(json.tipoConteudo == "comentario")  {
+				elemento.style.width = json.largura + "px";
+				elemento.style.minHeight = json.altura + "px";
+				elemento.id = "comentario_" + json.id;
+				adicionaComentario(elemento, json.texto, json.posicaoHorizontal, json.posicaoVertical, json.largura, json.altura, json.id);
+			}
+			elemento.style.left = json.posicaoHorizontal + "%";
+			elemento.style.top = json.posicaoVertical + "%";
 			elemento.appendChild(createLinkRemove());
 			elemento.appendChild(createLinkEdita());
-			var conteudo = createConteudo(texto);
+			var conteudo = createConteudo(json.texto);
 			elemento.appendChild(conteudo);
 			lousa.appendChild(elemento);
 			elemento.click(getAcao);
-		} else if(operacao == "atualiza") {
-			var id = argumentos[2];
-			var elemento = $("#lousa #" + tipoElemento + "_" + id);
-			elemento.css({top: argumentos[4] + "%", left: argumentos[3] + "%"});
-		} else if(operacao == "texto") {
-			var id = argumentos[2];
-			var texto = argumentos[3];
-			var largura = argumentos[4];
-			var altura = argumentos[5];
-			var elemento = $("#lousa #" + tipoElemento + "_" + id);
-			elemento.css({width: largura + "px", minHeight: altura + "px"});
-			elemento.removeClass("semConteudo");
-			elemento.addClass("comConteudo");
-			elemento.append(createLinkRemove());
-			elemento.append(createLinkEdita());
-			elemento.find(".conteudo").remove();
-			var conteudo = createConteudo(texto);
-			elemento.append(conteudo);
-			elemento.find("textarea").remove();
+			console.log(elemento)
+		} else if(json.operacao == "remove") {
+			$("#lousa #" + json.tipoConteudo + "_" + json.id).remove();
 		}
 	}
-	
 }

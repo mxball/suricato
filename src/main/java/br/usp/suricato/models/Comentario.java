@@ -41,12 +41,17 @@ public class Comentario {
 	public Comentario() {}
 	
 	public Comentario(String conteudo, double posicaoHorizontal, double posicaoVertical,
-			int largura, int altura, Retrospectiva retrospectiva) {
+			int largura, int altura) {
 		this.conteudo = conteudo;
 		this.posicaoHorizontal = posicaoHorizontal;
 		this.posicaoVertical = posicaoVertical;
 		this.largura = largura;
 		this.altura = altura;
+	}
+	
+	public Comentario(String conteudo, double posicaoHorizontal, double posicaoVertical,
+			int largura, int altura, Retrospectiva retrospectiva) {
+		this(conteudo, posicaoHorizontal, posicaoVertical, largura, altura);
 		this.retrospectiva = retrospectiva;
 	}
 

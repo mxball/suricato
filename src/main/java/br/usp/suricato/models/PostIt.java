@@ -1,8 +1,6 @@
 package br.usp.suricato.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,16 +32,17 @@ public class PostIt {
 	@JoinColumn(name="retrospectiva_id")
 	private Retrospectiva retrospectiva;
 
-	/**
-	 * @deprecated
-	 */
 	public PostIt(){}
 	
-	public PostIt(String conteudo, Double posicaoHorizontal, Double posicaoVertical, String cor, Retrospectiva retrospectiva) {
+	public PostIt(String conteudo, Double posicaoHorizontal, Double posicaoVertical, String cor) {
 		this.conteudo = conteudo;
 		this.posicaoHorizontal = posicaoHorizontal;
 		this.posicaoVertical = posicaoVertical;
 		this.cor = cor;
+	}
+	
+	public PostIt(String conteudo, Double posicaoHorizontal, Double posicaoVertical, String cor, Retrospectiva retrospectiva) {
+		this(conteudo, posicaoHorizontal, posicaoVertical, cor);
 		this.retrospectiva = retrospectiva;
 	}
 

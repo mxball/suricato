@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.websocket.EncodeException;
 import javax.websocket.Session;
 
 @ApplicationScoped
@@ -22,6 +23,18 @@ public class Canal {
 				}
 			}
 		} catch (IOException e) {
+			System.err.println("Problema ao enviar a mensagem para o usuario. " + e);
+		}
+	}
+	
+	public void send(ConteudoJson conteudo) {
+		try {
+			for (Session user : users) {
+				if (user.isOpen()) {
+					user.getBasicRemote().sendObject(conteudo);
+				}
+			}
+		} catch (IOException | EncodeException e) {
 			System.err.println("Problema ao enviar a mensagem para o usuario. " + e);
 		}
 	}
@@ -43,4 +56,5 @@ public class Canal {
 			}
 		}, 15000, 15000);
 	}
+
 }
