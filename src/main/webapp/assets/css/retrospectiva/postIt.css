@@ -38,14 +38,24 @@
 	background-image: url("../../images/dislike.png");
 }
 
+.postIt .dotVotes {
+	margin: 0em 0.3em 0.3em 0.3em;
+}
+
 .postIt .dotVotes .dotVote {
 	display: inline-block;
 	width: 1em;
 	height: 1em;
 }
 
-.postIt .dotVotes .dotVote:after {
-	content: '*';
+.postIt .dotVotes .dotVote {
+	background-image: url("../../images/star.png");
+	width: 0.7em;
+	height: 0.7em;
+	display: inline-block;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin-left: 0.25em;
 }
 
 .corFCF0AD {
