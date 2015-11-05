@@ -4,7 +4,7 @@
 
 .postIt:not(.draggable) {
 	width: 10%;
-	min-height: 15%;
+	min-height: 18%;
 	box-shadow: 2px 2px 5px rgba(33,33,33,.7);
 	position: absolute;
 	font: bold 0.75em Arial;
@@ -23,12 +23,12 @@
 }
 
 .postIt .default {
-	width: 25px;
-	height: 25px;
+	width: 1.1em;
+	height: 1.1em;
 	display: inline-block;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	margin: 2px 0px 0px 14px;
+	margin: 0.1em 0em 0em 0.6em;
 }
 
 .postIt .like {

@@ -1,4 +1,3 @@
-$(".like").click(adicionaDot);
 
 function createDotVote() {
 	var dotVote = document.createElement("div");
@@ -7,9 +6,12 @@ function createDotVote() {
 }
 
 function adicionaDot() {
-	this.parentNode.querySelector(".dotVotes").appendChild(createDotVote());
+	$(this).parent().find(".dotVotes").append(createDotVote());
 }
+$(".like").on("click", adicionaDot);
 
-$(".dislike").on("click", function() {
+
+function removeDot() {
 	$(this).parent().find(".dotVotes .dotVote").first().remove();
-});
+}
+$(".dislike").on("click", removeDot);

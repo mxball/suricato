@@ -67,20 +67,40 @@ function createConteudo(texto) {
 	return conteudo;
 }
 
+function createLink(classe, click) {
+	var link = document.createElement('a');
+	link.href = "#";
+	link.onclick = click;
+	link.classList.add(classe);
+	return link;
+}
+
 function createLinkRemove() {
-	var linkRemove = document.createElement('a');
-	linkRemove.onclick = removeElemento;
-	linkRemove.href = "#";
-	linkRemove.classList.add("remover");
-	return linkRemove;
+	return createLink("remover", removeElemento);
 }
 
 function createLinkEdita() {
-	var linkEdita = document.createElement('a');
-	linkEdita.onclick = editaElemento;
-	linkEdita.href = "#";
-	linkEdita.classList.add("editar");
-	return linkEdita;
+	return createLink("editar", editaElemento);
+}
+
+function createLike() {
+	var like = createLink("like", adicionaDot);
+	like.onclick = adicionaDot;
+	like.classList.add("default");
+	return like;
+}
+
+function createDislike() {
+	var dislike = createLink("dislike", removeDot);
+	dislike.onclick = removeDot;
+	dislike.classList.add("default");
+	return dislike;
+}
+
+function createDotVotes() {
+	var dotVotes = document.createElement('div');
+	dotVotes.classList.add("dotVotes");
+	return dotVotes;
 }
 
 function createTextarea(name, limiteCaracteres) {
@@ -204,6 +224,8 @@ connection.onmessage = function(mensagemServidor) {
 			if(json.tipoConteudo == "postIt") {
 				elemento.classList.add(json.cor);
 				elemento.id = "postIt_" + json.id;
+				elemento.appendChild(createLike());
+				elemento.appendChild(createDislike());
 			} else if(json.tipoConteudo == "comentario")  {
 				elemento.style.width = json.largura + "px";
 				elemento.style.minHeight = json.altura + "px";
@@ -215,6 +237,7 @@ connection.onmessage = function(mensagemServidor) {
 			elemento.appendChild(createLinkEdita());
 			var conteudo = createConteudo(json.texto);
 			elemento.appendChild(conteudo);
+			elemento.appendChild(createDotVotes());
 			lousa.appendChild(elemento);
 			elemento.click(getAcao);
 		} else if(json.operacao == "remove") {
