@@ -21,7 +21,11 @@
 				<div id="postIt_${postIt.id}" class="postIt comConteudo ${postIt.cor}" style="left: ${postIt.posicaoHorizontal}%; top: ${postIt.posicaoVertical}%;">
 					<a href="#" class="editar"></a>
 					<a href="#" class="remover"></a>
+					<a href="#" class="like default">
+					<a href="#" class="dislike default">
+					</a>
 					<p class="conteudo">${postIt.conteudo}</p>
+					<div class="dotVotes"></div>
 				</div>
 			</c:forEach>
 			<c:forEach var="comentario" items="${retrospectiva.comentarios}" varStatus="status">
@@ -45,9 +49,10 @@
 				</div>
 			</c:if>
 		</div>
-	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
 	</body>
+	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
 	<script src="<c:url value='/assets/js/retrospectiva/lousa.js'/>"></script>
+	<script src="<c:url value='/assets/js/retrospectiva/postit.js'/>"></script>
 </html>
