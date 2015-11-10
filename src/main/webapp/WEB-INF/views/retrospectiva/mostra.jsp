@@ -52,6 +52,6 @@
 	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
-	<script src="<c:url value='/assets/js/retrospectiva/postit.js'/>"></script>
+	<script src="<c:url value='/assets/js/retrospectiva/websocket.js'/>"></script>
 	<script src="<c:url value='/assets/js/retrospectiva/lousa.js'/>"></script>
 </html>
