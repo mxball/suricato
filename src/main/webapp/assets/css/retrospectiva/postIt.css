@@ -43,16 +43,10 @@
 }
 
 .postIt .dotVotes .dotVote {
-	display: inline-block;
-	width: 1em;
-	height: 1em;
-}
-
-.postIt .dotVotes .dotVote {
 	background-image: url("../../images/star.png");
+	display: inline-block;
 	width: 0.7em;
 	height: 0.7em;
-	display: inline-block;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	margin-left: 0.25em;

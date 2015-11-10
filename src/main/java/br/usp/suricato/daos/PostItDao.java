@@ -46,4 +46,16 @@ public class PostItDao {
 		transaction.commit();
 	}
 
+	public void atualizaNumeroVotos(PostIt postIt) {
+		EntityManagerFactory managerFactory = manager.getEntityManagerFactory();
+		EntityManager entityManager = managerFactory.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.createQuery("update PostIt set numeroVotos = :numero where id = :id")
+					.setParameter("numero", postIt.getNumeroVotos())
+					.setParameter("id", postIt.getId())
+					.executeUpdate();
+		transaction.commit();
+	}
+
 }

@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -29,21 +30,25 @@ public class PostIt {
 	@ManyToOne
 	@JoinColumn(name = "retrospectiva_id")
 	private Retrospectiva retrospectiva;
+	
+	@Min(0)
+	private int numeroVotos;
 
 	public PostIt() {
 	}
 
 	public PostIt(String conteudo, Double posicaoHorizontal,
-			Double posicaoVertical, String cor) {
+			Double posicaoVertical, String cor, int numeroVotos) {
 		this.conteudo = conteudo;
 		this.posicaoHorizontal = posicaoHorizontal;
 		this.posicaoVertical = posicaoVertical;
 		this.cor = cor;
+		this.numeroVotos = numeroVotos;
 	}
 
 	public PostIt(String conteudo, Double posicaoHorizontal,
-			Double posicaoVertical, String cor, Retrospectiva retrospectiva) {
-		this(conteudo, posicaoHorizontal, posicaoVertical, cor);
+			Double posicaoVertical, String cor, Retrospectiva retrospectiva, int numeroVotos) {
+		this(conteudo, posicaoHorizontal, posicaoVertical, cor, numeroVotos);
 		this.retrospectiva = retrospectiva;
 	}
 
@@ -126,6 +131,14 @@ public class PostIt {
 				+ ", posicaoHorizontal=" + posicaoHorizontal
 				+ ", posicaoVertical=" + posicaoVertical + ", cor=" + cor
 				+ ", retrospectiva=" + retrospectiva + "]";
+	}
+
+	public int getNumeroVotos() {
+		return numeroVotos;
+	}
+
+	public void setNumeroVotos(int numeroVotos) {
+		this.numeroVotos = numeroVotos;
 	}
 
 }

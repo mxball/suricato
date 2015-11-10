@@ -48,11 +48,19 @@ function createDotVote() {
 }
 
 function adicionaDot() {
-	$(this).parent().find(".dotVotes").append(createDotVote());
+	var elemento = $(this).parent();
+	var conteudo = new Conteudo(elemento, "adicionaDotVote");
+	conteudo.setId(elemento.attr("id").split('_')[1]);
+	conteudo.adicionaNumeroVotos();
+	enviaMensagem(conteudo);
 }
 
 function removeDot() {
-	$(this).parent().find(".dotVotes .dotVote").first().remove();
+	var elemento = $(this).parent();
+	var conteudo = new Conteudo(elemento, "removeDotVote");
+	conteudo.setId(elemento.attr("id").split('_')[1]);
+	conteudo.removeNumeroVotos();
+	enviaMensagem(conteudo);
 }
 
 function createTextarea(name, limiteCaracteres) {
@@ -75,6 +83,7 @@ function Conteudo(elemento, operacao) {
 	this.largura = elemento.width();
 	this.altura = elemento.height(); 
 	this.cor = elemento.hasClass("postIt") ? elemento.attr("class").match(/\bcor[^\s]+\b/)[0] : "";
+	this.numeroVotos = elemento.find(".dotVotes .dotVote").length;
 	
 	this.setId = function(id) {
 		this.id = parseInt(id);
@@ -92,6 +101,16 @@ function Conteudo(elemento, operacao) {
 		this.altura = parseInt(altura);
 	}
 	
+	this.adicionaNumeroVotos = function() {
+		this.numeroVotos++;
+	}
+	
+	this.removeNumeroVotos = function() {
+		if(this.numeroVotos > 0) {
+			this.numeroVotos--;
+		}
+	}
+	
 	this.getJson = function() {
 		return {
 			'tipoConteudo'		: this.tipoConteudo,
@@ -102,7 +121,8 @@ function Conteudo(elemento, operacao) {
 			'posicaoVertical'   : this.posicaoVertical,
 			'largura'           : this.largura,
 			'altura'            : this.altura,
-			'cor'               : this.cor
+			'cor'               : this.cor,
+			'numeroVotos'       : this.numeroVotos
 		};
 	}
 	
@@ -144,11 +164,19 @@ connection.onmessage = function(mensagemServidor) {
 			elemento.appendChild(createLinkEdita());
 			var conteudo = createConteudo(json.texto);
 			elemento.appendChild(conteudo);
-			elemento.appendChild(createDotVotes());
+			var dotVotes = createDotVotes();
+			for (var i = 0; i < json.numeroVotos; i++) {
+				dotVotes.appendChild(createDotVote());
+			}
+			elemento.appendChild(dotVotes);
 			lousa.appendChild(elemento);
 			elemento.click(getAcao);
 		} else if(json.operacao == "remove") {
 			$("#lousa #" + json.tipoConteudo + "_" + json.id).remove();
+		} else if(json.operacao == "adicionaDotVote") {
+			$("#lousa #" + json.tipoConteudo + "_" + json.id + " .dotVotes").append(createDotVote());
+		} else if(json.operacao == "removeDotVote") {
+			$("#lousa #" + json.tipoConteudo + "_" + json.id + " .dotVotes .dotVote").first().remove();			
 		}
 	}
 }

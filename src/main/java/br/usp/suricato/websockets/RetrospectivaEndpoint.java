@@ -15,7 +15,7 @@ import br.usp.suricato.models.Retrospectiva;
 @ServerEndpoint(
 		value="/retrospectiva/asndjkahsdjhds/{retrospectivaId}/{nomeUsuario}",
 		encoders = {ConteudoEncoder.class},
-		decoders = {ConteudoDencoder.class}
+		decoders = {ConteudoDecoder.class}
 )
 public class RetrospectivaEndpoint {
 

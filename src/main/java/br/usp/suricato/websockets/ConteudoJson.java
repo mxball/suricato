@@ -23,6 +23,8 @@ public class ConteudoJson {
 	
 	private String cor;
 
+	private int numeroVotos;
+
 	public String getTipoConteudo() {
 		return tipoConteudo;
 	}
@@ -94,6 +96,14 @@ public class ConteudoJson {
 	public void setCor(String cor) {
 		this.cor = cor;
 	}
+	
+	public int getNumeroVotos() {
+		return numeroVotos;
+	}
+	
+	public void setNumeroVotos(int numeroVotos) {
+		this.numeroVotos = numeroVotos;
+	}
 
 	@Override
 	public String toString() {
@@ -101,12 +111,13 @@ public class ConteudoJson {
 				+ operacao + ", texto=" + texto + ", id=" + id
 				+ ", posicaoHorizontal=" + posicaoHorizontal
 				+ ", posicaoVertical=" + posicaoVertical + ", largura="
-				+ largura + ", altura=" + altura + ", cor=" + cor + "]";
+				+ largura + ", altura=" + altura + ", cor=" + cor
+				+ ", numeroVotos=" + numeroVotos + "]";
 	}
 
 	public PostIt getPostIt() {
 		PostIt postIt = new PostIt(this.texto, this.posicaoHorizontal,
-								this.posicaoVertical, this.cor);
+				this.posicaoVertical, this.cor, this.getNumeroVotos());
 		if(this.id != 0) {
 			postIt.setId(this.id);
 		}
@@ -121,6 +132,5 @@ public class ConteudoJson {
 		}
 		return comentario;
 	}
-	
-	
+
 }

@@ -9,7 +9,7 @@ import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
 
-public class ConteudoDencoder implements Decoder.Text<ConteudoJson> {
+public class ConteudoDecoder implements Decoder.Text<ConteudoJson> {
 
 	@Override
 	public void destroy() {
@@ -22,7 +22,6 @@ public class ConteudoDencoder implements Decoder.Text<ConteudoJson> {
 	@Override
 	public ConteudoJson decode(String mensagem) throws DecodeException {
 		JsonObject jsonObject = Json.createReader(new StringReader(mensagem)).readObject();
-		System.out.println(jsonObject);
 		ConteudoJson conteudoJson = new ConteudoJson();
 		conteudoJson.setTipoConteudo(jsonObject.getString("tipoConteudo"));
 		conteudoJson.setOperacao(jsonObject.getString("operacao"));
@@ -33,6 +32,7 @@ public class ConteudoDencoder implements Decoder.Text<ConteudoJson> {
 		conteudoJson.setLargura(jsonObject.getInt("largura"));
 		conteudoJson.setAltura(jsonObject.getInt("altura"));
 		conteudoJson.setCor(jsonObject.getString("cor"));
+		conteudoJson.setNumeroVotos(jsonObject.getInt("numeroVotos"));
 		return conteudoJson;
 	}
 

@@ -71,7 +71,6 @@ public class UsuarioController {
 	
 	@RequestMapping(value = "/usuario/busca", method = RequestMethod.GET)
 	public @ResponseBody List<Usuario> busca(@RequestParam("term") String nome) {
-		System.out.println(nome);
 		return usuarioDao.listaUsuariosComNomeParecidoCom(nome);
 	}
 	

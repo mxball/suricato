@@ -64,7 +64,6 @@ public class Retrospectiva {
 	}
 
 	public Set<PostIt> getPostIts() {
-		System.out.println(postIts.size());
 		return postIts;
 	}
 

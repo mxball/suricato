@@ -24,7 +24,11 @@
 					<a href="#" class="like default"></a>
 					<a href="#" class="dislike default"></a>
 					<p class="conteudo">${postIt.conteudo}</p>
-					<div class="dotVotes"></div>
+					<div class="dotVotes">
+						<c:forEach begin="1" end="${postIt.numeroVotos}">
+							<div class="dotVote"></div>
+						</c:forEach>
+					</div>
 				</div>
 			</c:forEach>
 			<c:forEach var="comentario" items="${retrospectiva.comentarios}" varStatus="status">

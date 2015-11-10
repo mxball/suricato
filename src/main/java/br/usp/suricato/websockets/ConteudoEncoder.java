@@ -29,6 +29,7 @@ public class ConteudoEncoder implements Encoder.Text<ConteudoJson> {
 									.add("largura", conteudoJson.getLargura())
 									.add("altura", conteudoJson.getAltura())
 									.add("cor", conteudoJson.getCor())
+									.add("numeroVotos", conteudoJson.getNumeroVotos())
 									.build();
 		return jsonObject.toString();
 	}

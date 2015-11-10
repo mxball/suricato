@@ -37,6 +37,8 @@ class Atualizador {
 				postItDao.removeAsync(postIt);
 			} else if(operacao.equals("atualiza")) {
 				postItDao.updateAsync(postIt);
+			} else if(operacao.equals("adicionaDotVote") || operacao.equals("removeDotVote")) {
+				postItDao.atualizaNumeroVotos(postIt);
 			}
 		} else if (conteudo.getTipoConteudo().equals("comentario")) {
 			ComentarioDao comentarioDao = this.ctx.getBean(ComentarioDao.class);
