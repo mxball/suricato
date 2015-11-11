@@ -13,6 +13,28 @@
 </head>
 <body>
 	<%@include file="header.jsp" %>
+	<div id="container" class="pessoais">  	
+		<ul>
+			<c:if test="${not empty usuario.retrospectivasAbertas}">
+				<fieldset>
+					<c:forEach var="retrospectiva" items="${usuario.retrospectivasAbertas}">
+						<p class="retroHeader">${retrospectiva.nome}</p>
+					</c:forEach>
+				</fieldset>
+			</c:if>
+		</ul>  	
+	</div>
+	<div id="container" class="time">  	
+		<ul>
+			<c:if test="${not empty time.retrospectivasAbertas}">
+				<fieldset>
+					<c:forEach var="retrospectiva" items="${time.retrospectivasAbertas}">
+						<p class="retroHeader">${retrospectiva.nome}</p>
+					</c:forEach>
+				</fieldset>
+			</c:if>
+		</ul>  		
+	</div>
 	<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasAbertas}" legenda="Retrospectivas em aberto"/>
 	<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasEncerradas}" legenda="Retrospectivas encerradas"/>
 	<c:forEach var="time" items="${usuario.times}">

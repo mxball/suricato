@@ -1,4 +1,25 @@
 img {
 	width: 20em;
+	display: block;
+	margin: 0 auto;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.retro {
+	text-align: center;	
+	color: white; 
+}
+
+.retroHeader {
 	display: inline-block;
+	float: left;
+}
+
+.pessoais {
+	background: #ff00ff;
+}
+
+.time{
+	background: #ffff00;
 }
