@@ -35,11 +35,18 @@
 			</c:if>
 		</ul>  		
 	</div>
-	<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasAbertas}" legenda="Retrospectivas em aberto"/>
-	<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasEncerradas}" legenda="Retrospectivas encerradas"/>
-	<c:forEach var="time" items="${usuario.times}">
-		<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasAbertas}" legenda="Retrospectivas abertas do ${time.nome}"/>
-		<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasEncerradas}" legenda="Retrospectivas encerradas do ${time.nome}"/>
-	</c:forEach>
-</body>
-</html>
+	<div id="tipos">
+		<p class="tipos abertas">Abertas</p>
+		<p class="tipos fechadas">Fechadas</p>
+	</div>
+	<div class="retroPessoal  hideme">
+		<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasAbertas}" legenda="Retrospectivas em aberto" classe="aberto"/>
+		<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasEncerradas}" legenda="Retrospectivas encerradas" classe="fechado"/>
+	</div>
+	<div class="retroTimes hideme">
+		<c:forEach var="time" items="${usuario.times}">
+			<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasAbertas}" legenda="Retrospectivas abertas do ${time.nome}" classe="aberto"/>
+			<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasEncerradas}" legenda="Retrospectivas encerradas do ${time.nome}" classe="fechado"/>
+		</c:forEach>
+	</div>
+<%@include file="footer.jsp" %>
