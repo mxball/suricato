@@ -23,3 +23,19 @@ img {
 .time{
 	background: #ffff00;
 }
+
+#tipos{
+	text-align: center;
+}
+
+.tipos {
+	margin: 0 auto;
+	color: white;
+	display: inline-block;
+	padding-right: 2em;
+	font-size: 2em;
+}
+
+.hideme {
+	display: none;
+}
