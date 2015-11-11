@@ -10,17 +10,19 @@
 	</head>
 	<body>
 		<fieldset id="usuario">
-			<legend>Novo usuário</legend>
+			<img alt="suricato" src="<c:url value='/assets/images/logo.png'/>">
+			<form:errors path='usuario.nome' cssClass="error"/>
+			<form:errors path='usuario.senha' cssClass="error"/>
+			<c:if test="${not empty error}">
+				<span class="error" id="login-errors">${error}</span>
+			</c:if>
 			<form action="<c:url value='/usuario/novo'/>">
 				<input type='hidden' name='permissao.id' value="1"/>
-				<form:errors path='usuario.nome'/>
-				<label for="nome">Usuário:</label>
-				<input type='text' name='nome' id="nome" value="${usuario.nome}"/>
-				<form:errors path='usuario.senha'/>
-				<label for="senha">Senha:</label>
-				<input type='password' name='senha' id="senha" value="${usuario.senha}"/>
+				<input type='text' name='nome' id="nome" value="${usuario.nome}" placeholder="Usuário"/>
+				<input type='password' name='senha' id="senha" value="${usuario.senha}" placeholder="Senha"/>
 				<input type="submit" value="Cadastrar"/>
 			</form>
+			<a href='<c:url value="/login"/>'>Voltar</a>
 		</fieldset>
 	</body>
 </html>

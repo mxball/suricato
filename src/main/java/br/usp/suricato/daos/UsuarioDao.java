@@ -29,4 +29,11 @@ public class UsuarioDao {
 					.getResultList();
 	}
 
+	public boolean jahExisteUsuario(Usuario usuario) {
+		List<Usuario> usuarios = manager.createQuery("select u from Usuario u where u.nome = :nome", Usuario.class)
+										.setParameter("nome", usuario.getNome())
+										.getResultList();
+		return usuarios.size() > 0;
+	}
+
 }

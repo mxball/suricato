@@ -26,13 +26,11 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotNull
-	@NotBlank
+	@NotBlank(message="Usuário não pode ser vazio")
 	@Column(unique = true)
 	private String nome;
 
-	@NotNull
-	@NotBlank
+	@NotBlank(message="Senha não pode ser vazia")
 	private String senha;
 	
 	@ManyToOne

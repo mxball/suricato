@@ -10,15 +10,13 @@
 	</head>
 	<body>
 		<fieldset id="usuario">
-			<legend>Suricato</legend>
+			<img alt="suricato" src="<c:url value='/assets/images/logo.png'/>">
 			<c:if test="${not empty error}">
 				<span class="error" id="login-errors">${error}</span>
 			</c:if>
 			<form name='loginForm' action="<c:url value='/login' />" method='POST'>
-				<label for="nome">Usuário:</label>
-				<input type='text' name='username' id="nome"/><br/>
-				<label for="senha">Senha:</label>
-				<input type='password' name='password' id="senha"/><br/>
+				<input type='text' name='username' id="nome" placeholder="Usuário"/>
+				<input type='password' name='password' id="senha" placeholder="Senha"/>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<input type="submit" value="Login"/>
 			</form>

@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,12 +52,16 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/usuario/novo")
-	public String novoUsuario(@Valid Usuario usuario, BindingResult bindingResult, Model model) {
-		usuario.setPermissao(permissaoDao.load(usuario.getPermissao()));
+	public String novoUsuario(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult bindingResult, Model model) {
+		if(usuarioDao.jahExisteUsuario(usuario)) {
+			model.addAttribute("error", "Usuario " + usuario.getNome() + " já existe");
+			bindingResult.reject("jaExiste", "Usuario " + usuario.getNome() + " já existe");
+		}
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("usuario", usuario);
 			return "usuario/cadastro";
 		}
+		usuario.setPermissao(permissaoDao.load(usuario.getPermissao()));
 		List<SimpleGrantedAuthority> authorities = Arrays.asList( new SimpleGrantedAuthority( usuario.getPermissao().getNome() ) );
 		Authentication authentication = new UsernamePasswordAuthenticationToken(usuario.getNome(), usuario.getSenha(), authorities);
 		SecurityContextHolder.getContext().setAuthentication(authentication);

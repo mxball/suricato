@@ -1,29 +1,66 @@
 #usuario {
-	width: 45%;
-	margin: 0 auto;
+	width: 25%;
+	border: 0.2em solid black;
+	border-radius: 0.4em;
+	margin: 5% auto;
 }
 
-#usuario label {
-	display: inline-block;
-	width: 12%;
-	margin: 2% 0 2% 17%;
+#usuario img {
+	width: 40%;
+	margin: 5% auto;
+	display: block;
+}
+
+#usuario form {
 }
 
 #usuario input {
-	width: 50%;
+	width: 70%;
+	margin: 0 auto;
+	display: block;
+	height: 2.5em;
+	font-size: 1em;
+	border-style: solid;
+	border-color: rgba(0,0,0,0.5);
+	padding: 0% 5%; 
+}
+
+#usuario #nome {
+	border-bottom: 0em;
+	border-top-left-radius: 0.3em;
+	border-top-right-radius: 0.3em;
+}
+
+#usuario #senha {
+	border-bottom-left-radius: 0.3em;
+	border-bottom-right-radius: 0.3em;
 }
 
 #usuario input[type="submit"] {
-	display: block;
-	margin-left: 30%;
+	margin-top: 2%;
+	width: 80%;
+	border-radius: 0.3em;
+	background-color: #faae8a;
 }
 
-#usuario a,
-#usuario span[id$="errors"] {
+#usuario a {
+	text-decoration: none;
+	border: 0.1em solid rgba(0,0,0,0.5);
+	width: 30%;
+	text-align: center;
+	border-radius: 1em;
+	padding: 0.1em;
+	color: rgba(0,0,0,0.8);
+	font-size: 1em;
 	display: block;
-	margin: 2% 0 0 17%;
+	margin-top: 2%;
+	margin-left: 10%;
 }
 
 #usuario span[id$="errors"] {
 	color: #CF000F;
+	display: block;
+	margin: 2% auto;
+	width: 80%;
+	text-align: center;
 }
