@@ -8,7 +8,7 @@ function mostraLousa() {
 	
 	var pai = $('#formLousa');
     var img = document.querySelector("#imagem");  
-    img.src = "/suricato" + url;  
+    img.src = url;  
 	pai.append(img);
 	console.log(img);
 }

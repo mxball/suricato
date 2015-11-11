@@ -130,7 +130,8 @@ function Conteudo(elemento, operacao) {
 
 var retrospectivaId = lousa.dataset.retrospectivaId;
 var usuarioNome = lousa.dataset.usuarioNome;
-var connection = new WebSocket('ws://localhost:8080/suricato/retrospectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
+var connection = new WebSocket('ws://localhost:8080/retrospectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
+//var connection = new WebSocket('ws://suricatoagil.com/retrospectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
 function enviaMensagem(conteudo) {
 	connection.send(JSON.stringify(conteudo.getJson()));
 }
