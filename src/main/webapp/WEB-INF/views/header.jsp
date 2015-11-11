@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-<div id="container">  	
+<div id="container" class="head">  	
 	<ul>  			
 		<li><a href="<c:url value="/"/>">Home</a></li>  			
 		<li><a href='<c:url value="/retrospectiva/nova"/>'>Nova retrospectiva</a></li>  
