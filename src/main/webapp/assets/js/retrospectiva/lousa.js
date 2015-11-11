@@ -102,6 +102,8 @@ function editaElemento() {
 	elemento.removeClass("comConteudo");
 	$(elemento).find(".editar").remove();
 	$(elemento).find(".remover").remove();
+	$(elemento).find(".like").remove();
+	$(elemento).find(".dislike").remove();
 	elemento.append(comentario);
 	comentario.focus();	
 }

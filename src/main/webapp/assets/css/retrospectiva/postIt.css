@@ -17,7 +17,7 @@
 
 .postIt:not(.draggable) textarea {
 	width: 85%;
-	height: 85%;
+	height: 10em;
 	margin: 5%;
 	font-size: 120%;
 }
