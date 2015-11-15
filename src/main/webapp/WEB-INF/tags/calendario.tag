@@ -1,5 +1,6 @@
 <%@ attribute name="id" required="true" %>
-<input type="text" name="${id}" id="${id}">
+<%@ attribute name="placeholder" required="false" %>
+<input type="text" name="${id}" id="${id}" placeholder="${placeholder}">
 <script>
 	$("#${id}").datepicker({dateFormat: 'dd/mm/yy'});
 </script>
