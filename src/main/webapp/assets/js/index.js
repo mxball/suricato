@@ -1,13 +1,3 @@
-$('.time').click(function(){
-	$('.retroPessoal').addClass("hideme");
-	$('.retroTimes').removeClass("hideme");
-});
-
-$('.pessoais').click(function(){
-	$('.retroTimes').addClass("hideme");
-	$('.retroPessoal').removeClass("hideme");
-});
-
 $('.abertas').click(function(){
 	console.log("clicando");
 	$('.fechado').addClass("hideme");
@@ -18,3 +8,11 @@ $('.fechadas').click(function(){
 	$('.aberto').addClass("hideme");
 	$('.fechado').removeClass("hideme");
 });
+
+$('.retros').click(function(event){
+	console.log(event.target)
+	$('.retrospectiva').addClass("hideme");
+	var elemento = event.target.dataset.id; 
+	console.log(elemento);
+	$("." + elemento).removeClass("hideme");
+})

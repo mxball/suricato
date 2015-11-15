@@ -13,40 +13,26 @@
 </head>
 <body>
 	<%@include file="header.jsp" %>
-	<div id="container" class="pessoais">  	
-		<ul>
-			<c:if test="${not empty usuario.retrospectivasAbertas}">
-				<fieldset>
-					<c:forEach var="retrospectiva" items="${usuario.retrospectivasAbertas}">
-						<p class="retroHeader">${retrospectiva.nome}</p>
-					</c:forEach>
-				</fieldset>
-			</c:if>
-		</ul>  	
-	</div>
-	<div id="container" class="time">  	
-		<ul>
-			<c:if test="${not empty time.retrospectivasAbertas}">
-				<fieldset>
-					<c:forEach var="retrospectiva" items="${time.retrospectivasAbertas}">
-						<p class="retroHeader">${retrospectiva.nome}</p>
-					</c:forEach>
-				</fieldset>
-			</c:if>
-		</ul>  		
+	<div class="retroHeader" id="container">
+		<p class="retros" data-id='pessoal'>Pessoais</p>
+		<c:forEach var="time" items="${usuario.times}">
+			<p class="retros" data-id="time_${time.id}">${time.nome}</p>
+		</c:forEach>
 	</div>
 	<div id="tipos">
 		<p class="tipos abertas">Abertas</p>
 		<p class="tipos fechadas">Fechadas</p>
 	</div>
-	<div class="retroPessoal  hideme">
+	<div class="retrospectiva pessoal hideme">
 		<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasAbertas}" legenda="Retrospectivas em aberto" classe="aberto"/>
 		<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasEncerradas}" legenda="Retrospectivas encerradas" classe="fechado"/>
 	</div>
-	<div class="retroTimes hideme">
+	<div>
 		<c:forEach var="time" items="${usuario.times}">
-			<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasAbertas}" legenda="Retrospectivas abertas do ${time.nome}" classe="aberto"/>
-			<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasEncerradas}" legenda="Retrospectivas encerradas do ${time.nome}" classe="fechado"/>
+			<div class="retrospectiva time_${time.id} hideme">
+				<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasAbertas}" legenda="Retrospectivas abertas do ${time.nome}" classe="aberto"/>
+				<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasEncerradas}" legenda="Retrospectivas encerradas do ${time.nome}" classe="fechado"/>
+			</div>
 		</c:forEach>
 	</div>
 <%@include file="footer.jsp" %>
