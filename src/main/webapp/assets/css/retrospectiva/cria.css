@@ -1,39 +1,44 @@
+#formLousa {
+	display: block;
+	width: 35%;
+	margin: 0 auto;
+}
+
+#formLousa #nomeRetrospectiva {
+	width: 98%;
+	display: block;
+	margin-top: 1em;
+	padding-left: 0.5em;
+}
+
+#formLousa #dataFim {
+	width: 35%;
+	float: left;
+	margin-top: 1em;
+	padding-left: 0.5em;
+}
+
 input[name="lousa.id"] {
 	display: none;
 }
 
-input[name="lousa.id"] + .atividades label {
-	display: block;
-}
-
-input[name="lousa.id"] + .atividades label h2 {
-	text-align: center;
-	font: bold 0.8em Arial;
-}
-
-input[name="lousa.id"] + .atividades label img {
-	display: block;
-	margin: 0 auto;
-	width: 70%;
-}
-
-input[name="lousa.id"] + .atividades {
-	border: 5px solid white;
-	box-sizing: border-box;
-}
-
-input[name="lousa.id"]:checked + .atividades {
-	border: 5px solid red;
-}
-
-.atividades {
-	display: inline-block;
-	width: 33%;
-	margin-bottom: 20px;
-	vertical-align: top;
-}
-
 img {
-	width: 50%;
-	margin: 0 auto;
+	width: 100%;
+	margin: 1em auto;
+	display: block;
+}
+
+#time {
+	float: right;
+	width: 60%;	
+	margin-top: 1em;
+}
+
+#idLousa {
+	margin-top: 1em;
+	width: 100%;
+}
+
+#botao {
+	width: 100%;
 }
