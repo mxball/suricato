@@ -6,36 +6,27 @@ img {
 	padding-bottom: 1em;
 }
 
-.retro {
-	text-align: center;	
-	color: white; 
+.retros{
+	padding-right: 1.5em;
 }
 
 .retroHeader {
-	display: inline-block;
-	float: left;
-}
-
-.pessoais {
-	background: #ff00ff;
-}
-
-.time{
-	background: #ffff00;
-}
-
-#tipos{
-	text-align: center;
-}
-
-.tipos {
-	margin: 0 auto;
-	color: white;
-	display: inline-block;
-	padding-right: 2em;
-	font-size: 2em;
+	background: #b365c3;
 }
 
 .hideme {
 	display: none;
+}
+
+#tipos{
+    text-align: center;
+    display: block;
+    height: 2em;
+}
+
+ .tipos {
+    color: white;
+    display: inline-block;
+    font-size: 1.5em;
+	margin-top: 1em;       
 }

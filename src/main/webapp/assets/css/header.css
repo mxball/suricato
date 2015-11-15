@@ -1,9 +1,21 @@
 #container  {  	
 	height: 3em;
+	text-align: center;
+	display: block;
 } 
 
+#container ul, #container p {
+	display: inline-block;
+	font-size: 1.5em;
+}
+
+#container p, #container ul li a {
+	margin-top: 0.5em;
+	color: white;
+}
+
 .head {
-	background: blue;  
+	background: #87CEFA;  
 } 
 
 li{
@@ -13,10 +25,6 @@ li{
 	vertical-align: center;
 } 
 
-a{
-	font-size: 20px;
-	color: #ffffff;
-}
 
 #container + *{
 	clear:left;

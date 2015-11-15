@@ -33,7 +33,7 @@ public class Time {
 	private List<Usuario> integrantes = new ArrayList<>();
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="time")
-	private List<Retrospectiva> restrospectvas;
+	private List<Retrospectiva> retrospectivas;
 
 	public Integer getId() {
 		return id;
@@ -59,20 +59,20 @@ public class Time {
 		this.integrantes = integrantes;
 	}
 
-	public List<Retrospectiva> getRestrospectvas() {
-		return restrospectvas;
+	public List<Retrospectiva> getRetrospectivas() {
+		return retrospectivas;
 	}
 
-	public void setRestrospectvas(List<Retrospectiva> restrospectvas) {
-		this.restrospectvas = restrospectvas;
+	public void setRetrospectivas(List<Retrospectiva> restrospectivas) {
+		this.retrospectivas = restrospectivas;
 	}
 
 	public List<Retrospectiva> getRetrospectivasAbertas() {
-		return this.restrospectvas.stream().filter(retro -> retro.isAberta()).collect(Collectors.toList());
+		return this.retrospectivas.stream().filter(retro -> retro.isAberta()).collect(Collectors.toList());
 	}
 	
 	public List<Retrospectiva> getRetrospectivasEncerradas() {
-		return this.restrospectvas.stream().filter(retro -> !retro.isAberta()).collect(Collectors.toList());
+		return this.retrospectivas.stream().filter(retro -> !retro.isAberta()).collect(Collectors.toList());
 	}
 
 	@Override
