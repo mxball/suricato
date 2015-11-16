@@ -6,7 +6,7 @@
 	<fieldset class="${classe}">
 		<c:forEach var="retrospectiva" items="${retrospectivas}">
 			<p class="retro">${retrospectiva.nome}</p>
-			<a class="retro" href='<c:url value="/retrospectiva/mostra?id=${retrospectiva.id}"/>'><img src="<c:url value="${retrospectiva.lousa.endereco}"/>"></a>
+			<a class="retro" href='<c:url value="/retrospectiva/mostra?id=${retrospectiva.id}"/>'><img class="retrospectiva-img" src="<c:url value="${retrospectiva.lousa.endereco}"/>"></a>
 		</c:forEach>
 	</fieldset>
 </c:if>
