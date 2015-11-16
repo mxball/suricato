@@ -37,7 +37,7 @@ public class TimeController {
 	@RequestMapping("/criar")
 	public String cadastrar(@Valid @ModelAttribute("time") Time time, Model model, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("usuario", time.getIntegrantes().get(0));
+			model.addAttribute("usuario", time.getIntegrantes().iterator().next());
 			return "time/novo"; 
 		}
 		timeDao.save(time);
@@ -45,7 +45,8 @@ public class TimeController {
 	}
 
 	@RequestMapping("/mostra")
-	public String mostra(@ModelAttribute("time") Time time, Model model) {
+	public String mostra(@ModelAttribute("time") Time time, Model model, Principal principal) {
+		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
 		model.addAttribute("time", timeDao.load(time.getId()));
 		return "time/mostra";
 	}

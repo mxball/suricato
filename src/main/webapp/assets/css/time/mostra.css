@@ -1,0 +1,76 @@
+#adiciona-integrante {
+	position: absolute;
+	width: 100%;
+	height: 50%;
+	display: block;
+	margin-top: 7em;
+}
+
+#adiciona-integrante #nomeUsuario {
+	display: inline-block;
+	width: 60%;
+	margin-left: 10%;
+	font-size: 1.25em;
+	padding: 0.5em;
+}
+
+#adiciona-integrante #adicionar{
+	width: 20%;
+	display: inline-block;
+	height: 3em;
+	font-size: 1em;
+	border: 0.1em solid #34495e;
+	border-radius: 0.2em;
+	box-sizing: border-box;
+	background-color: #16a085;
+	color: #ecf0f1;
+}
+
+#integrantes {
+	position: absolute;
+	margin-top: 13em;
+	display: block;
+	width: 100%;
+}
+
+#tabela-integrantes {
+	width: 60%;
+	margin: 0 auto;
+	display: block;
+}
+
+#tabela-integrantes thead {
+	background-color: #34495e;
+	width: 100%;
+	display: block;
+	padding: 2%;
+	font-size: 1.2em;
+	border: 0.1em solid #2c3e50;
+	border-top-left-radius: 0.2em;
+	border-top-right-radius: 0.2em;
+	color: #ecf0f1; 
+	box-sizing: border-box;
+}
+
+#tabela-integrantes tbody{
+	width: 100%;
+	display: block;
+}
+
+#tabela-integrantes tbody tr {
+	width: 100%;
+	display: block; 
+	padding: 2.5%;
+	font-size: 1.2em;
+	border: 0.1em solid #2c3e50;
+	color: #ecf0f1; 
+	box-sizing: border-box;
+}
+
+#tabela-integrantes tbody .even {
+	background-color: #2980b9;
+}
+
+#tabela-integrantes tbody .odd {
+	background-color: #3498db;
+}
