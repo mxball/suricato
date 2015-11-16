@@ -23,8 +23,6 @@ public class Retrospectiva {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String nome;
-	
 	@ManyToOne
 	@NotNull
 	private Lousa lousa;
@@ -38,6 +36,9 @@ public class Retrospectiva {
 	@ManyToOne
 	@NotNull
 	private Usuario criador;
+	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private LocalDate dataInicio;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataFim;
@@ -87,6 +88,14 @@ public class Retrospectiva {
 		this.criador = criador;
 	}
 
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
 	public LocalDate getDataFim() {
 		return dataFim;
 	}
@@ -118,21 +127,9 @@ public class Retrospectiva {
 	}
 
 	public String getNome() {
-		if(nome == null || nome.isEmpty()) {
-			StringBuilder builder = new StringBuilder();
-			builder.append(this.lousa.getNome());
-			if(this.dataFim != null) {
-				builder.append(" - " + this.dataFim);
-			}
-			return builder.toString();
-		}
-		return nome;
+		return lousa.getNome();
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
 	public boolean isPublica() {
 		return publica;
 	}

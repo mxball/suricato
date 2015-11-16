@@ -1,0 +1,65 @@
+#cadastro-retrospectiva {
+	width: 100%;
+	position: absolute;
+	top: 4em;
+	display: block;
+}
+
+#formLousa {
+	width: 55%;
+	display: block;
+	margin: 5% auto;
+}
+
+#formLousa label {
+	display: block;
+	width: 100%;
+	margin-top: 2%;
+}
+
+#formLousa label span {
+	display: inline-block;
+	font-size: 1.2em;
+	width: 18%;
+}
+
+#formLousa label select {
+	display: inline-block;
+	font-size: 1em;
+	width: 80%;
+}
+
+#formLousa #imagem {
+	display: block;
+	margin: 2% auto;
+	width: 80%;
+}
+
+#formLousa .calendario {
+	display: inline-block;
+	width: 35%;
+	margin-right: 5%;
+}
+
+#formLousa .calendario span {
+	width: 37%;
+}
+
+#formLousa .calendario input {
+	display: inline-block;
+	font-size: 1em;
+	width: 48%;
+	padding: 0.3em;
+}
+
+#formLousa #botao {
+	width: 20%;
+	float : right;
+	display: block;
+	height: 2.5em;
+	font-size: 1em;
+	border: 0.1em solid #34495e;
+	border-radius: 0.2em;
+	margin-top: 2%;
+	background-color: #16a085;
+}

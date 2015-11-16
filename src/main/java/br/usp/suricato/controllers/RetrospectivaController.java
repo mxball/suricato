@@ -1,6 +1,7 @@
 package br.usp.suricato.controllers;
 
 import java.security.Principal;
+import java.util.Calendar;
 
 import javax.transaction.Transactional;
 
@@ -57,6 +58,7 @@ public class RetrospectivaController {
 	public String novaRetrospectiva(Model model, Principal principal) {
 		model.addAttribute("lousas", lousaDao.lista());
 		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
+		model.addAttribute("hoje", Calendar.getInstance());
 		return "retrospectiva/nova";
 	}
 	
