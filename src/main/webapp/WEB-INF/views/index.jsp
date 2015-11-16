@@ -35,14 +35,16 @@
 			Fechadas
 		</label>
 	</div>
-	<div class="retrospectiva pessoal">
-		<suricato:listaRetrospectivas retrospectivasAbertas="${usuario.retrospectivasAbertas}" retrospectivasFechadas="${usuario.retrospectivasEncerradas}"/>
-	</div>
-	<div>
-		<c:forEach var="time" items="${usuario.times}">
-			<div class="retrospectiva time_${time.id} hideme">
-				<suricato:listaRetrospectivas retrospectivasAbertas="${time.retrospectivasAbertas}" retrospectivasFechadas="${time.retrospectivasEncerradas}"/>
-			</div>
-		</c:forEach>
+	<div id="lista-retrospectivas">
+		<div class="retrospectiva pessoal">
+			<suricato:listaRetrospectivas retrospectivasAbertas="${usuario.retrospectivasAbertas}" retrospectivasFechadas="${usuario.retrospectivasEncerradas}"/>
+		</div>
+		<div>
+			<c:forEach var="time" items="${usuario.times}">
+				<div class="retrospectiva time_${time.id} hideme">
+					<suricato:listaRetrospectivas retrospectivasAbertas="${time.retrospectivasAbertas}" retrospectivasFechadas="${time.retrospectivasEncerradas}"/>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 <%@include file="footer.jsp" %>

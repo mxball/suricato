@@ -3,7 +3,8 @@
 	height: 5em;
 	background: #87CEFA;
 	position: fixed;
-	display: block;  
+	display: block;
+	z-index: 20;  
 }
 
 #logo {

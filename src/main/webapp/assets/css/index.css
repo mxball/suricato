@@ -5,6 +5,7 @@
 	position: fixed;
 	top: 5em;
 	text-align: center;
+	z-index: 20;
 }
 
 #filtro-retrospectivas h2,
@@ -23,6 +24,7 @@
 	height: 3em;
 	position: fixed;
 	top: 8em;
+	z-index: 20;
 }
 
 #tipos label {
@@ -33,16 +35,44 @@
 	margin-top: 0.5em; 
 }
 
-.retrospectiva-img {
-	width: 20em;
-	display: block;
-	margin: 0 auto;
-	padding-top: 1em;
-	padding-bottom: 1em;
+#lista-retrospectivas {
+	width: 100%;
+	position: absolute;
+	top: 12em;
+	z-index: 10;
+	background-color: #f1c40f;
 }
 
-.retros{
-	padding-right: 1.5em;
+#lista-retrospectivas .lista-abertas,
+#lista-retrospectivas .lista-fechadas {
+	width: 90%;
+	margin: 0 auto;
+}
+
+#lista-retrospectivas .retro {
+	width: 40%;
+	height: 10em;
+	margin: 3% 4.9%;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+}
+
+#lista-retrospectivas .retro span {
+	display: block;
+	width: 100%;
+	padding: 0.5em 0;
+	background-color: #34495e;
+	color: #ecf0f1;
+	font-size: 1.4em;
+	border-top-left-radius: 0.3em;
+	border-top-right-radius: 0.3em;
+}
+
+#lista-retrospectivas .retro .retrospectiva-img {
+	width: 100%;
+	border: 0.3em solid #34495e;
+	box-sizing: border-box;
 }
 
 .retroHeader {
@@ -51,11 +81,4 @@
 
 .hideme {
 	display: none;
-}
-
- .tipos {
-    color: white;
-    display: inline-block;
-    font-size: 1.5em;
-	margin-top: 1em;       
 }
