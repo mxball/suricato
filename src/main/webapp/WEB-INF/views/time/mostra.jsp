@@ -14,7 +14,7 @@
 		<%@include file="/WEB-INF/views/header.jsp" %>
 		<form:form role="form" commandName="usuario" servletRelativeAction="/time/adicionaUsuario" id="adiciona-integrante">
 			<input type="hidden" name="times[0].id" value="${time.id}">
-			<input type="text" name="nome" id="nomeUsuario" data-url="${pageContext.request.contextPath}" placeholder="Nome do novo integrante">
+			<input type="text" name="nome" id="nomeUsuario" placeholder="Nome do novo integrante">
 			<button type="submit" id="adicionar">Adicionar</button>
 		</form:form>
 		<div id="integrantes">

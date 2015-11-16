@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -28,6 +29,7 @@ public class Usuario {
 
 	@NotBlank(message="Usuário não pode ser vazio")
 	@Column(unique = true)
+	@Size(min=5, message="Nome do usuário deve conter pelo menos 5 caracteres")
 	private String nome;
 
 	@NotBlank(message="Senha não pode ser vazia")

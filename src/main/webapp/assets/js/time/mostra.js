@@ -1,12 +1,11 @@
-var url = $("#nomeUsuario").data("url");
-console.log(url);
 $("#nomeUsuario").autocomplete({
-	minLength: 3,
-    delay: 500,
+	minLength: 5,
+    delay: 1000,
     source: function (request, response) {
-        $.getJSON(url + "/usuario/busca", request, function(result) {
+        $.getJSON("/usuario/busca", request, function(result) {
             response($.map(result, function(usuario) {
-                return {
+            	console.log(usuario.nome);
+            	return {
                     label: usuario.nome,
                     value: usuario.id
                 }
