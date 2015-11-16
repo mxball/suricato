@@ -12,25 +12,36 @@
 </head>
 <body>
 	<%@include file="header.jsp" %>
-	<div class="retroHeader" id="container">
-		<p class="retros" data-id='pessoal'>Pessoais</p>
+	<div id="filtro-retrospectivas">
+		<h2>Retrospectiva:</h2>
+		<label for="pessoal">
+			<input type="radio" name="filtro-grupo" id="pessoal" checked class="retros">
+			Pessoais
+		</label>
 		<c:forEach var="time" items="${usuario.times}">
-			<p class="retros" data-id="time_${time.id}">${time.nome}</p>
+			<label for="time_${time.id}" class="retros">
+				<input type="radio" name="filtro-grupo" id="time_${time.id}" class="retros"> 
+				${time.nome}
+			</label>
 		</c:forEach>
 	</div>
 	<div id="tipos">
-		<p class="tipos abertas">Abertas</p>
-		<p class="tipos fechadas">Fechadas</p>
+		<label for="tipo-aberta">
+			<input type="radio" name="filtro-tipos" id="tipo-aberta" checked class="tipo">
+			Abertas
+		</label>
+		<label for="tipo-fechada">
+			<input type="radio" name="filtro-tipos" id="tipo-fechada" class="tipo">
+			Fechadas
+		</label>
 	</div>
-	<div class="retrospectiva pessoal hideme">
-		<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasAbertas}" legenda="Retrospectivas em aberto" classe="aberto"/>
-		<suricato:listaRetrospectivas retrospectivas="${usuario.retrospectivasEncerradas}" legenda="Retrospectivas encerradas" classe="fechado"/>
+	<div class="retrospectiva pessoal">
+		<suricato:listaRetrospectivas retrospectivasAbertas="${usuario.retrospectivasAbertas}" retrospectivasFechadas="${usuario.retrospectivasEncerradas}"/>
 	</div>
 	<div>
 		<c:forEach var="time" items="${usuario.times}">
 			<div class="retrospectiva time_${time.id} hideme">
-				<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasAbertas}" legenda="Retrospectivas abertas do ${time.nome}" classe="aberto"/>
-				<suricato:listaRetrospectivas retrospectivas="${time.retrospectivasEncerradas}" legenda="Retrospectivas encerradas do ${time.nome}" classe="fechado"/>
+				<suricato:listaRetrospectivas retrospectivasAbertas="${time.retrospectivasAbertas}" retrospectivasFechadas="${time.retrospectivasEncerradas}"/>
 			</div>
 		</c:forEach>
 	</div>

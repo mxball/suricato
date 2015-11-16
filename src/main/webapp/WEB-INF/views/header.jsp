@@ -6,11 +6,4 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<button type="submit">Logout (${usuario.nome})</button>
 		</form>
-<!-- 	<ul>  			 -->
-<%-- 		<c:forEach var="time" items="${usuario.times}"> --%>
-<%-- 			<li><a href='<c:url value="/time/mostra?id=${time.id}"/>'>${time.nome}</a></li> --%>
-<%-- 		</c:forEach>		 --%>
-<!-- 		<li id="logout"> -->
-<!-- 		</li>  		 -->
-<!-- 	</ul>  	 -->
 </div>

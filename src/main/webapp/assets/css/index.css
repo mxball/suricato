@@ -1,3 +1,38 @@
+#filtro-retrospectivas {
+	background-color: #d35400;
+	width: 100%;
+	height: 3em;
+	position: fixed;
+	top: 5em;
+	text-align: center;
+}
+
+#filtro-retrospectivas h2,
+#filtro-retrospectivas label {
+	display: inline-block;
+	width: 15%;
+	color: #ecf0f1;
+	font-size: 1.5em;
+	margin-top: 0.5em; 
+}
+
+#tipos {
+    text-align: center;
+	background-color: #c0392b;
+	width: 100%;
+	height: 3em;
+	position: fixed;
+	top: 8em;
+}
+
+#tipos label {
+	display: inline-block;
+	width: 12%;
+	color: #ecf0f1;
+	font-size: 1.5em;
+	margin-top: 0.5em; 
+}
+
 .retrospectiva-img {
 	width: 20em;
 	display: block;
@@ -16,12 +51,6 @@
 
 .hideme {
 	display: none;
-}
-
-#tipos{
-    text-align: center;
-    display: block;
-    height: 2em;
 }
 
  .tipos {

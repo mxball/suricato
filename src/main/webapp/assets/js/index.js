@@ -1,18 +1,15 @@
-$('.abertas').click(function(){
+$('#tipo-aberta').click(function(){
 	console.log("clicando");
-	$('.fechado').addClass("hideme");
-	$('.aberto').removeClass("hideme");
+	$('.lista-fechadas').addClass("hideme");
+	$('.lista-abertas').removeClass("hideme");
 });
 
-$('.fechadas').click(function(){
-	$('.aberto').addClass("hideme");
-	$('.fechado').removeClass("hideme");
+$('#tipo-fechada').click(function(){
+	$('.lista-abertas').addClass("hideme");
+	$('.lista-fechadas').removeClass("hideme");
 });
-
-$('.retros').click(function(event){
-	console.log(event.target)
+$('.retros').change(function(event){
 	$('.retrospectiva').addClass("hideme");
-	var elemento = event.target.dataset.id; 
-	console.log(elemento);
+	var elemento = event.target.id; 
 	$("." + elemento).removeClass("hideme");
 })
