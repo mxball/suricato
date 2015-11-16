@@ -10,6 +10,16 @@ $('#tipo-fechada').click(function(){
 });
 $('.retros').change(function(event){
 	$('.retrospectiva').addClass("hideme");
-	var elemento = event.target.id; 
-	$("." + elemento).removeClass("hideme");
+	$('#novo-integrante').remove();
+	var elemento = event.target; 
+	$("." + elemento.id).removeClass("hideme");
+	if(elemento.id != "pessoal") {
+		var link = document.createElement("a");
+		link.href = "/time/mostra?id=" + elemento.dataset.id;
+		link.classList.add("link-novo");
+		link.classList.add("hideme");
+		link.id = "novo-integrante";
+		link.textContent = "Adicionar integrante no time";
+		$("#novo-time").after(link);
+	}
 })

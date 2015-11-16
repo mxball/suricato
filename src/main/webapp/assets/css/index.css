@@ -14,7 +14,7 @@
 	width: 15%;
 	color: #ecf0f1;
 	font-size: 1.5em;
-	margin-top: 0.5em; 
+	margin-top: 0.5em;
 }
 
 #tipos {
@@ -32,7 +32,17 @@
 	width: 12%;
 	color: #ecf0f1;
 	font-size: 1.5em;
-	margin-top: 0.5em; 
+	margin-top: 0.5em;
+}
+
+#filtro-retrospectivas label,
+#tipos label {
+	cursor: pointer; 
+}
+
+#filtro-retrospectivas label:HOVER ,
+#tipos label:HOVER {
+	cursor: pointer; 
 }
 
 #lista-retrospectivas {
@@ -52,7 +62,7 @@
 #lista-retrospectivas .retro {
 	width: 40%;
 	height: 10em;
-	margin: 3% 4.9%;
+	margin: 3% 4.9% 14%;
 	display: inline-block;
 	text-align: center;
 	text-decoration: none;

@@ -20,7 +20,7 @@
 		</label>
 		<c:forEach var="time" items="${usuario.times}">
 			<label for="time_${time.id}" class="retros">
-				<input type="radio" name="filtro-grupo" id="time_${time.id}" class="retros"> 
+				<input type="radio" name="filtro-grupo" id="time_${time.id}" data-id="${time.id}" class="retros"> 
 				${time.nome}
 			</label>
 		</c:forEach>
