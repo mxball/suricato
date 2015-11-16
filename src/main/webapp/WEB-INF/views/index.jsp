@@ -47,4 +47,7 @@
 			</c:forEach>
 		</div>
 	</div>
-<%@include file="footer.jsp" %>
+	<%@include file="footer.jsp" %>
+	<script src="<c:url value='/assets/js/index.js'/>"></script>
+</body>
+</html>
