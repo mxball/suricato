@@ -12,3 +12,6 @@ insert into Lousa (nome, endereco) values ("Plus, minus, interesting", "/assets/
 insert into Lousa (nome, endereco) values ("Repeat x Avoid", "/assets/images/repeatAvoid.png");
 insert into Lousa (nome, endereco) values ("Thumbs up, thumbs down, new ideas and recognition", "/assets/images/thumbsUpDown.png");
 insert into Lousa (nome, endereco) values ("Worked well, kinda Worked, didn’t Work", "/assets/images/www.png");
+insert into Lousa (nome, endereco) values ("Hot Air Balloon", "/assets/images/balloon.png");
+insert into Lousa (nome, endereco) values ("Speed Car", "/assets/images/speedCar.png");
+insert into Lousa (nome, endereco) values ("Sailboat", "/assets/images/boat.png");
