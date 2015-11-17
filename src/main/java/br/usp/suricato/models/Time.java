@@ -73,12 +73,12 @@ public class Time {
 		this.retrospectivas = restrospectivas;
 	}
 
-	public List<Retrospectiva> getRetrospectivasAbertas() {
-		return this.retrospectivas.stream().filter(retro -> retro.isAberta()).collect(Collectors.toList());
+	public Set<Retrospectiva> getRetrospectivasAbertas() {
+		return this.retrospectivas.stream().filter(retro -> retro.isAberta()).collect(Collectors.toSet());
 	}
 	
-	public List<Retrospectiva> getRetrospectivasEncerradas() {
-		return this.retrospectivas.stream().filter(retro -> !retro.isAberta()).collect(Collectors.toList());
+	public Set<Retrospectiva> getRetrospectivasEncerradas() {
+		return this.retrospectivas.stream().filter(retro -> !retro.isAberta()).collect(Collectors.toSet());
 	}
 
 	@Override

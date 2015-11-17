@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ attribute name="retrospectivasAbertas" type="java.util.List" required="true" %>
-<%@ attribute name="retrospectivasFechadas" type="java.util.List" required="true" %>
+<%@ attribute name="retrospectivasAbertas" type="java.util.Set" required="true" %>
+<%@ attribute name="retrospectivasFechadas" type="java.util.Set" required="true" %>
 <div class="lista-abertas">
 	<c:if test="${not empty retrospectivasAbertas}">
 		<c:forEach var="retrospectiva" items="${retrospectivasAbertas}">

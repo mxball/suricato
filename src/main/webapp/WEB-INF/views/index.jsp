@@ -40,7 +40,7 @@
 			<suricato:listaRetrospectivas retrospectivasAbertas="${usuario.retrospectivasAbertas}" retrospectivasFechadas="${usuario.retrospectivasEncerradas}"/>
 		</div>
 		<div>
-			<c:forEach var="time" items="${usuario.times}">
+			<c:forEach var="time" items="${usuario.conjuntoTimes}">
 				<div class="retrospectiva time_${time.id} hideme">
 					<suricato:listaRetrospectivas retrospectivasAbertas="${time.retrospectivasAbertas}" retrospectivasFechadas="${time.retrospectivasEncerradas}"/>
 				</div>
