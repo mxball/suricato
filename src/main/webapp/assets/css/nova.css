@@ -21,6 +21,7 @@
 	display: inline-block;
 	font-size: 1.2em;
 	width: 18%;
+	color: #ecf0f1;
 }
 
 #formLousa label select {
@@ -37,12 +38,13 @@
 
 #formLousa .calendario {
 	display: inline-block;
-	width: 35%;
+	width: 40%;
 	margin-right: 5%;
 }
 
 #formLousa .calendario span {
 	width: 37%;
+	color: #ecf0f1;
 }
 
 #formLousa .calendario input {
@@ -62,4 +64,5 @@
 	border-radius: 0.2em;
 	margin-top: 2%;
 	background-color: #16a085;
+	color: #ecf0f1;
 }
