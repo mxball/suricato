@@ -18,7 +18,7 @@
 			<input type="radio" name="filtro-grupo" id="pessoal" checked class="retros">
 			Pessoais
 		</label>
-		<c:forEach var="time" items="${usuario.times}">
+		<c:forEach var="time" items="${usuario.conjuntoTimes}">
 			<label for="time_${time.id}" class="retros">
 				<input type="radio" name="filtro-grupo" id="time_${time.id}" data-id="${time.id}" class="retros"> 
 				${time.nome}

@@ -1,7 +1,9 @@
 package br.usp.suricato.models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.Column;
@@ -88,6 +90,10 @@ public class Usuario {
 		this.ativo = ativo;
 	}
 
+	public Set<Time> getConjuntoTimes() {
+		return new HashSet<>(times);
+	}
+	
 	public List<Time> getTimes() {
 		return times;
 	}

@@ -23,7 +23,7 @@
 					<span>Participantes:</span> 
 					<select name="time.id" id="time">
 						<option value="" checked>Pessoal</option>
-						<c:forEach var="time" items="${usuario.times}">
+						<c:forEach var="time" items="${usuario.conjuntoTimes}">
 							<option value="${time.id}">${time.nome}</option>
 						</c:forEach>
 					</select>
@@ -44,6 +44,7 @@
 				<button id="botao" type="submit">Criar</button>
 			</form:form>
 		</div>
+		<%@include file="/WEB-INF/views/footer.jsp" %>
 	</body>
 	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>

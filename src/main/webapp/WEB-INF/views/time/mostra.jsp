@@ -27,7 +27,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="usuario" items="${time.integrantes}" varStatus="status">
+					<c:forEach var="usuario" items="${time.conjuntoIntegrantes}" varStatus="status">
 						<tr class="${ status.count % 2 == 0 ? 'even' : 'odd'}">
 							<td>
 								${usuario.nome}

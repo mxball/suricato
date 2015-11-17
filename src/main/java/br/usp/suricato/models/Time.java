@@ -1,5 +1,6 @@
 package br.usp.suricato.models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class Time {
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="Time_Usuario", joinColumns=@JoinColumn(name="time_id"), inverseJoinColumns=@JoinColumn(name="usuario_id"))
-	private Set<Usuario> integrantes = new HashSet<>();
+	private List<Usuario> integrantes = new ArrayList<>();
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="time")
 	private List<Retrospectiva> retrospectivas;
@@ -52,11 +53,15 @@ public class Time {
 		this.nome = nome;
 	}
 
-	public Set<Usuario> getIntegrantes() {
+	public Set<Usuario> getConjuntoIntegrantes() {
+		return new HashSet<>(integrantes);
+	}
+	
+	public List<Usuario> getIntegrantes() {
 		return integrantes;
 	}
 
-	public void setIntegrantes(Set<Usuario> integrantes) {
+	public void setIntegrantes(List<Usuario> integrantes) {
 		this.integrantes = integrantes;
 	}
 
