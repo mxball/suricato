@@ -42,7 +42,10 @@ public class RetrospectivaDao {
 	}
 
 	public Retrospectiva load(Integer id) {
-		return manager.find(Retrospectiva.class, id);
+		return (Retrospectiva) manager.createQuery("select r from Retrospectiva r join fetch r.lousa left join fetch r.postIts "
+				+ "left join fetch r.comentarios join fetch r.criador left join fetch r.time where r.id = :id")
+				.setParameter("id", id)
+				.getSingleResult();
 	}
 	
 }

@@ -18,7 +18,10 @@ public class TimeDao {
 	}
 
 	public Time load(Integer id) {
-		return manager.find(Time.class, id);
+		return (Time) manager.createQuery("select t from Time t left join fetch t.retrospectivas "
+				+ "left join fetch t.integrantes  where t.id = :id")
+				.setParameter("id", id)
+				.getSingleResult();
 	}
 
 	public void atualiza(Time timeLoaded) {

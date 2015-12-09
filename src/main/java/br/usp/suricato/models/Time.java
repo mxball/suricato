@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,12 +29,12 @@ public class Time {
 	@Column(unique = true)
 	private String nome;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name="Time_Usuario", joinColumns=@JoinColumn(name="time_id"), inverseJoinColumns=@JoinColumn(name="usuario_id"))
 	private List<Usuario> integrantes = new ArrayList<>();
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="time")
-	private List<Retrospectiva> retrospectivas;
+	@OneToMany(mappedBy="time")
+	private Set<Retrospectiva> retrospectivas = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -58,18 +57,18 @@ public class Time {
 	}
 	
 	public List<Usuario> getIntegrantes() {
-		return integrantes;
+		return this.integrantes;
 	}
-
+	
 	public void setIntegrantes(List<Usuario> integrantes) {
 		this.integrantes = integrantes;
 	}
 
-	public List<Retrospectiva> getRetrospectivas() {
+	public Set<Retrospectiva> getRetrospectivas() {
 		return retrospectivas;
 	}
 
-	public void setRetrospectivas(List<Retrospectiva> restrospectivas) {
+	public void setRetrospectivas(Set<Retrospectiva> restrospectivas) {
 		this.retrospectivas = restrospectivas;
 	}
 

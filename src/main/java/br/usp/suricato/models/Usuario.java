@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,12 +42,12 @@ public class Usuario {
 	
 	private boolean ativo = true;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name="Time_Usuario", joinColumns=@JoinColumn(name="usuario_id"), inverseJoinColumns=@JoinColumn(name="time_id"))
 	private List<Time> times = new ArrayList<>();
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="criador")
-	private List<Retrospectiva> retrospectivas;
+	@OneToMany(mappedBy="criador")
+	private Set<Retrospectiva> retrospectivas = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -89,24 +88,24 @@ public class Usuario {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
-
-	public Set<Time> getConjuntoTimes() {
-		return new HashSet<>(times);
-	}
 	
 	public List<Time> getTimes() {
 		return times;
 	}
 
+	public Set<Time> getConjuntoTimes() {
+		return times.stream().collect(Collectors.toSet());
+	}
+	
 	public void setTimes(List<Time> times) {
 		this.times = times;
 	}
 
-	public List<Retrospectiva> getRetrospectivas() {
+	public Set<Retrospectiva> getRetrospectivas() {
 		return retrospectivas;
 	}
 
-	public void setRestrospectivas(List<Retrospectiva> restrospectivas) {
+	public void setRestrospectivas(Set<Retrospectiva> restrospectivas) {
 		this.retrospectivas = restrospectivas;
 	}
 	

@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,10 +26,10 @@ public class Retrospectiva {
 	@NotNull
 	private Lousa lousa;
 
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="retrospectiva", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="retrospectiva", cascade = CascadeType.ALL)
 	private Set<PostIt> postIts = new HashSet<>();
 
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="retrospectiva", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="retrospectiva", cascade = CascadeType.ALL)
 	private Set<Comentario> comentarios = new HashSet<>();
 	
 	@ManyToOne
