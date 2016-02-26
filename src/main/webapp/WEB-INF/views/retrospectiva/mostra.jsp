@@ -40,11 +40,11 @@
 			</c:forEach>
 			<c:if test="${retrospectiva.aberta}">
 				<div id="menu">
+					<a id="logoMenu" href="<c:url value="/"/>"><img alt="suricato-logo" src='<c:url value="/assets/images/logo.svg"/>'></a>
 					<div class="draggable semConteudo postIt corFCF0AD"></div>
 					<div class="draggable semConteudo postIt corE9E74A"></div>
 					<div class="draggable semConteudo postIt corD0E17D"></div>
 					<div class="draggable semConteudo postIt cor56C4E8"></div>
-					<div class="draggable semConteudo postIt corCDDD73"></div>
 					<div class="draggable semConteudo postIt cor99C7BC"></div>
 					<div class="draggable semConteudo postIt corF9D6AC"></div>
 					<div class="draggable semConteudo postIt corBAB7A9"></div>

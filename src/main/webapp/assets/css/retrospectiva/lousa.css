@@ -13,7 +13,7 @@ html {
 	position: absolute;
 }
 
-#lousa img {
+#lousa #atividade {
 	width: 90%;
 	height: 99%;
 	display: inline-block;
@@ -28,6 +28,17 @@ html {
 	display: inline-block;
 	background-color: #67809F;
 	z-index: 100;
+}
+
+#logoMenu {
+	width: 55%;
+	height: 9.7vh;
+	display: block;
+	margin: 0.5em auto;
+}
+
+#logoMenu img {
+	display: block;
 }
 
 .draggable {
