@@ -20,10 +20,10 @@ public class UsuarioDao {
 	}
 
 	public Usuario buscaPorNome(String nome) {
-		return (Usuario) manager.createQuery("select u from Usuario u left join fetch u.times t left join fetch u.retrospectivas "
-												+ "left join fetch t.retrospectivas where u.nome = :nome")
+		Usuario usuario = (Usuario) manager.createQuery("select u from Usuario u left join fetch u.times where u.nome = :nome")
 												.setParameter("nome", nome)
 												.getSingleResult();
+		return usuario;
 	}
 
 	public List<Usuario> listaUsuariosComNomeParecidoCom(String nome) {

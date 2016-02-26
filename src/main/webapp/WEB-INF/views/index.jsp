@@ -36,13 +36,11 @@
 		</label>
 	</div>
 	<div id="lista-retrospectivas">
-		<div class="retrospectiva pessoal">
-			<suricato:listaRetrospectivas retrospectivasAbertas="${usuario.retrospectivasAbertas}" retrospectivasFechadas="${usuario.retrospectivasEncerradas}"/>
+		<div class="retrospectiva pessoal" data-usuario-id="${usuario.id}">
 		</div>
 		<div>
 			<c:forEach var="time" items="${usuario.conjuntoTimes}">
-				<div class="retrospectiva time_${time.id} hideme">
-					<suricato:listaRetrospectivas retrospectivasAbertas="${time.retrospectivasAbertas}" retrospectivasFechadas="${time.retrospectivasEncerradas}"/>
+				<div class="retrospectiva time time_${time.id} hideme" data-time-id="${time.id}">
 				</div>
 			</c:forEach>
 		</div>

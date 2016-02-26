@@ -14,6 +14,7 @@ import br.usp.suricato.daos.LousaDao;
 import br.usp.suricato.daos.RetrospectivaDao;
 import br.usp.suricato.daos.UsuarioDao;
 import br.usp.suricato.models.Retrospectiva;
+import br.usp.suricato.models.Time;
 import br.usp.suricato.models.Usuario;
 
 @Controller
@@ -60,6 +61,20 @@ public class RetrospectivaController {
 		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
 		model.addAttribute("hoje", Calendar.getInstance());
 		return "retrospectiva/nova";
+	}
+
+	@RequestMapping("usuario/lista")
+	public String listaRetrospectivasDoUsuario(Usuario usuario, Model model) {
+		model.addAttribute("retrospectivasAbertas", retrospectivaDao.listaRetrospectivasAbertasDoUsuario(usuario.getId()));
+		model.addAttribute("retrospectivasFechadas", retrospectivaDao.listaRetrospectivasEncerradasDoUsuario(usuario.getId()));
+		return "retrospectiva/lista";
+	}
+	
+	@RequestMapping("time/lista")
+	public String listaRetrospectivasDoTime(Time time, Model model) {
+		model.addAttribute("retrospectivasAbertas", retrospectivaDao.listaRetrospectivasAbertasDoTime(time.getId()));
+		model.addAttribute("retrospectivasFechadas", retrospectivaDao.listaRetrospectivasEncerradasDoTime(time.getId()));
+		return "retrospectiva/lista";
 	}
 	
 }

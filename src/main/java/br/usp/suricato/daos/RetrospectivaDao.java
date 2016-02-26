@@ -27,16 +27,16 @@ public class RetrospectivaDao {
 		manager.persist(retrospectiva);
 	}
 
-	public List<Retrospectiva> listaRetrospectivasAbertasDoUsuario(String nome) {
-		return manager.createQuery("select r from Retrospectiva r where r.criador.nome = :nome and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
-					.setParameter("nome", nome)
+	public List<Retrospectiva> listaRetrospectivasAbertasDoUsuario(Integer idUsuario) {
+		return manager.createQuery("select r from Retrospectiva r where r.criador.id = :id and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
+					.setParameter("id", idUsuario)
 					.setParameter("hoje", LocalDate.now())
 					.getResultList();
 	}
 	
-	public List<Retrospectiva> listaRetrospectivasEncerradasDoUsuario(String nome) {
-		return manager.createQuery("select r from Retrospectiva r where r.criador.nome = :nome and r.dataFim < :hoje", Retrospectiva.class)
-				.setParameter("nome", nome)
+	public List<Retrospectiva> listaRetrospectivasEncerradasDoUsuario(Integer idUsuario) {
+		return manager.createQuery("select r from Retrospectiva r where r.criador.id = :id and r.dataFim < :hoje", Retrospectiva.class)
+				.setParameter("id", idUsuario)
 				.setParameter("hoje", LocalDate.now())
 				.getResultList();
 	}
@@ -46,6 +46,20 @@ public class RetrospectivaDao {
 				+ "left join fetch r.comentarios join fetch r.criador left join fetch r.time where r.id = :id")
 				.setParameter("id", id)
 				.getSingleResult();
+	}
+
+	public List<Retrospectiva> listaRetrospectivasAbertasDoTime(Integer idTime) {
+		return manager.createQuery("select r from Retrospectiva r where r.time.id = :id and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
+				.setParameter("id", idTime)
+				.setParameter("hoje", LocalDate.now())
+				.getResultList();
+	}
+
+	public List<Retrospectiva> listaRetrospectivasEncerradasDoTime(Integer idTime) {
+		return manager.createQuery("select r from Retrospectiva r where r.time.id = :id and r.dataFim < :hoje", Retrospectiva.class)
+				.setParameter("id", idTime)
+				.setParameter("hoje", LocalDate.now())
+				.getResultList();
 	}
 	
 }

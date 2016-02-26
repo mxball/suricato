@@ -26,6 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/usuario/novo").permitAll()
 			.antMatchers("/retrospectiva/asndjkahsdjhds/**").permitAll()
 			.antMatchers("/retrospectiva/mostra").permitAll()
+			.antMatchers("/retrospectiva/lista").permitAll()
 			.anyRequest().authenticated()
 			.and()
 				.formLogin().loginPage("/login").permitAll()
