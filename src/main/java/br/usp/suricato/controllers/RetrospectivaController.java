@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.usp.suricato.daos.ComentarioDao;
 import br.usp.suricato.daos.LousaDao;
+import br.usp.suricato.daos.PostItDao;
 import br.usp.suricato.daos.RetrospectivaDao;
 import br.usp.suricato.daos.UsuarioDao;
 import br.usp.suricato.models.Retrospectiva;
@@ -30,10 +32,16 @@ public class RetrospectivaController {
 	
 	@Autowired
 	private LousaDao lousaDao;
+	
+	@Autowired
+	private PostItDao postItDao;
+	
+	@Autowired
+	private ComentarioDao comentarioDao;
 
 	@RequestMapping("/mostra")
 	public String mostraRetrospectiva(Integer id, Model model, Principal principal) {
-		Retrospectiva retrospectiva = retrospectivaDao.load(id);
+		Retrospectiva retrospectiva = retrospectivaDao.get(id);
 		if(!retrospectiva.isPublica()) {
 			Usuario usuario = (principal == null) ? new Usuario() : usuarioDao.buscaPorNome(principal.getName());
 			if(!retrospectiva.isUsuarioAutorizado(usuario) && !retrospectiva.isPublica()) {
@@ -41,6 +49,9 @@ public class RetrospectivaController {
 			}
 		}
 		model.addAttribute("retrospectiva", retrospectiva);
+		model.addAttribute("postIts", postItDao.buscaPostIsDaRetrospectiva(retrospectiva));
+		model.addAttribute("comentarios", comentarioDao.buscaComentariosDaRetrospectiva(retrospectiva));
+		model.addAttribute("lousa", retrospectiva.getLousa());
 		return "retrospectiva/mostra";
 	}
 	

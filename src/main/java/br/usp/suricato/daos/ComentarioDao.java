@@ -1,5 +1,7 @@
 package br.usp.suricato.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -8,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import br.usp.suricato.models.Comentario;
+import br.usp.suricato.models.Retrospectiva;
 
 @Repository
 public class ComentarioDao {
@@ -44,6 +47,12 @@ public class ComentarioDao {
 		transaction.begin();
 		entityManager.merge(comentario);
 		transaction.commit();
+	}
+
+	public List<Comentario> buscaComentariosDaRetrospectiva(Retrospectiva retrospectiva) {
+		return manager.createQuery("from Comentario where retrospectiva = :retrospectiva", Comentario.class)
+				.setParameter("retrospectiva", retrospectiva)
+				.getResultList();
 	}
 	
 }

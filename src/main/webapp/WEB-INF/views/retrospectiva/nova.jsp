@@ -17,32 +17,34 @@
 	</head>
 	<body>
 		<%@include file="../header.jsp" %>
-		<div id="cadastro-retrospectiva">
-			<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/cria" id="formLousa">
-				<label for="time">
-					<span>Participantes:</span> 
-					<select name="time.id" id="time">
-						<option value="" checked>Pessoal</option>
-						<c:forEach var="time" items="${usuario.conjuntoTimes}">
-							<option value="${time.id}">${time.nome}</option>
-						</c:forEach>
-					</select>
-				</label>
-				<label for="idLousa">
-					<span>Atividade:</span> 
-					<select name="lousa.id"  id="idLousa" onchange="mostraLousa()">
-						<c:forEach items="${lousas}" var="lousa" varStatus="status">
-							<option value="${lousa.id}" id="atividade_${status.index}" data-url="${lousa.endereco}">${lousa.nome}</option>
-						</c:forEach>
-					</select>
-					<img id="imagem" src=""/>
-				</label>
-				
-				<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>
-				<suricato:calendario id="dataInicio" label="Data início:" value="${hoje}"/>
-				<suricato:calendario id="dataFim" label="Data fim:"/>
-				<button id="botao" type="submit">Criar</button>
-			</form:form>
+		<div class="corpo">
+			<div id="cadastro-retrospectiva">
+				<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/cria" id="formLousa">
+					<label for="time">
+						<span>Participantes:</span> 
+						<select name="time.id" id="time">
+							<option value="" checked>Pessoal</option>
+							<c:forEach var="time" items="${usuario.conjuntoTimes}">
+								<option value="${time.id}">${time.nome}</option>
+							</c:forEach>
+						</select>
+					</label>
+					<label for="idLousa">
+						<span>Atividade:</span> 
+						<select name="lousa.id"  id="idLousa" onchange="mostraLousa()">
+							<c:forEach items="${lousas}" var="lousa" varStatus="status">
+								<option value="${lousa.id}" id="atividade_${status.index}" data-url="${lousa.endereco}">${lousa.nome}</option>
+							</c:forEach>
+						</select>
+						<img id="imagem" src=""/>
+					</label>
+					
+					<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>
+					<suricato:calendario id="dataInicio" label="Data início:" value="${hoje}"/>
+					<suricato:calendario id="dataFim" label="Data fim:"/>
+					<button id="botao" type="submit">Criar</button>
+				</form:form>
+			</div>
 		</div>
 		<%@include file="/WEB-INF/views/footer.jsp" %>
 	</body>

@@ -41,13 +41,6 @@ public class RetrospectivaDao {
 				.getResultList();
 	}
 
-	public Retrospectiva load(Integer id) {
-		return (Retrospectiva) manager.createQuery("select r from Retrospectiva r join fetch r.lousa left join fetch r.postIts "
-				+ "left join fetch r.comentarios join fetch r.criador left join fetch r.time where r.id = :id")
-				.setParameter("id", id)
-				.getSingleResult();
-	}
-
 	public List<Retrospectiva> listaRetrospectivasAbertasDoTime(Integer idTime) {
 		return manager.createQuery("select r from Retrospectiva r where r.time.id = :id and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
 				.setParameter("id", idTime)
@@ -60,6 +53,16 @@ public class RetrospectivaDao {
 				.setParameter("id", idTime)
 				.setParameter("hoje", LocalDate.now())
 				.getResultList();
+	}
+
+	public Retrospectiva get(Integer idRetrospectiva) {
+		return manager.find(Retrospectiva.class, idRetrospectiva);
+	}
+
+	public Retrospectiva loadWebSocket(Integer retrospectivaId) {
+		return (Retrospectiva) manager.createQuery("select r from Retrospectiva r left join fetch r.time t left join fetch t.integrantes where r.id = :id")
+					.setParameter("id", retrospectivaId)
+					.getSingleResult();
 	}
 	
 }

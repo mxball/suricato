@@ -12,16 +12,18 @@
 	</head>
 	<body>
 		<%@include file="/WEB-INF/views/header.jsp" %>
-		<fieldset id="adiciona-time">
-			<legend>Novo time</legend>
-			<form action="<c:url value='/time/criar'/>">
-				<input type='hidden' name='integrantes[0].id' value="${usuario.id}"/>
-				<input type='hidden' name='integrantes[0].nome' value="${usuario.nome}"/>
-				<form:errors path='time.nome'/>
-				<input type='text' name='nome' id="time" value="${time.nome}" placeholder="Nome do time"/>
-				<input type="submit" id="cadastrar" value="Cadastrar"/>
-			</form>
-		</fieldset>
+		<div class="corpo">
+			<fieldset id="adiciona-time">
+				<legend>Novo time</legend>
+				<form action="<c:url value='/time/criar'/>">
+					<input type='hidden' name='integrantes[0].id' value="${usuario.id}"/>
+					<input type='hidden' name='integrantes[0].nome' value="${usuario.nome}"/>
+					<form:errors path='time.nome'/>
+					<input type='text' name='nome' id="time" value="${time.nome}" placeholder="Nome do time"/>
+					<input type="submit" id="cadastrar" value="Cadastrar"/>
+				</form>
+			</fieldset>
+		</div>
 		<%@include file="/WEB-INF/views/footer.jsp" %>
 	</body>
 </html>

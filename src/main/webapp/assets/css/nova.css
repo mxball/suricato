@@ -1,14 +1,12 @@
 #cadastro-retrospectiva {
 	width: 100%;
-	position: absolute;
-	top: 4em;
 	display: block;
 }
 
 #formLousa {
 	width: 55%;
 	display: block;
-	margin: 5% auto;
+	margin: 4% auto;
 }
 
 #formLousa label {

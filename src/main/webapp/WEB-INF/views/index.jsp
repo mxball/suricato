@@ -35,7 +35,7 @@
 			Fechadas
 		</label>
 	</div>
-	<div id="lista-retrospectivas">
+	<div id="lista-retrospectivas" class="corpo">
 		<div class="retrospectiva pessoal" data-usuario-id="${usuario.id}">
 		</div>
 		<div>

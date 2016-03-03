@@ -1,5 +1,7 @@
 package br.usp.suricato.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -8,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import br.usp.suricato.models.PostIt;
+import br.usp.suricato.models.Retrospectiva;
 
 @Repository
 public class PostItDao {
@@ -56,6 +59,12 @@ public class PostItDao {
 					.setParameter("id", postIt.getId())
 					.executeUpdate();
 		transaction.commit();
+	}
+
+	public List<PostIt> buscaPostIsDaRetrospectiva(Retrospectiva retrospectiva) {
+		return manager.createQuery("from PostIt where retrospectiva = :retrospectiva", PostIt.class)
+					.setParameter("retrospectiva", retrospectiva)
+					.getResultList();
 	}
 
 }

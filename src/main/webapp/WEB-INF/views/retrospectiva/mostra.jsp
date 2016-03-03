@@ -16,8 +16,8 @@
 	</head>
 	<body>
 		<div id="lousa" data-usuario-nome="${pageContext.request.userPrincipal.name}" data-retrospectiva-id="${retrospectiva.id}">
-			<img id="atividade" src="<c:url value="${retrospectiva.lousa.endereco}"/>"/>
-			<c:forEach var="postIt" items="${retrospectiva.postIts}" varStatus="status">
+			<img id="atividade" src="<c:url value="${lousa.endereco}"/>"/>
+			<c:forEach var="postIt" items="${postIts}" varStatus="status">
 				<div id="postIt_${postIt.id}" class="postIt comConteudo ${postIt.cor}" style="left: ${postIt.posicaoHorizontal}%; top: ${postIt.posicaoVertical}%;">
 					<a href="#" class="editar"></a>
 					<a href="#" class="remover"></a>
@@ -31,7 +31,7 @@
 					</div>
 				</div>
 			</c:forEach>
-			<c:forEach var="comentario" items="${retrospectiva.comentarios}" varStatus="status">
+			<c:forEach var="comentario" items="${comentarios}" varStatus="status">
 				<div id="comentario_${comentario.id}" class="comentario comConteudo" style="left: ${comentario.posicaoHorizontal}%; top: ${comentario.posicaoVertical}%; width: ${comentario.largura}px; min-height: ${comentario.altura}px;">
 					<a href="#" class="editar"></a>
 					<a href="#" class="remover"></a>

@@ -12,30 +12,32 @@
 	</head>
 	<body>
 		<%@include file="/WEB-INF/views/header.jsp" %>
-		<form:form role="form" commandName="usuario" servletRelativeAction="/time/adicionaUsuario" id="adiciona-integrante">
-			<input type="hidden" name="times[0].id" value="${time.id}">
-			<input type="text" name="nome" id="nomeUsuario" placeholder="Nome do novo integrante">
-			<button type="submit" id="adicionar">Adicionar</button>
-		</form:form>
-		<div id="integrantes">
-			<table id="tabela-integrantes">
-				<thead>
-					<tr>
-						<th>
-							Nome
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="usuario" items="${time.conjuntoIntegrantes}" varStatus="status">
-						<tr class="${ status.count % 2 == 0 ? 'even' : 'odd'}">
-							<td>
-								${usuario.nome}
-							</td>
+		<div class="corpo">
+			<form:form role="form" commandName="usuario" servletRelativeAction="/time/adicionaUsuario" id="adiciona-integrante">
+				<input type="hidden" name="times[0].id" value="${time.id}">
+				<input type="text" name="nome" id="nomeUsuario" placeholder="Nome do novo integrante">
+				<button type="submit" id="adicionar">Adicionar</button>
+			</form:form>
+			<div id="integrantes">
+				<table id="tabela-integrantes">
+					<thead>
+						<tr>
+							<th>
+								Nome
+							</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach var="usuario" items="${time.conjuntoIntegrantes}" varStatus="status">
+							<tr class="${ status.count % 2 == 0 ? 'even' : 'odd'}">
+								<td>
+									${usuario.nome}
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<%@include file="/WEB-INF/views/footer.jsp" %>
 	</body>

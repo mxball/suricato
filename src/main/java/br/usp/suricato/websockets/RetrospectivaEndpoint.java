@@ -27,7 +27,7 @@ public class RetrospectivaEndpoint {
 							@PathParam("nomeUsuario") String nomeUsuario) {
 		UsuarioDao usuarioDao = ApplicationContextHolder.ctx.getBean(UsuarioDao.class);
 		RetrospectivaDao retrospectivaDao = ApplicationContextHolder.ctx.getBean(RetrospectivaDao.class);
-		Retrospectiva retrospectiva = retrospectivaDao.load(retrospectivaId);
+		Retrospectiva retrospectiva = retrospectivaDao.loadWebSocket(retrospectivaId);
 		if(retrospectiva.isPublica() || (!nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
 			channel.adiciona(session, retrospectiva);
 		}
@@ -38,7 +38,7 @@ public class RetrospectivaEndpoint {
 							@PathParam("nomeUsuario") String nomeUsuario, ConteudoJson conteudo) {
 		UsuarioDao usuarioDao = ApplicationContextHolder.ctx.getBean(UsuarioDao.class);
 		RetrospectivaDao retrospectivaDao = ApplicationContextHolder.ctx.getBean(RetrospectivaDao.class);
-		Retrospectiva retrospectiva = retrospectivaDao.load(retrospectivaId);
+		Retrospectiva retrospectiva = retrospectivaDao.loadWebSocket(retrospectivaId);
 		if(retrospectiva.isPublica() || (!nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
 			AtualizaRetrospectiva.paraContexto(ApplicationContextHolder.ctx).atualiza(retrospectiva, conteudo);
 			channel.enviaMensagem(conteudo, retrospectiva);

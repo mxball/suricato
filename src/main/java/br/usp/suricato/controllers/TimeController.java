@@ -54,9 +54,8 @@ public class TimeController {
 	@RequestMapping("/adicionaUsuario")
 	public String adicionaIntegrante(@ModelAttribute("usuario") Usuario usuario) {
 		Usuario usuarioLoaded = usuarioDao.buscaPorNome(usuario.getNome());
-		Time timeLoaded = timeDao.load(usuario.getTimes().iterator().next().getId());
-		timeLoaded.getIntegrantes().add(usuarioLoaded);
-		timeDao.atualiza(timeLoaded);
+		Time timeLoaded = timeDao.load(usuario.getTimes().get(0).getId());
+		timeDao.adicionaUsuarioNoTime(usuarioLoaded, timeLoaded);
 		return "redirect:/time/mostra?id=" + timeLoaded.getId();
 	}
 	
