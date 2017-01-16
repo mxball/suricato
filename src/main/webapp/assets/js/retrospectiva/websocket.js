@@ -130,18 +130,13 @@ function Conteudo(elemento, operacao) {
 
 var retrospectivaId = lousa.dataset.retrospectivaId;
 var usuarioNome = lousa.dataset.usuarioNome;
-//var connection = new WebSocket('ws://localhost:8080/retrospectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
-var connection = new WebSocket('ws://suricatoagil.com/retrospectiva/asndjkahsdjhds/' + retrospectivaId + '/' + usuarioNome);
-function enviaMensagem(conteudo) {
-	connection.send(JSON.stringify(conteudo.getJson()));
-}
-connection.onerror = function(error) {
-	console.log('WebSocket Error ' + error);
-}
-connection.onmessage = function(mensagemServidor) {
-	var mensagem = mensagemServidor.data.toString();
-	if(mensagem != "Ping") {
-		var json = JSON.parse(mensagemServidor.data);
+
+var stompClient = null;
+var socket = new SockJS('/retrospective-websocket');
+stompClient = Stomp.over(socket);
+stompClient.connect({}, function (frame) {
+	stompClient.subscribe('/message/retrospectiva/asndjkahsdjhds/' + retrospectivaId, function (conteudoJson) {
+		var json = JSON.parse(conteudoJson.body);
 		if(json.operacao == "adiciona" || json.operacao == "atualiza") {
 			if(json.operacao == "atualiza") {
 				$("#lousa #" + json.tipoConteudo + "_" + json.id).remove();
@@ -179,5 +174,9 @@ connection.onmessage = function(mensagemServidor) {
 		} else if(json.operacao == "removeDotVote") {
 			$("#lousa #" + json.tipoConteudo + "_" + json.id + " .dotVotes .dotVote").first().remove();			
 		}
-	}
+	});
+});
+
+function enviaMensagem(conteudo) {
+	stompClient.send("/app/retrospectiva/asndjkahsdjhds/" + retrospectivaId + "/" + usuarioNome, {}, JSON.stringify(conteudo.getJson()));
 }
