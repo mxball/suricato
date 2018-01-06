@@ -16,5 +16,10 @@ public class PermissaoDao {
 	public Permissao load(Permissao permissao) {
 		return manager.find(Permissao.class, permissao.getId());
 	}
+
+	public Permissao getPermissaoUsuario() {
+		return manager.createQuery("from Permissao p where p.nome = :usuario", Permissao.class)
+					.setParameter("usuario", "Usuario").getSingleResult();
+	}
 	
 }

@@ -9,18 +9,20 @@
 		<title>Login</title>
 	</head>
 	<body>
-		<fieldset id="usuario">
-			<img alt="suricato" src="<c:url value='/assets/images/logo.png'/>">
-			<c:if test="${not empty error}">
-				<span class="error" id="login-errors">${error}</span>
-			</c:if>
-			<form name='loginForm' action="<c:url value='/login' />" method='POST'>
-				<input type='text' name='username' id="nome" placeholder="Usuário"/>
-				<input type='password' name='password' id="senha" placeholder="Senha"/>
+		<fieldset class="login">
+			<h1 class="login-titulo">suricato</h1>
+			<form action="<c:url value='/login' />" method='POST' class="login-usuario">
+				<c:if test="${not empty error}">
+					<span class="login-usuario_error" id="login-errors">${error}</span>
+				</c:if>
+				<input type='text' name='username' class="login-usuario_dado" placeholder="Usuário"/>
+				<input type='password' name='password' class="login-usuario_dado" placeholder="Senha"/>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="submit" value="Login"/>
+				<button type="submit" class="login-usuario_botao">LOGIN</button>
 			</form>
-			<a href='<c:url value="/usuario/cadastro"/>'>Novo usuário</a>
+			<span class="login-usuario_acao">
+				Não possui cadastro? <a href='<c:url value="/usuario/cadastro"/>' class="--link">Cadastre-se já</a>
+			</span>
 		</fieldset>
 	</body>
 </html>

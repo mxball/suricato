@@ -1,6 +1,7 @@
 package com.suricatoagil.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -22,8 +23,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/usuario/cadastro").permitAll()
-			.antMatchers("/usuario/novo").permitAll()
+			.antMatchers(HttpMethod.GET,"/usuario/cadastro").permitAll()
+			.antMatchers(HttpMethod.POST,"/usuario/cadastro").permitAll()
 			.antMatchers("/retrospectiva/asndjkahsdjhds/**").permitAll()
 			.antMatchers("/retrospectiva/mostra").permitAll()
 			.antMatchers("/retrospectiva/lista").permitAll()

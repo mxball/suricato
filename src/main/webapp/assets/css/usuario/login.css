@@ -1,66 +1,97 @@
-#usuario {
-	width: 25%;
-	border: 0.2em solid black;
-	border-radius: 0.4em;
-	margin: 5% auto;
+.login {
+	background-color: #fdfcff;
+	border: solid 1px #e4d9f4;
+	border-radius: 5px;
+	left: 50%;
+	padding-top: 61px;
+	padding-bottom: 52px;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 450px;
 }
 
-#usuario img {
-	width: 40%;
-	margin: 5% auto;
+.login-titulo {
+	color: #9f53ed;
 	display: block;
+	font-size: 73px;
+	height: 55.3px;
+	margin: 0 auto 60px;
+	width: 250px;
 }
 
-#usuario form {
-}
-
-#usuario input {
-	width: 70%;
+.login-usuario {
+	display: block;
 	margin: 0 auto;
+	width: 350px;
+}
+
+.login-usuario_dado {
+	background-color: #fdfcff;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #e4d9f4;
+	color: #d7caeb;
+	font-size: 24px;
+	font-stretch: normal;
+	font-style: normal;
+	font-weight: bold;
+	height: 33px;
+	letter-spacing: -0.3px;
+	line-height: normal;
+	margin-bottom: 40px;
+	padding: 5px 0;
+	text-align: left;
+	width: 100%;
+}
+
+.login-usuario_dado::placeholder {
+	color: #d7caeb;
+	font-size: 24px;
+	font-stretch: normal;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.login-usuario_botao {
+	background-color: #ff6885;
+	border: none;
+	border-radius: 5px;
+	color: #ffffff;
+	font-size: 24px;
+	font-stretch: normal;
+	font-style: normal;
+	font-weight: bold;
+	height: 60px;	
+	letter-spacing: -0.4px;
+	margin-top: 10px;
+	width: 350px;
+}
+
+.login-usuario_acao {
+	color: #c0c0c0;
 	display: block;
-	height: 2.5em;
-	font-size: 1em;
-	border-style: solid;
-	border-color: rgba(0,0,0,0.5);
-	padding: 0% 5%; 
+	font-size: 16px;
+	font-stretch: normal;
+	font-style: normal;
+	font-weight: normal;
+	line-height: normal;
+  	letter-spacing: -0.2px;
+	margin: 15px auto;
+	text-align: center;	
+	width: 100%;
 }
 
-#usuario #nome {
-	border-bottom: 0em;
-	border-top-left-radius: 0.3em;
-	border-top-right-radius: 0.3em;
+.login-usuario_acao .--link,
+.login-usuario_acao .--link:visited {
+	color: #9b9b9b;
+	font-weight: bold;
 }
 
-#usuario #senha {
-	border-bottom-left-radius: 0.3em;
-	border-bottom-right-radius: 0.3em;
-}
 
-#usuario input[type="submit"] {
-	margin-top: 2%;
-	width: 80%;
-	border-radius: 0.3em;
-	background-color: #faae8a;
-}
-
-#usuario a {
-	text-decoration: none;
-	border: 0.1em solid rgba(0,0,0,0.5);
-	width: 30%;
-	text-align: center;
-	border-radius: 1em;
-	padding: 0.1em;
-	color: rgba(0,0,0,0.8);
-	font-size: 1em;
+.login-usuario_error {
+	color: #D91E18;
 	display: block;
-	margin-top: 2%;
-	margin-left: 10%;
-}
-
-#usuario span[id$="errors"] {
-	color: #CF000F;
-	display: block;
-	margin: 2% auto;
-	width: 80%;
-	text-align: center;
+	margin-bottom: 3px;
 }

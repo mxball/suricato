@@ -32,10 +32,10 @@ public class UsuarioDao {
 					.getResultList();
 	}
 
-	public boolean jahExisteUsuario(Usuario usuario) {
+	public boolean jahExisteUsuarioChamado(String nome) {
 		List<Usuario> usuarios = manager.createQuery("select u from Usuario u where u.nome = :nome", Usuario.class)
-										.setParameter("nome", usuario.getNome())
-										.getResultList();
+				.setParameter("nome", nome)
+				.getResultList();
 		return usuarios.size() > 0;
 	}
 
