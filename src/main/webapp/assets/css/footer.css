@@ -1,56 +1,22 @@
-#novo {
-	position: fixed;
-	right: 3%;
-	bottom: 3%;
-	z-index: 100;
+.rodape {
+	background-color: #fdfcff;
+	bottom:0;
+	height: 60px;
+	position:absolute;
+	width: 100%;
 }
 
-#novo:not(:hover) > .link-novo {
-	display: none;
+.rodape-titulo {
+	border-top: 2px solid #efe7f8;
+	color: #eee7f7;
+	font-size: 35px;
+ 	height: 20.3px;
+	line-height: 51px;
+	margin-left: 140px;
+	margin-right: 140px;
 }
 
-#novo:hover > .link-novo {
-	display: block;
-}
-
-#novo div {
-	float: right;
-	clear: both;
-	margin-top: 0.1em;
-	cursor: pointer;
-	margin-top: -0.2em;
-}
-
-#novo-sinal{
+.rodape-home {
+	color: #eee7f7;
 	text-decoration: none;
-	width: 1em;
-	font-size: 3em;
-	text-align: center;
-	border-radius: 100%;
-	color: #ecf0f1;
-	background-color: #16a085;
-}
-
-.link-novo {
-	width: 14em;
-	background-color: #16a085;
-	color: #ecf0f1;
-	padding: 5% 0;
-	font-size: 1em;
-	box-sizing: border-box;
-	text-align: center;
-	margin-right: 1.4em;
-} 
-
-.link-novo:FIRST-CHILD {
-	border-top-left-radius: 0.4em;
-	border-top-right-radius: 0.4em;
-}
-.link-novo:not(:last-of-type) {
-	border-bottom: 1px solid;
-}
-	
-.link-novo:last-of-type {
-	border-bottom-left-radius: 0.4em;
-	border-bottom-right-radius: 0.4em;
 }
