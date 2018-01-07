@@ -1,0 +1,83 @@
+.iniciante-titulo {
+  color: #826c98;
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 800;
+  height: 41px;
+  letter-spacing: -0.4px;
+  margin-top: 20px;
+}
+
+.iniciante-mensagem {
+	color: #9588a3;
+	display: block;
+	margin-top: 5px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	font-stretch: normal;
+	font-style: normal;
+	font-weight: normal;
+	letter-spacing: -0.2px;
+	margin-bottom: 30px;
+}
+
+.opcao {
+	border-radius: 10px;
+	display: inline-block;
+	height: 150px;
+	letter-spacing: -0.3px;
+	line-height: 150px;
+	margin-right: 20px;
+	position: relative;
+	text-align: center;
+	width: 300px;
+}
+
+.opcao:hover {
+	text-decoration: none;
+}
+
+.opcao-texto {
+	color: #ffffff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	position: relative;
+	z-index: 100;	
+}
+
+.glyphicon-plus {
+	color: black;
+    font-size: 122px;
+    height: 112px;
+    left: 50%;
+    line-height: 105px;
+    opacity: 0.05;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 112px;
+}
+
+.opcao:hover {
+	cursor: pointer;
+}
+
+.--retrospectiva {
+	background-color: #68e1ff;
+}
+
+.--retrospectiva:before {
+	color: black;
+}
+
+.--time {
+	background-color: #ffb647;
+}
+
+.--time:before {
+	color: #ffb647;
+}

@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
-  background: #FFF;
+  background-color: #fdfcff;
 }
 ol, ul {
   list-style: none;
@@ -45,11 +45,4 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-.corpo{
-	width: 100vw;
-	min-height: 100%;
-	position: absolute;
-	top: 5em;
-	background-color: #e67e22;
 }
