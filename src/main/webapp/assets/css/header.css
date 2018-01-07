@@ -14,6 +14,7 @@
 
 .cabecalho-titulo {
 	color: #9f53ed;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 35px;
  	height: 20.3px;
 	line-height: 60px;
@@ -33,7 +34,7 @@
 
 .cabecalho-usuario_nome {	
 	color: #ab68f0;
-	font-family: sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	font-stretch: normal;
 	font-style: normal;
@@ -48,7 +49,7 @@
 	border: solid 1px #9f53ed;
 	border-radius: 5px;
 	color: #ab68f0;
-	font-family: sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	font-stretch: normal;
 	font-style: normal;

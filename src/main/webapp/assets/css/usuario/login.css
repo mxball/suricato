@@ -15,6 +15,7 @@
 	color: #9f53ed;
 	display: block;
 	font-size: 73px;
+	font-family: 'Open Sans', sans-serif;
 	height: 55.3px;
 	margin: 0 auto 60px;
 	width: 250px;
@@ -33,6 +34,7 @@
 	border-right: none;
 	border-bottom: 2px solid #e4d9f4;
 	color: #d7caeb;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 24px;
 	font-stretch: normal;
 	font-style: normal;
@@ -48,6 +50,7 @@
 
 .login-usuario_dado::placeholder {
 	color: #d7caeb;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 24px;
 	font-stretch: normal;
 	font-style: normal;
@@ -59,6 +62,7 @@
 	border: none;
 	border-radius: 5px;
 	color: #ffffff;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 24px;
 	font-stretch: normal;
 	font-style: normal;
@@ -72,6 +76,7 @@
 .login-usuario_acao {
 	color: #c0c0c0;
 	display: block;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	font-stretch: normal;
 	font-style: normal;
@@ -86,6 +91,7 @@
 .login-usuario_acao .--link,
 .login-usuario_acao .--link:visited {
 	color: #9b9b9b;
+	font-family: 'Open Sans', sans-serif;
 	font-weight: bold;
 }
 
@@ -93,5 +99,6 @@
 .login-usuario_error {
 	color: #D91E18;
 	display: block;
+	font-family: 'Open Sans', sans-serif;
 	margin-bottom: 3px;
 }

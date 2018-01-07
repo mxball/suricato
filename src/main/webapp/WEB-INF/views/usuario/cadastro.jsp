@@ -6,6 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="<c:url value='/assets/css/usuario/login.css'/>">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 		<title>Novo usuário</title>
 	</head>
 	<body>
