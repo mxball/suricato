@@ -3,3 +3,12 @@
 	margin-left: 140px;
 	margin-right: 140px;
 }
+
+.corpo-descricao {
+	color: #826c98;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 20px;
+	letter-spacing: -0.3px;
+}

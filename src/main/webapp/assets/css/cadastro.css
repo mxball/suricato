@@ -1,0 +1,59 @@
+.corpo {
+	margin-left: 180px;
+}
+
+.cadastro {
+	margin-top: 30px;
+}
+
+.cadastro-descricao {
+	color: #d7caeb;
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: -0.2px;
+	margin-bottom: 7px;
+}
+
+.cadastro-erro {
+	color: #F64747;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;	
+	margin-left: 3px;
+}
+
+.cadastro-campo {
+	background-color: #ffffff;
+	border: solid 1px #e4d9f4;
+	border-radius: 5px;
+	color: #af9acf;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	height: 40px;
+	letter-spacing: -0.2px;
+	padding-left: 10px;
+	width: 100%;	
+}
+
+.cadastro-campo::placeholder {
+	color: #d7caeb;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.cadastro-botao {
+	background-color: #ffb647;
+	border: none;
+	border-radius: 5px;
+	color: #ffffff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	height: 50px;
+	letter-spacing: -0.4px;
+	margin-top: 20px;
+	width: 250px;
+}

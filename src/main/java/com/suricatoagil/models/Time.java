@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+
 @Entity
 public class Time {
 
@@ -25,7 +26,7 @@ public class Time {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotBlank
+	@NotBlank(message="Nome do time não pode ser vazio")
 	@Column(unique = true)
 	private String nome;
 	

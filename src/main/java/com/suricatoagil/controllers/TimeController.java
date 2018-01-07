@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.suricatoagil.daos.TimeDao;
 import com.suricatoagil.daos.UsuarioDao;
@@ -34,9 +35,11 @@ public class TimeController {
 		return "time/novo";
 	}
 	
-	@RequestMapping("/criar")
-	public String cadastrar(@Valid @ModelAttribute("time") Time time, Model model, BindingResult bindingResult) {
+	@RequestMapping(value="/criar", method=RequestMethod.POST)
+	public String cadastrar(@ModelAttribute("time") @Valid Time time, BindingResult bindingResult, Model model) {
+		System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 		if(bindingResult.hasErrors()) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 			model.addAttribute("usuario", time.getIntegrantes().iterator().next());
 			return "time/novo"; 
 		}
