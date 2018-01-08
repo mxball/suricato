@@ -22,7 +22,7 @@
 
 .integrante-adiciona {
 	border: none;
-	color: #af9acf;;
+	color: #af9acf;
 	display: inline-block;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
@@ -35,3 +35,39 @@
 .ui-helper-hidden-accessible {
 	display: none;
 }
+
+.glyphicon-remove {
+    color: #ffffff;
+    font-size: 13px;
+    margin-left: 10px;
+	text-decoration: none;
+}
+
+.glyphicon-remove:hover {
+	color: #ffffff;
+	cursor: pointer
+	text-decoration: none;
+}
+
+.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content{
+	background-color: #ffffff;
+	border: 2px solid #af9acf;
+	border-radius: 4px;
+	color: #af9acf !important;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px !important;
+	font-weight: bold !important;
+	padding: 5px !important;
+	width: 300px !important;
+}
+
+.ui-menu-item {	
+	padding: 4px !important; 
+}
+
+.ui-menu-item:hover {
+	background-color: #eee7f7 !important;
+	border-radius: 4px 7px;
+	cursor: pointer;
+}
+

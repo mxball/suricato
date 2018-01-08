@@ -1,24 +1,23 @@
+let listaIntegrantes = document.querySelector(".--lista-integrantes");
+let integrantesCadastrados = document.querySelectorAll(".integrante");
+let quantidadeIntegrantes = integrantesCadastrados.length;
+const inputNovoIntegrante = document.querySelector(".integrante-adiciona");
+
 function atualizaInput() {
-	let campoIntegrantes = document.querySelector(".--lista-integrantes").getBoundingClientRect();
+	let campoIntegrantes = listaIntegrantes.getBoundingClientRect();
 	let integrantesCadastrados = document.querySelectorAll(".integrante");
 	let ultimoIntegrante = integrantesCadastrados[integrantesCadastrados.length - 1].getBoundingClientRect();
 	const tamanhoTotal = campoIntegrantes.right - campoIntegrantes.left;
 	const tamanhoIntegranteCadastrados = ultimoIntegrante.right - campoIntegrantes.left;
 	const novoTamanhoInput = tamanhoTotal - tamanhoIntegranteCadastrados;
 	
-	const inputNovoIntegrante = document.querySelector(".integrante-adiciona");
 	if(novoTamanhoInput > 170) {	
 		inputNovoIntegrante.style.width = (novoTamanhoInput - 30) + "px";
 	} else {
 		inputNovoIntegrante.style.width = (tamanhoTotal - 20) + "px";
 	}
 }
-
 atualizaInput();
-
-
-let quantidadeIntegrantes = document.querySelectorAll(".integrante").length;
-let cores = ["#6de069", "#eb5fea", "#68e1ff", "#ff6885", "#ffb647", "#699ce0"];
 
 $(".integrante-adiciona").autocomplete({
 	minLength: 3,
@@ -35,16 +34,15 @@ $(".integrante-adiciona").autocomplete({
     select : function(event, ui) {
         if (ui.item) {
             event.preventDefault();
-            console.log(ui.item.label);
-            console.log(ui.item.value);
             const inputNome = criaInputNome(quantidadeIntegrantes, ui.item.label);
             document.querySelector(".cadastro").appendChild(inputNome);
             const inputId = criaInputId(quantidadeIntegrantes, ui.item.value);
             document.querySelector(".cadastro").appendChild(inputId);
             const spanUsuario = criaSpan(quantidadeIntegrantes, ui.item.label);
-            document.querySelector(".--lista-integrantes").insertBefore(spanUsuario, document.querySelector(".integrante-adiciona"));
+            listaIntegrantes.insertBefore(spanUsuario, inputNovoIntegrante);
+            integrantesCadastrados = document.querySelectorAll(".integrante");
             quantidadeIntegrantes++;
-            document.querySelector(".integrante-adiciona").value = "";
+            inputNovoIntegrante.value = "";
             atualizaInput();
             return false;
         }
@@ -70,11 +68,25 @@ function criaInputNome(id, value) {
 }
 
 function criaSpan(id, value) {
+	const cores = ["#6de069", "#eb5fea", "#68e1ff", "#ff6885", "#ffb647", "#699ce0"];
 	let span = document.createElement("span");
 	span.className = "integrante";
-	span.dataset.id = id;
 	span.textContent = value;
 	span.style.backgroundColor = cores[quantidadeIntegrantes % cores.length];
 	span.style.marginRight = "4px";
+	let remove = document.createElement("a");
+	remove.dataset.usuarioId = id;
+	remove.className = "integrante-remove glyphicon glyphicon-remove";
+	span.appendChild(remove);
 	return span;
+}
+
+listaIntegrantes.onclick = (event) => {
+	if(event.target.classList.contains("integrante-remove")) {
+		const id = event.target.dataset.usuarioId;
+		document.querySelector("#integrante_nome_" + id).remove();
+		document.querySelector("#integrante_id_" + id).remove();
+		event.target.parentNode.remove();
+		atualizaInput();
+	}
 }
