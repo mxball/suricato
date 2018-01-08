@@ -1,0 +1,39 @@
+.quadro {
+	background-color: #ffffff;
+	border: solid 1px #e4d9f4;
+	border-radius: 5px;
+	display: block;
+	height: 300px;
+	margin-bottom: 7px;
+	overflow-y: auto;
+}
+
+.quadro-lousa {
+	display: inline-block;
+	height: 130px;
+	margin-top: 20px;
+	margin-left: 13px;
+	width: 250px;
+}
+
+.quadro-lousa_foto {
+	border: solid 4px #e4d9f4;
+	border-radius: 5px;
+	float: right;
+	height: 100%;
+	user-drag: none; 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	width: 87%;
+}
+
+.quadro-lousa_seletor {
+	float: left;
+}
+
+.quadro-lousa_seletor:checked + label .quadro-lousa_foto {
+	border-color: #af9acf;
+} 

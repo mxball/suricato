@@ -1,11 +1,12 @@
-function mostraLousa() {
-	var lousa = $("#idLousa").find(":selected");
-	var url = lousa.data().url;
-	
-	var pai = $('#formLousa');
-    var img = document.querySelector("#imagem");  
-    img.src = url;  
-	img.after(lousa);
-}
+const seletorLousa = document.querySelector("#idLousa");
 
-mostraLousa();
+document.querySelectorAll(".quadro-lousa_seletor").forEach((lousa) => {
+	lousa.onchange = () => {
+		seletorLousa.value = lousa.dataset.lousaId;
+	}
+	
+});
+
+seletorLousa.onchange = () => {
+	document.querySelector("#quadro_" + seletorLousa.value).checked = true;
+}
