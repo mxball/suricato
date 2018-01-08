@@ -40,22 +40,6 @@
 	width: 100%;	
 }
 
-.cadastro-campo:after {
-	content: '<>';
-	font: 17px "Consolas", monospace;
-	color: #333;
-	-webkit-transform: rotate(90deg);
-	-moz-transform: rotate(90deg);
-	-ms-transform: rotate(90deg);
-	transform: rotate(90deg);
-	right: 11px;
-	top: 18px;
-	padding: 0 0 2px;
-	border-bottom: 1px solid #999;
-	position: absolute;
-	pointer-events: none;	
-}
-
 .cadastro-campo::placeholder {
 	color: #d7caeb;
 	font-family: 'Open Sans', sans-serif;

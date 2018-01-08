@@ -37,9 +37,7 @@ public class TimeController {
 	
 	@RequestMapping(value="/criar", method=RequestMethod.POST)
 	public String cadastrar(@ModelAttribute("time") @Valid Time time, BindingResult bindingResult, Model model) {
-		System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 		if(bindingResult.hasErrors()) {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 			model.addAttribute("usuario", time.getIntegrantes().iterator().next());
 			return "time/novo"; 
 		}
