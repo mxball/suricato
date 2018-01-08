@@ -23,12 +23,16 @@ $(".integrante-adiciona").autocomplete({
 	minLength: 3,
     source: function (request, response) {
         $.getJSON("/usuario/busca", request, function(result) {
-            response($.map(result, function(usuario) {
-            	return {
-                    label: usuario.nome,
-                    value: usuario.id
-                }
-            }));
+        	let listaUsuario = $.map(result, (usuario) => {
+        							return {
+        								label: usuario.nome,
+        								value: usuario.id
+        							}
+            					});
+        	let listaIds = $.map( document.querySelectorAll(".cadastro-campo_id"), (integrante) => { return parseInt(integrante.value) } );
+        	console.log(listaIds);
+        	listaUsuario = listaUsuario.filter(usuario => { return listaIds.indexOf(usuario.value) == -1 });
+            response(listaUsuario);
         });
     },
     select : function(event, ui) {
@@ -55,6 +59,7 @@ function criaInputId(id, value) {
 	inputId.name = "integrantes[" + id + "].id";
 	inputId.id = "integrante_id_"+id;
 	inputId.value = value;
+	inputId.className = "cadastro-campo_id";
 	return inputId;
 }
 

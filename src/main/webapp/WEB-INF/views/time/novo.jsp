@@ -20,7 +20,7 @@
 			<h2 class="corpo-descricao">Criar time</h2>
 			<form action="<c:url value='/time/criar'/>" class="cadastro" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type='hidden' name='integrantes[0].id' value="${usuario.id}"/>
+				<input type='hidden' name='integrantes[0].id' value="${usuario.id}" class="cadastro-campo_id"/>
 				<input type='hidden' name='integrantes[0].nome' value="${usuario.nome}"/>
 				<label class="cadastro-descricao" for="nome">
 					Time <form:errors path='time.nome' class="cadastro-erro"/>
