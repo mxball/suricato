@@ -5,8 +5,9 @@ const inputNovoIntegrante = document.querySelector(".integrante-adiciona");
 
 function atualizaInput() {
 	let campoIntegrantes = listaIntegrantes.getBoundingClientRect();
-	let integrantesCadastrados = document.querySelectorAll(".integrante");
-	let ultimoIntegrante = integrantesCadastrados[integrantesCadastrados.length - 1].getBoundingClientRect();
+	integrantesCadastrados = document.querySelectorAll(".integrante");
+	quantidadeIntegrantes = integrantesCadastrados.length;
+	let ultimoIntegrante = integrantesCadastrados[quantidadeIntegrantes - 1].getBoundingClientRect();
 	const tamanhoTotal = campoIntegrantes.right - campoIntegrantes.left;
 	const tamanhoIntegranteCadastrados = ultimoIntegrante.right - campoIntegrantes.left;
 	const novoTamanhoInput = tamanhoTotal - tamanhoIntegranteCadastrados;
@@ -30,7 +31,6 @@ $(".integrante-adiciona").autocomplete({
         							}
             					});
         	let listaIds = $.map( document.querySelectorAll(".cadastro-campo_id"), (integrante) => { return parseInt(integrante.value) } );
-        	console.log(listaIds);
         	listaUsuario = listaUsuario.filter(usuario => { return listaIds.indexOf(usuario.value) == -1 });
             response(listaUsuario);
         });
@@ -45,7 +45,6 @@ $(".integrante-adiciona").autocomplete({
             const spanUsuario = criaSpan(quantidadeIntegrantes, ui.item.label);
             listaIntegrantes.insertBefore(spanUsuario, inputNovoIntegrante);
             integrantesCadastrados = document.querySelectorAll(".integrante");
-            quantidadeIntegrantes++;
             inputNovoIntegrante.value = "";
             atualizaInput();
             return false;
@@ -56,7 +55,6 @@ $(".integrante-adiciona").autocomplete({
 function criaInputId(id, value) {
 	let inputId = document.createElement("input");
 	inputId.type = "hidden";
-	inputId.name = "integrantes[" + id + "].id";
 	inputId.id = "integrante_id_"+id;
 	inputId.value = value;
 	inputId.className = "cadastro-campo_id";
@@ -66,23 +64,25 @@ function criaInputId(id, value) {
 function criaInputNome(id, value) {
 	let inputId = document.createElement("input");
 	inputId.type = "hidden";
-	inputId.name = "integrantes[" + id + "].nome";
 	inputId.id = "integrante_nome_"+id;
 	inputId.value = value;
+	inputId.className = "cadastro-campo_nome";
 	return inputId;
 }
 
+let contadorCores = 1;
 function criaSpan(id, value) {
 	const cores = ["#6de069", "#eb5fea", "#68e1ff", "#ff6885", "#ffb647", "#699ce0"];
 	let span = document.createElement("span");
 	span.className = "integrante";
 	span.textContent = value;
-	span.style.backgroundColor = cores[quantidadeIntegrantes % cores.length];
+	span.style.backgroundColor = cores[contadorCores % cores.length];
 	span.style.marginRight = "4px";
 	let remove = document.createElement("a");
 	remove.dataset.usuarioId = id;
 	remove.className = "integrante-remove glyphicon glyphicon-remove";
 	span.appendChild(remove);
+	contadorCores++
 	return span;
 }
 
@@ -94,4 +94,14 @@ listaIntegrantes.onclick = (event) => {
 		event.target.parentNode.remove();
 		atualizaInput();
 	}
+}
+
+document.querySelector(".cadastro").onsubmit = () => {
+	const camposId = document.querySelectorAll(".cadastro-campo_id");
+	const camposNome = document.querySelectorAll(".cadastro-campo_nome");
+	for(var posicao = 0; posicao < camposId.length; posicao++) {
+		camposId[posicao].name = "integrantes[" + posicao + "].id";
+		camposNome[posicao].name = "integrantes[" + posicao + "].nome";
+	}
+	return true;
 }
