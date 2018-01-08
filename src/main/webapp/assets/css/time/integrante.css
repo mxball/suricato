@@ -1,0 +1,37 @@
+.--lista-integrantes {
+	display: block;
+	height: inherit;
+	min-height: 40px;
+	padding-bottom: 4px;
+}
+
+.integrante {
+	border-radius: 5px;
+	background-color: #6de069;
+	color: #ffffff;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	height: 30px;
+	letter-spacing: -0.2px;
+	line-height: 30px;
+	margin-top: 4px;
+	padding: 0px 10px;
+}
+
+.integrante-adiciona {
+	border: none;
+	color: #af9acf;;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	outline: none;
+	height: 30px;
+	padding-left: 5px;
+}
+
+.ui-helper-hidden-accessible {
+	display: none;
+}

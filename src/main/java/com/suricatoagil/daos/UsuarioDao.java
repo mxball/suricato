@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import com.suricatoagil.models.Usuario;
+import com.suricatoagil.viewmodels.AdicionaUsuarioTimeDTO;
 
 @Repository
 public class UsuarioDao {
@@ -26,8 +27,8 @@ public class UsuarioDao {
 		return usuario;
 	}
 
-	public List<Usuario> listaUsuariosComNomeParecidoCom(String nome) {
-		return manager.createQuery("select distinct u from Usuario u where nome like :nome", Usuario.class)
+	public List<AdicionaUsuarioTimeDTO> listaUsuariosComNomeParecidoCom(String nome) {
+		return manager.createQuery("select new " + AdicionaUsuarioTimeDTO.class.getName() + "(u.nome, u.id) from Usuario u where nome like :nome", AdicionaUsuarioTimeDTO.class)
 					.setParameter("nome", "%" + nome + "%")
 					.getResultList();
 	}

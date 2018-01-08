@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.suricatoagil.actions.CadastroUsuarioAction;
 import com.suricatoagil.daos.UsuarioDao;
 import com.suricatoagil.models.Usuario;
+import com.suricatoagil.viewmodels.AdicionaUsuarioTimeDTO;
 import com.suricatoagil.viewmodels.CadastroUsuarioDTO;
 
 @Controller
@@ -78,7 +79,7 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value = "/usuario/busca", method = RequestMethod.GET)
-	public @ResponseBody List<Usuario> busca(@RequestParam("term") String nome) {
+	public @ResponseBody List<AdicionaUsuarioTimeDTO> busca(@RequestParam("term") String nome) {
 		return usuarioDao.listaUsuariosComNomeParecidoCom(nome);
 	}
 	
