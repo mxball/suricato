@@ -24,18 +24,18 @@
 			<h2 class="corpo-descricao">Criar Retrospectiva</h2>
 			<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/cria" class="cadastro" method="post">			
 				<label for="time" class="cadastro-descricao">
-					Time 
+					Time <form:errors path='adicionaRetrospectivaDTO.timeId' class="cadastro-erro"/> 
 				</label>
-				<select name="time.id" id="time" class="cadastro-campo">
+				<select name="timeId" id="time" class="cadastro-campo">
 					<option value="" checked>Pessoal</option>
 					<c:forEach var="time" items="${usuario.conjuntoTimes}">
 						<option value="${time.id}">${time.nome}</option>
 					</c:forEach>
 				</select>
 				<label for="idLousa" class="cadastro-descricao">
-					Atividade
+					Atividade <form:errors path='adicionaRetrospectivaDTO.lousaId' class="cadastro-erro"/>
 				</label>
-				<select name="lousa.id"  id="idLousa" onchange="mostraLousa()" class="cadastro-campo">
+				<select name="lousaId"  id="idLousa" onchange="mostraLousa()" class="cadastro-campo">
 					<c:forEach items="${lousas}" var="lousa" varStatus="status">
 						<option value="${lousa.id}" id="atividade_${status.index}" data-url="${lousa.endereco}">${lousa.nome}</option>
 					</c:forEach>
@@ -50,7 +50,6 @@
 						</div>
 					</c:forEach>
 				</div>
-				<input type="hidden" name="criador.nome" value="${pageContext.request.userPrincipal.name}"/>
 				<suricato:calendario id="dataInicio" label="Data início:" value="${hoje}"/>
 				<suricato:calendario id="dataFim" label="Data fim:"/>
 				<button type="submit" class="cadastro-botao --retrospectiva">Criar</button>

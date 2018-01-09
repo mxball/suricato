@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.Calendar;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -11,16 +12,19 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.suricatoagil.daos.ComentarioDao;
 import com.suricatoagil.daos.LousaDao;
 import com.suricatoagil.daos.PostItDao;
 import com.suricatoagil.daos.RetrospectivaDao;
+import com.suricatoagil.daos.TimeDao;
 import com.suricatoagil.daos.UsuarioDao;
 import com.suricatoagil.models.Retrospectiva;
 import com.suricatoagil.models.Time;
 import com.suricatoagil.models.Usuario;
+import com.suricatoagil.viewmodels.AdicionaRetrospectivaDTO;
 import com.suricatoagil.websockets.AtualizaRetrospectiva;
 import com.suricatoagil.websockets.ConteudoJson;
 
@@ -45,6 +49,9 @@ public class RetrospectivaController {
 	private ComentarioDao comentarioDao;
 	
 	@Autowired
+	private TimeDao timeDao;
+	
+	@Autowired
 	private AtualizaRetrospectiva atualizaRetrospectiva;
 
 	@RequestMapping("/mostra")
@@ -64,12 +71,23 @@ public class RetrospectivaController {
 	}
 	
 	@RequestMapping("/cria")
-	public String criaRestrospectiva(Retrospectiva retrospectiva, Model model) {
-		if(retrospectiva.getTime().getId() == null) {
-			retrospectiva.setTime(null);
+	public String criaRestrospectiva(@Valid AdicionaRetrospectivaDTO adicionaRetrospectivaDTO, BindingResult result, Model model, Principal principal) {
+		Usuario usuarioLogado = usuarioDao.buscaPorNome(principal.getName());
+		if(result.hasErrors()) {
+			System.out.println(">>>>>>>>>>>>>>>>>" + result.getAllErrors());
+			model.addAttribute("lousas", lousaDao.lista());
+			model.addAttribute("usuario", usuarioLogado);
+			model.addAttribute("hoje", Calendar.getInstance());
+			return "retrospectiva/nova";
 		}
-		retrospectiva.setCriador(usuarioDao.buscaPorNome(retrospectiva.getCriador().getNome()));
-		retrospectiva.setLousa(lousaDao.load(retrospectiva.getLousa().getId()));
+		Retrospectiva retrospectiva = new Retrospectiva();
+		if(adicionaRetrospectivaDTO.getTimeId() != null) {
+			retrospectiva.setTime(timeDao.load(adicionaRetrospectivaDTO.getTimeId()));
+		}
+		retrospectiva.setCriador(usuarioLogado);
+		retrospectiva.setLousa(lousaDao.load(adicionaRetrospectivaDTO.getLousaId()));
+		retrospectiva.setDataInicio(adicionaRetrospectivaDTO.getDataInicio());
+		retrospectiva.setDataFim(adicionaRetrospectivaDTO.getDataFim());
 		retrospectivaDao.salva(retrospectiva);
 		return "redirect:mostra?id=" + retrospectiva.getId();
 	}
