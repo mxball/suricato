@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<fieldset class="login">
-			<h1 class="login-titulo">suricato</h1>
+			<img alt="Logo suricato" src="<c:url value="/assets/images/logo-suricato.svg"/>" class="login-titulo">
 			<form action="<c:url value='/login' />" method='POST' class="login-usuario">
 				<c:if test="${not empty error}">
 					<span class="login-usuario_error" id="login-errors">${error}</span>

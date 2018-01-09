@@ -8,18 +8,20 @@
 }
 
 .cabecalho-home {
-	color: #9f53ed;
+ 	height: 60px;
+	margin-left: 140px;
+	position: relative;
 	text-decoration: none;
+	width: 251px;
 }
 
-.cabecalho-titulo {
+.cabecalho-home_logo {
 	color: #9f53ed;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 35px;
- 	height: 20.3px;
-	line-height: 60px;
-	margin-left: 140px;
-	width: 34.2px;
+	height: 29px;
+	object-fit: contain;
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .cabecalho-usuario {

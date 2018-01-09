@@ -14,11 +14,10 @@
 .login-titulo {
 	color: #9f53ed;
 	display: block;
-	font-size: 73px;
-	font-family: 'Open Sans', sans-serif;
-	height: 55.3px;
+	height: 64px;
 	margin: 0 auto 60px;
-	width: 250px;
+	object-fit: contain;
+	width: 251px;
 }
 
 .login-usuario {

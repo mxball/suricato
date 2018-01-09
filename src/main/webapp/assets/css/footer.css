@@ -25,18 +25,21 @@ body {
 	width: 100%;
 }
 
-.rodape-titulo {
+.rodape-home {
 	border-top: 2px solid #efe7f8;
 	color: #eee7f7;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 35px;
- 	height: 20.3px;
-	line-height: 51px;
+	display: block;
+ 	height: 60px;
 	margin-left: 140px;
 	margin-right: 140px;
+	text-decoration: none;
 }
 
-.rodape-home {
+.rodape-home_logo {
 	color: #eee7f7;
-	text-decoration: none;
+	height: 29px;
+	object-fit: contain;
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }

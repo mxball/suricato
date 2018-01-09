@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<fieldset class="login">
-			<h1 class="login-titulo">suricato</h1>
+			<img alt="Logo suricato" src="<c:url value="/assets/images/logo-suricato.svg"/>" class="login-titulo">
 			<form action="<c:url value='/usuario/cadastro'/>" class="login-usuario" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<form:errors path='usuario.nome' cssClass="login-usuario_error"/>
