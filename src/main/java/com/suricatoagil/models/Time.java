@@ -36,6 +36,9 @@ public class Time {
 	
 	@OneToMany(mappedBy="time")
 	private Set<Retrospectiva> retrospectivas = new HashSet<>();
+	
+	@NotBlank(message="Escolha a cor do seu time")
+	private String cor;
 
 	public Integer getId() {
 		return id;
@@ -80,7 +83,15 @@ public class Time {
 	public Set<Retrospectiva> getRetrospectivasEncerradas() {
 		return this.retrospectivas.stream().filter(retro -> !retro.isAberta()).collect(Collectors.toSet());
 	}
+	
+	public String getCor() {
+		return cor;
+	}
 
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

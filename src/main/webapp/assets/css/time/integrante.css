@@ -71,3 +71,41 @@
 	cursor: pointer;
 }
 
+.cadastro-campo_cor {
+	border-radius: 5px;
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+}
+
+.--seletorCor {
+	display: none;
+}
+
+.--seletorCor:checked + .cadastro-campo_cor {
+	border: solid 5px #bfbfbf;
+}
+
+.--azul {
+	background-color: #68e1ff;
+}
+
+.--vermelho {
+	background-color: #ff6885;
+}
+
+.--amarelo {
+	background-color: #ffb647;
+}
+
+.--marinho {
+	background-color: #699ce0;
+}
+
+.--verde {
+	background-color: #6de069;
+}
+
+.--rosa {
+	background-color: #eb5fea;
+}

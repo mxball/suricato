@@ -33,6 +33,29 @@
 					<span class="integrante">${usuario.nome}</span>
 					<input type="text" class="integrante-adiciona" id="novoIntegrante">
 				</label>
+				
+				<label class="cadastro-descricao">
+					Label <form:errors path='time.cor' class="cadastro-erro"/>
+				</label>
+				
+				<input type="radio" name="cor" id="cor-azul" value="68e1ff" class="--seletorCor">
+				<label for="cor-azul" class="cadastro-campo_cor --azul"></label>
+				
+				<input type="radio" name="cor" id="cor-vermelho" value="ff6885" class="--seletorCor">
+				<label for="cor-vermelho" class="cadastro-campo_cor --vermelho"></label>
+				
+				<input type="radio" name="cor" id="cor-amarelo" value="ffb647" class="--seletorCor">
+				<label for="cor-amarelo" class="cadastro-campo_cor --amarelo"></label>
+				
+				<input type="radio" name="cor" id="cor-marinho" value="699ce0" class="--seletorCor">
+				<label for="cor-marinho" class="cadastro-campo_cor --marinho"></label>
+				
+				<input type="radio" name="cor" id="cor-verde" value="6de069" class="--seletorCor">
+				<label for="cor-verde" class="cadastro-campo_cor --verde"></label>
+				
+				<input type="radio" name="cor" id="cor-rosa" value="eb5fea" class="--seletorCor">
+				<label for="cor-rosa" class="cadastro-campo_cor --rosa"></label>
+				
 				<button type="submit" class="cadastro-botao">CRIAR</button>
 			</form>
 		</div>
