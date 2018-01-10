@@ -6,10 +6,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.suricatoagil.models.Retrospectiva;
+import com.suricatoagil.models.Usuario;
 
 @Repository
 public class RetrospectivaDao {
@@ -17,12 +17,6 @@ public class RetrospectivaDao {
 	@PersistenceContext
 	private EntityManager manager;
 	
-	@Autowired
-	private PostItDao postItDao;
-	
-	@Autowired
-	private ComentarioDao comentarioDao;
-
 	public void salva(Retrospectiva retrospectiva) {
 		manager.persist(retrospectiva);
 	}
@@ -63,6 +57,12 @@ public class RetrospectivaDao {
 		return (Retrospectiva) manager.createQuery("select r from Retrospectiva r left join fetch r.time t left join fetch t.integrantes where r.id = :id")
 					.setParameter("id", retrospectivaId)
 					.getSingleResult();
+	}
+
+	public List<Retrospectiva> buscaRetrosPessoaisDo(Usuario usuario) {
+		return manager.createQuery("from Retrospectiva r where r.criador = :usuario and r.time is null", Retrospectiva.class)
+					.setParameter("usuario", usuario)
+					.getResultList();
 	}
 	
 }

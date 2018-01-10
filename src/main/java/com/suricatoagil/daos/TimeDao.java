@@ -1,5 +1,7 @@
 package com.suricatoagil.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -31,6 +33,13 @@ public class TimeDao {
 	public void adicionaUsuarioNoTime(Usuario usuario, Time time) {
 		manager.createNativeQuery("insert into time_usuario (time_id, usuario_id) values (:time, :usuario)")
 			.setParameter("time", time.getId()).setParameter("usuario", usuario.getId()).executeUpdate();
+	}
+
+	public List<Time> buscaTimesDo(Usuario usuario) {
+		return manager.createQuery("select t from Time t join t.integrantes i where i.nome = :nome and i.id = :id ", Time.class)
+				.setParameter("nome", usuario.getNome())
+				.setParameter("id", usuario.getId())
+				.getResultList();
 	}
 	
 	

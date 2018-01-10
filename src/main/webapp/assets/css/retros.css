@@ -1,0 +1,91 @@
+.lista-times {
+	color: #826c98;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	font-weight: 800;
+	letter-spacing: -0.3px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.time {
+	border-radius: 5px;
+	display: inline-block;
+	height: 110px;
+	margin-right: 20px;
+	padding: 12.7px 10px;
+	width: 275px;
+}
+
+.time-nome {
+	border-bottom: 1.1px solid rgba(0,0,0, 0.13);
+	color: #ffffff;
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	height: 33px;
+	letter-spacing: -0.3px;
+	line-height: 33px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 0.5px;
+	margin-bottom: 8.7px;
+	width: 255px;;
+}
+
+.time-quantidade,
+.time-integrantes {
+	color: #ffffff;
+	display: block;
+	font-family: OpenSans;
+	font-size: 16px;
+	height: 22px;
+	letter-spacing: -0.2px;
+	line-height: 22px;
+	text-align: right;
+}
+
+.--numero {
+	font-weight: bold;	
+}
+
+.lista-cadastros {
+	display: block;
+	margin-top: 20px;
+}
+
+.cadastro {
+	border-radius: 5px;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	height: 30px;
+	letter-spacing: -0.2px;
+	line-height: 30px;
+	margin-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;	
+	text-align: center;
+	text-decoration: none;
+}
+
+.cadastro.--retrospectiva {
+	border: solid 1px #30c3e7;
+	color: #30c3e7;
+}
+
+.cadastro.--retrospectiva:hover {
+	border: solid 1px #588ed6;
+	color: #588ed6;
+}
+
+.cadastro.--time {
+	border: solid 1px #fdad33;
+	color: #fdad33;
+}
+
+.cadastro.--time:hover {
+	border: solid 1px #f4a020;
+	color: #f4a020;
+}

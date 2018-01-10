@@ -14,9 +14,15 @@
 <body>
 	<%@include file="header.jsp" %>
 	<div class="corpo">
-		<%@include file="iniciante.jsp" %>
+		<c:choose>
+			<c:when test="${mapaTimes.comRetrosPassadas}">
+				<%@include file="home.jsp" %>
+			</c:when>
+			<c:otherwise>
+				<%@include file="iniciante.jsp" %>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<%@include file="footer.jsp" %>
-	<script src="<c:url value='/assets/js/index.js'/>"></script>
 </body>
 </html>
