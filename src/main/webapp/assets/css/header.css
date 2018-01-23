@@ -25,7 +25,8 @@
 }
 
 .cabecalho-usuario {
-	margin-right: 140px; 
+	line-height: 60px; 
+	margin-right: 140px;
 }
 
 .cabecalho-usuario_nome,

@@ -1,0 +1,184 @@
+.time {
+	display: block;
+	height: 80px;
+	line-height: 80px;
+	width: 100%;
+}
+
+.time-nome {
+	color: #ffffff;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	margin-left: 180px;
+}
+
+.time-editar {
+	font-size: 26px;
+}
+
+.time-editar:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.infos {
+	display: flex;
+	justify-content: space-between;
+	height: 35px;
+	margin-top: 10px;
+	margin-bottom: 25px;	
+}
+
+.infos-time_dado {	
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	letter-spacing: -0.2px;
+	margin-right: 20px;
+}
+
+.infos-time_integrante,
+.infos-retrospectiva_nova {	
+	border-radius: 5px;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	letter-spacing: -0.2px;
+	padding: 5px 10px;
+}
+
+.infos-time_integrante:hover,
+.infos-retrospectiva_nova:hover {	
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.infos-time_integrante {
+	border: 1px solid #4bdd46;
+	color: #4bdd46;
+}
+
+.infos-retrospectiva {
+	display: block;	
+}
+
+.infos-retrospectiva_nova {
+	border: 1px solid #30c3e7;
+	color: #30c3e7;
+	display: inline-block;
+	margin-right: 20px;
+	vertical-align: top;
+}
+
+.infos-retrospectiva_disposicao.--minimized,
+.infos-retrospectiva_disposicao.--maximized {
+	color: #d8d8d8;
+	display: inline-block;
+	vertical-align: top;
+	line-height: 30px;
+}
+
+.infos-retrospectiva_disposicao.--minimized {
+	font-size: 30px;
+	margin-right: 3px;
+}
+
+.infos-retrospectiva_disposicao.--maximized {
+	font-size: 35px;	
+}
+
+.infos-retrospectiva_disposicao.--minimized:hover,
+.infos-retrospectiva_disposicao.--maximized:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.infos-retrospectiva_disposicao[data-selected] {
+	color:#969696 
+}
+
+
+.infos-time_integrante:hover {
+	color: #4bdd46;
+}
+
+.infos-retrospectiva_nova:hover {
+	color: #30c3e7;
+}
+
+.lista-retrospectivas {
+	display: block;
+	margin: 0 auto;
+	width: 1560px;
+}
+
+.lista-retrospectivas.--minimized {
+	width: 1560px;
+}
+
+.lista-retrospectivas.--maximized {
+	width: 1080px;
+}
+
+.retrospectiva {	
+	border: 1px solid #d8d8d8;
+	display: inline-block;
+}
+
+
+.--minimized .retrospectiva {
+  	height: 260px;
+	width: 477px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 40px;
+	
+}
+
+.--maximized .retrospectiva {
+	display: block;
+	height: 540px;
+	margin-bottom: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1080px;
+}
+
+.retrospectiva-imagem {
+	width: 100%;
+	height: 100%;
+}
+
+@media (max-width : 1846px) {
+	.lista-retrospectivas.--minimized {		
+    	width: 1038px;
+	}
+
+}
+
+@media (max-width : 1315px) {
+
+	.corpo {
+		margin-left: 60px;
+		margin-right: 60px;
+	}
+	
+	.lista-retrospectivas.--minimized,
+	.lista-retrospectivas.--maximized {
+		width: 800px;
+	}
+	
+	.--minimized .retrospectiva {
+	    height: 218px;
+    	width: 378px;
+    	margin-left: 10px;
+    	margin-right: 10px;
+    }
+    
+    .--maximized .retrospectiva {
+    	width: 800px;
+    	height: 390px;
+    }
+}

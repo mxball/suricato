@@ -13,7 +13,9 @@
 	display: inline-block;
 	height: 110px;
 	margin-right: 20px;
+	margin-bottom: 10px;
 	padding: 12.7px 10px;
+	text-decoration:none; 
 	width: 275px;
 }
 
@@ -38,7 +40,7 @@
 .time-integrantes {
 	color: #ffffff;
 	display: block;
-	font-family: OpenSans;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	height: 22px;
 	letter-spacing: -0.2px;

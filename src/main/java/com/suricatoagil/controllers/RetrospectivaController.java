@@ -22,7 +22,6 @@ import com.suricatoagil.daos.RetrospectivaDao;
 import com.suricatoagil.daos.TimeDao;
 import com.suricatoagil.daos.UsuarioDao;
 import com.suricatoagil.models.Retrospectiva;
-import com.suricatoagil.models.Time;
 import com.suricatoagil.models.Usuario;
 import com.suricatoagil.viewmodels.AdicionaRetrospectivaDTO;
 import com.suricatoagil.websockets.AtualizaRetrospectiva;
@@ -107,10 +106,19 @@ public class RetrospectivaController {
 		return "retrospectiva/lista";
 	}
 	
-	@RequestMapping("time/lista")
-	public String listaRetrospectivasDoTime(Time time, Model model) {
-		model.addAttribute("retrospectivasAbertas", retrospectivaDao.listaRetrospectivasAbertasDoTime(time.getId()));
-		model.addAttribute("retrospectivasFechadas", retrospectivaDao.listaRetrospectivasEncerradasDoTime(time.getId()));
+	@RequestMapping("time/abertas")
+	public String listaRetrospectivasAbertasDoTime(int timeId, Model model, Principal principal) {
+		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
+		model.addAttribute("time", timeDao.load(timeId));
+		model.addAttribute("retrospectivas", retrospectivaDao.listaRetrospectivasAbertasDoTime(timeId));
+		return "retrospectiva/lista";
+	}
+	
+	@RequestMapping("time/fechadas")
+	public String listaRetrospectivasFechadasDoTime(int timeId, Model model, Principal principal) {
+		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
+		model.addAttribute("time", timeDao.load(timeId));
+		model.addAttribute("retrospectivas", retrospectivaDao.listaRetrospectivasEncerradasDoTime(timeId));
 		return "retrospectiva/lista";
 	}
 

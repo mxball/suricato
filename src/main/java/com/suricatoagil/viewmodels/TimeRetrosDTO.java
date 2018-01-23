@@ -10,11 +10,18 @@ public class TimeRetrosDTO {
 	
 	private String cor;
 	
+	private Integer timeId;
+	
 	public TimeRetrosDTO(int quantidadeDeRetros, int quantidadeDeIntegrantes, String nomeTime, String cor) {
 		this.quantidadeDeRetros = quantidadeDeRetros;
 		quantidadeIntegrantes = quantidadeDeIntegrantes;
 		this.nomeTime = nomeTime;
 		this.cor = cor;
+	}
+
+	public TimeRetrosDTO(int quantidadeDeRetros, int quantidadeDeIntegrantes, Integer timeId, String nome, String cor) {
+		this(quantidadeDeRetros, quantidadeDeIntegrantes, nome, cor);
+		this.timeId = timeId;
 	}
 
 	public int getQuantidadeDeRetros() {
@@ -31,6 +38,10 @@ public class TimeRetrosDTO {
 
 	public String getCor() {
 		return cor;
+	}
+	
+	public Integer getTimeId() {
+		return timeId;
 	}
 	
 }
