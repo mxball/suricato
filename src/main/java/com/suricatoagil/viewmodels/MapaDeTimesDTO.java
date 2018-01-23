@@ -21,9 +21,8 @@ public class MapaDeTimesDTO {
 			Set<Retrospectiva> retrospectivasAbertas = time.getRetrospectivasAbertas();
 			
 			int quantidadeAbertas = retrospectivasAbertas.size();
-			if(quantidadeAbertas > 0) {				
-				timesRetrosAbertas.add(new TimeRetrosDTO(quantidadeAbertas, numeroIntegrantes, time.getId(), time.getNome(), time.getCor()));
-			}
+							
+			timesRetrosAbertas.add(new TimeRetrosDTO(quantidadeAbertas, numeroIntegrantes, time.getId(), time.getNome(), time.getCor()));
 			Set<Retrospectiva> retrospectivasEncerradas = time.getRetrospectivasEncerradas();
 			int quantidadeFechadas = retrospectivasEncerradas.size();
 			if(quantidadeFechadas > 0) {
@@ -38,9 +37,7 @@ public class MapaDeTimesDTO {
 			} else {
 				quantidadeFechadas++;
 			}
-			if(quantidadeAbertas > 0) {
-				timesRetrosAbertas.add(new TimeRetrosDTO(quantidadeAbertas, 1, "Pessoal", "eb5fea"));
-			}
+			timesRetrosAbertas.add(new TimeRetrosDTO(quantidadeAbertas, 1, "Pessoal", "eb5fea"));
 			if(quantidadeFechadas > 0) {				
 				timesRetrosAbertas.add(new TimeRetrosDTO(quantidadeFechadas, 1, "Pessoal", "eb5fea"));
 			}
