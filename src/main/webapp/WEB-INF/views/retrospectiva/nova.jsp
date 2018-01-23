@@ -27,9 +27,9 @@
 					Time <form:errors path='adicionaRetrospectivaDTO.timeId' class="cadastro-erro"/> 
 				</label>
 				<select name="timeId" id="time" class="cadastro-campo">
-					<option value="" checked>Pessoal</option>
+					<option value="">Pessoal</option>
 					<c:forEach var="time" items="${usuario.conjuntoTimes}">
-						<option value="${time.id}">${time.nome}</option>
+						<option value="${time.id}" ${time.id eq timeId ? 'selected' : '' }>${time.nome}</option>
 					</c:forEach>
 				</select>
 				<label for="idLousa" class="cadastro-descricao">

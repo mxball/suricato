@@ -39,6 +39,10 @@
 	margin-right: 20px;
 }
 
+.infos-time_dado .--numero {
+	font-weight: bold;
+}
+
 .infos-time_integrante,
 .infos-retrospectiva_nova {	
 	border-radius: 5px;

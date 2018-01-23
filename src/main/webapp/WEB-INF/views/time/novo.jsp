@@ -38,22 +38,22 @@
 					Label <form:errors path='time.cor' class="cadastro-erro"/>
 				</label>
 				
-				<input type="radio" name="cor" id="cor-azul" value="68e1ff" class="--seletorCor">
+				<input type="radio" name="cor" id="cor-azul" value="68e1ff" class="--seletorCor" ${time.cor eq '68e1ff' ? 'checked' : ''}>
 				<label for="cor-azul" class="cadastro-campo_cor --azul"></label>
 				
-				<input type="radio" name="cor" id="cor-vermelho" value="ff6885" class="--seletorCor">
+				<input type="radio" name="cor" id="cor-vermelho" value="ff6885" class="--seletorCor" ${time.cor eq 'ff6885' ? 'checked' : ''}>
 				<label for="cor-vermelho" class="cadastro-campo_cor --vermelho"></label>
 				
-				<input type="radio" name="cor" id="cor-amarelo" value="ffb647" class="--seletorCor">
+				<input type="radio" name="cor" id="cor-amarelo" value="ffb647" class="--seletorCor" ${time.cor eq 'ffb647' ? 'checked' : ''}>
 				<label for="cor-amarelo" class="cadastro-campo_cor --amarelo"></label>
 				
-				<input type="radio" name="cor" id="cor-marinho" value="699ce0" class="--seletorCor">
+				<input type="radio" name="cor" id="cor-marinho" value="699ce0" class="--seletorCor" ${time.cor eq '699ce0' ? 'checked' : ''}>
 				<label for="cor-marinho" class="cadastro-campo_cor --marinho"></label>
 				
-				<input type="radio" name="cor" id="cor-verde" value="6de069" class="--seletorCor">
+				<input type="radio" name="cor" id="cor-verde" value="6de069" class="--seletorCor" ${time.cor eq '6de069' ? 'checked' : ''}>
 				<label for="cor-verde" class="cadastro-campo_cor --verde"></label>
 				
-				<input type="radio" name="cor" id="cor-rosa" value="eb5fea" class="--seletorCor">
+				<input type="radio" name="cor" id="cor-rosa" value="eb5fea" class="--seletorCor" ${time.cor eq 'eb5fea' ? 'checked' : ''}>
 				<label for="cor-rosa" class="cadastro-campo_cor --rosa"></label>
 				
 				<button type="submit" class="cadastro-botao">CRIAR</button>

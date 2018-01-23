@@ -46,12 +46,23 @@ public class TimeController {
 	}
 
 	@RequestMapping("/mostra")
-	public String mostra(@ModelAttribute("time") Time time, Model model, Principal principal) {
+	public String mostra(int timeId, Model model, Principal principal) {
 		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
-		model.addAttribute("time", timeDao.load(time.getId()));
+		model.addAttribute("time", timeDao.load(timeId));
 		return "time/mostra";
 	}
 
+	@RequestMapping(value="/atualizar", method=RequestMethod.POST)
+	public String atualizar(@ModelAttribute("time") @Valid Time time, BindingResult bindingResult, Model model, Principal principal) {
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
+			model.addAttribute("time", time);
+			return "time/mostra"; 
+		}
+		timeDao.atualiza(time);
+		return "redirect:/index";
+	}
+	
 	@RequestMapping("/adicionaUsuario")
 	public String adicionaIntegrante(@ModelAttribute("usuario") Usuario usuario) {
 		Usuario usuarioLoaded = usuarioDao.buscaPorNome(usuario.getNome());

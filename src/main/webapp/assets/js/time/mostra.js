@@ -71,8 +71,18 @@ function criaInputNome(id, value) {
 }
 
 let contadorCores = 1;
+const cores = ["#699ce0", "#6de069", "#eb5fea", "#68e1ff", "#ff6885", "#ffb647"];
+
+function arrumaCores() {
+	document.querySelectorAll(".integrante").forEach(integrante => {
+		integrante.style.backgroundColor = cores[contadorCores % cores.length];
+		contadorCores++
+	});
+}
+
+arrumaCores();
+
 function criaSpan(id, value) {
-	const cores = ["#6de069", "#eb5fea", "#68e1ff", "#ff6885", "#ffb647", "#699ce0"];
 	let span = document.createElement("span");
 	span.className = "integrante";
 	span.textContent = value;

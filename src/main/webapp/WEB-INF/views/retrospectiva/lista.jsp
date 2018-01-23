@@ -17,17 +17,21 @@
 	<%@include file="../header.jsp" %>
 	<div class="time" style="background-color: #${time.cor}">
 		<h2 class="time-nome">${time.nome}</h2>
-		<a class="time-editar glyphicon glyphicon-cog"></a>
+		<a class="time-editar glyphicon glyphicon-cog" href="<c:url value='/time/mostra?timeId=${time.id}'/>"></a>
 	</div>
 	<div class="corpo">
 		<div class="infos">
 			<div class="infos-time">
-				<span class="infos-time_dado" style="color: #${time.cor}">${retrospectivas.size()} Retrospectivas</span>
-				<span class="infos-time_dado" style="color: #${time.cor}">${time.integrantes.size() } Participantes</span>
-				<a class="infos-time_integrante">Add membros</a>
+				<span class="infos-time_dado" style="color: #${time.cor}">
+					<span class="--numero">${retrospectivas.size()}</span> Retrospectivas
+				</span>
+				<span class="infos-time_dado" style="color: #${time.cor}">
+					<span class="--numero">${time.integrantes.size() }</span> Participantes
+				</span>
+				<a class="infos-time_integrante" href="<c:url value='/time/mostra?timeId=${time.id}'/>">Add membros</a>
 			</div>
 			<div class="infos-retrospectiva">
-				<a class="infos-retrospectiva_nova">Criar Retrospectiva</a>
+				<a class="infos-retrospectiva_nova" href="<c:url value='/retrospectiva/nova?timeId=${time.id}'/>">Criar Retrospectiva</a>
 				<a class="infos-retrospectiva_disposicao glyphicon glyphicon-th-large --minimized" data-selected></a>
 				<a class="infos-retrospectiva_disposicao glyphicon glyphicon-stop --maximized"></a>
 			</div>
@@ -35,7 +39,9 @@
 		<ul class="lista-retrospectivas --minimized">
 			<c:forEach var="retro" items="${retrospectivas}">
 				<li class="retrospectiva">
-					<img alt="${retro.lousa.nome}" src="${retro.lousa.endereco}" class="retrospectiva-imagem"></img>
+					<a href="<c:url value='/retrospectiva/mostra?id=${retro.id}'/>">
+						<img alt="${retro.lousa.nome}" src="${retro.lousa.endereco}" class="retrospectiva-imagem"></img>
+					</a>
 				</li>
 			</c:forEach>
 		</ul>

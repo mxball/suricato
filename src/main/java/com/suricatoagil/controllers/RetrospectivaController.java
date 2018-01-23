@@ -73,7 +73,6 @@ public class RetrospectivaController {
 	public String criaRestrospectiva(@Valid AdicionaRetrospectivaDTO adicionaRetrospectivaDTO, BindingResult result, Model model, Principal principal) {
 		Usuario usuarioLogado = usuarioDao.buscaPorNome(principal.getName());
 		if(result.hasErrors()) {
-			System.out.println(">>>>>>>>>>>>>>>>>" + result.getAllErrors());
 			model.addAttribute("lousas", lousaDao.lista());
 			model.addAttribute("usuario", usuarioLogado);
 			model.addAttribute("hoje", Calendar.getInstance());
@@ -92,10 +91,11 @@ public class RetrospectivaController {
 	}
 	
 	@RequestMapping("/nova")
-	public String novaRetrospectiva(Model model, Principal principal) {
+	public String novaRetrospectiva(Integer timeId, Model model, Principal principal) {
 		model.addAttribute("lousas", lousaDao.lista());
 		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
 		model.addAttribute("hoje", Calendar.getInstance());
+		model.addAttribute("timeId", timeId);
 		return "retrospectiva/nova";
 	}
 
