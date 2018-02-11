@@ -1,5 +1,6 @@
 package com.suricatoagil.controllers;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import com.suricatoagil.daos.UsuarioDao;
 import com.suricatoagil.models.Usuario;
 import com.suricatoagil.viewmodels.AdicionaUsuarioTimeDTO;
 import com.suricatoagil.viewmodels.CadastroUsuarioDTO;
+import com.suricatoagil.viewmodels.NovoUsuarioDTO;
 
 @Controller
 @Transactional
@@ -81,6 +83,45 @@ public class UsuarioController {
 	@RequestMapping(value = "/usuario/busca", method = RequestMethod.GET)
 	public @ResponseBody List<AdicionaUsuarioTimeDTO> busca(@RequestParam("term") String nome) {
 		return usuarioDao.listaUsuariosComNomeParecidoCom(nome);
+	}
+	
+	@RequestMapping(value="/usuario/edita", method=RequestMethod.GET)
+	public String editaUsuario(Principal principal, Model model) {
+		Usuario usuarioLogado = usuarioDao.buscaPorNome(principal.getName());
+		model.addAttribute("usuario", new NovoUsuarioDTO(usuarioLogado));
+		return "usuario/edita";
+	}
+	
+	@RequestMapping(value="/usuario/edita", method=RequestMethod.POST)
+	public String editaUsuario(@ModelAttribute("usuario") @Valid NovoUsuarioDTO novoUsuario, BindingResult bindingResult, Principal principal, Model model) {
+		Usuario usuarioLogado = usuarioDao.buscaPorNome(principal.getName());
+		if(novoUsuario.isSenhasDiferentes()) {
+			bindingResult.rejectValue("senha", "senha.diferentes", "As senhas estão diferentes!");
+		}
+		if(!usuarioLogado.getNome().equals(novoUsuario.getNome()) && usuarioDao.jahExisteUsuarioChamado(novoUsuario.getNome())) {
+			bindingResult.rejectValue("nome", "nome.existe", "Usuario " + novoUsuario.getNome() + " já existe");
+		}
+		if(!novoUsuario.getEmail().equals(usuarioLogado.getEmail()) && usuarioDao.jahExisteUsuarioComEmail(novoUsuario.getEmail())) {
+			bindingResult.rejectValue("email", "email.existe", "E-mail " + novoUsuario.getEmail() + " já existe");
+		}
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("usuario", novoUsuario);
+			return "usuario/edita";
+		}
+		
+		if(novoUsuario.hasSenha()) {
+			usuarioLogado.setSenha(novoUsuario.getSenhaCriptada());
+		}
+		if(!usuarioLogado.getNome().equals(novoUsuario.getNome())) {
+			usuarioLogado.setNome(novoUsuario.getNome());
+		}
+		if(!novoUsuario.getEmail().equals(usuarioLogado.getEmail())) {
+			usuarioLogado.setEmail(novoUsuario.getEmail());
+		}
+		usuarioDao.atualiza(usuarioLogado);
+		model.addAttribute("usuario", new NovoUsuarioDTO(usuarioLogado));
+		model.addAttribute("atualizado", "Usuário atualizado com sucesso");
+		return "usuario/edita";
 	}
 	
 }

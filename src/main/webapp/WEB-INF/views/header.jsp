@@ -5,7 +5,7 @@
 			<img alt="Logo suricato" src="<c:url value="/assets/images/logo-suricato.svg"/>" class="cabecalho-home_logo">
 		</a>
 		<div class="cabecalho-usuario">
-			<span class="cabecalho-usuario_nome">${usuario.nome}</span>
+			<a href="/usuario/edita" class="cabecalho-usuario_nome">${usuario.nome}</a>
 			<form action="<c:url value='/logout'/>" method="post" class="cabecalho-usuario_sair">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<button type="submit" class="logout">Sair</button>

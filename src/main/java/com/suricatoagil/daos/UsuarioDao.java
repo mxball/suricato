@@ -48,4 +48,11 @@ public class UsuarioDao {
 		manager.merge(usuario);
 	}
 
+	public boolean jahExisteUsuarioComEmail(String email) {
+		List<Usuario> usuarios = manager.createQuery("select u from Usuario u where u.email = :email", Usuario.class)
+				.setParameter("email", email)
+				.getResultList();
+		return usuarios.size() > 0;
+	}
+
 }

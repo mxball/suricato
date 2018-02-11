@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -35,6 +36,10 @@ public class Usuario {
 
 	@NotBlank(message="Senha não pode ser vazia")
 	private String senha;
+
+	@Email(message="E-mail inválido")
+	@Column(unique = true)
+	private String email;
 	
 	@ManyToOne
 	@NotNull
@@ -116,7 +121,15 @@ public class Usuario {
 	public Set<Retrospectiva> getRetrospectivasEncerradas() {
 		return this.retrospectivas.stream().filter(retro -> !retro.isAberta()).collect(Collectors.toSet());
 	}
+	
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

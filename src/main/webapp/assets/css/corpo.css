@@ -1,8 +1,18 @@
 .corpo {
 	display: block;
-	margin-left: 140px;
-	margin-right: 140px;
+	margin-left: 180px;
+	margin-right: 180px;
 	background-color: #fdfcff;
+}
+
+.corpo-sucesso {
+	color: #6de069;
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 15px;
+	letter-spacing: -0.3px;
 }
 
 .corpo-descricao {
