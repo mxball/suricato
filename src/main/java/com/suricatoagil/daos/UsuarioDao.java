@@ -39,5 +39,13 @@ public class UsuarioDao {
 				.getResultList();
 		return usuarios.size() > 0;
 	}
+	
+	public List<Usuario> listaTodos() {
+		return manager.createQuery("from Usuario u").getResultList();
+	}
+	
+	public void atualiza(Usuario usuario) {
+		manager.merge(usuario);
+	}
 
 }

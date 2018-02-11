@@ -3,6 +3,7 @@ package com.suricatoagil.viewmodels;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class CadastroUsuarioDTO {
 
@@ -42,6 +43,11 @@ public class CadastroUsuarioDTO {
 	
 	public boolean isSenhasDiferentes() {
 		return !this.senha.equals(this.confirmaSenha);
+	}
+	
+	public String getSenhaCriptada() {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.encode(this.senha);
 	}
 	 	
 }

@@ -16,7 +16,7 @@ public class CadastroUsuarioAction {
 	public Usuario criaUsuario(CadastroUsuarioDTO cadastroUsuarioDTO) {
 		Usuario usuario = new Usuario();
 		usuario.setNome(cadastroUsuarioDTO.getNome());
-		usuario.setSenha(cadastroUsuarioDTO.getSenha());
+		usuario.setSenha(cadastroUsuarioDTO.getSenhaCriptada());
 		usuario.setPermissao(permissaoDao.getPermissaoUsuario());
 		return usuario;
 	}
