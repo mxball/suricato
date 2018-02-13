@@ -64,6 +64,34 @@
 	color: #4bdd46;
 }
 
+
+.infos-lista_fotos {
+	display: inline-block;
+    height: 100%;
+	margin-right: 15px;
+    padding: 2.5px 0;
+    vertical-align: top;
+}
+
+.infos-lista_fotos .--foto {
+	border: solid 1px #ff6885;
+	border-radius: 30px;
+ 	height: 30px;
+	margin-left: -6px;
+	margin-right: -6px;
+	width: 30px;
+}
+
+.infos-lista_fotos .--foto-tooltip { 
+	background: #333; 
+	color: #fff;
+	position: relative; 
+}
+
+.infos-lista_fotos .--foto:hover .--foto-tooltip {
+	display: block;
+}
+
 .infos-retrospectiva {
 	display: block;	
 }

@@ -28,6 +28,11 @@
 				<span class="infos-time_dado" style="color: #${time.cor}">
 					<span class="--numero">${time.integrantes.size() }</span> Participantes
 				</span>
+				<div class="infos-lista_fotos">
+					<c:forEach var="integrante" items="${time.integrantes}">
+						<img class="--foto" alt="${integrante.nome}" title="${integrante.nome}" src="<c:url value='/usuario/perfil/${integrante.nome}'/>">
+					</c:forEach>
+				</div>
 				<a class="infos-time_integrante" href="<c:url value='/time/mostra?timeId=${time.id}'/>">Add membros</a>
 			</div>
 			<div class="infos-retrospectiva">

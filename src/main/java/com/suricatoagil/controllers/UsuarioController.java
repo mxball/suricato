@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -154,4 +155,17 @@ public class UsuarioController {
 	    return new ResponseEntity<>(resource, headers, HttpStatus.OK);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/usuario/perfil/{nome}", method = RequestMethod.GET)
+	public ResponseEntity<Resource> imagemDoUsuarioComNome(@PathVariable String nome) {
+		Usuario usuario = usuarioDao.buscaPorNome(nome);
+		Resource resource;
+		try {
+			resource = storageService.loadAsResource(usuario.getNome());
+		} catch(StorageFileNotFoundException ex) {
+			resource = new ServletContextResource(servletContext, "/assets/images/defaultUser.png");			
+		}
+	    HttpHeaders headers = new HttpHeaders();
+	    return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+	}
 }
