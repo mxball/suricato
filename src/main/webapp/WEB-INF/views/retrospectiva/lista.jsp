@@ -15,37 +15,41 @@
 </head>
 <body>
 	<%@include file="../header.jsp" %>
-	<div class="time" style="background-color: #${time.cor}">
-		<h2 class="time-nome">${time.nome}</h2>
-		<a class="time-editar glyphicon glyphicon-cog" href="<c:url value='/time/mostra?timeId=${time.id}'/>"></a>
+	<div class="time" style="background-color: #${timeRetrospectivas.cor}">
+		<h2 class="time-nome">${timeRetrospectivas.titulo}</h2>
+		<c:if test="${timeRetrospectivas.deTime}">
+			<a class="time-editar glyphicon glyphicon-cog" href="<c:url value='/time/mostra?timeId=${timeRetrospectivas.timeId}'/>"></a>
+		</c:if>
 	</div>
 	<div class="corpo">
 		<div class="infos">
 			<div class="infos-time">
-				<span class="infos-time_dado" style="color: #${time.cor}">
-					<span class="--numero">${retrospectivas.size()}</span> Retrospectivas
+				<span class="infos-time_dado" style="color: #${timeRetrospectivas.cor}">
+					<span class="--numero">${timeRetrospectivas.numeroRetrospectivas}</span> Retrospectivas
 				</span>
-				<span class="infos-time_dado" style="color: #${time.cor}">
-					<span class="--numero">${time.integrantes.size() }</span> Participantes
+				<span class="infos-time_dado" style="color: #${timeRetrospectivas.cor}">
+					<span class="--numero">${timeRetrospectivas.numeroIntegrantes }</span> Participantes
 				</span>
 				<div class="infos-lista_fotos">
-					<c:forEach var="integrante" items="${time.integrantes}">
-						<img class="--foto" alt="${integrante.nome}" title="${integrante.nome}" src="<c:url value='/usuario/perfil/${integrante.nome}'/>">
+					<c:forEach var="integrante" items="${timeRetrospectivas.integrantes}">
+						<img class="--foto" alt="${integrante}" title="${integrante}" src="<c:url value='/usuario/perfil/${integrante}'/>">
 					</c:forEach>
 				</div>
-				<a class="infos-time_integrante" href="<c:url value='/time/mostra?timeId=${time.id}'/>">Add membros</a>
+				<c:if test="${timeRetrospectivas.deTime}">
+					<a class="infos-time_integrante" href="<c:url value='/time/mostra?timeId=${timeRetrospectivas.timeId}'/>">Add membros</a>
+				</c:if>
 			</div>
 			<div class="infos-retrospectiva">
-				<a class="infos-retrospectiva_nova" href="<c:url value='/retrospectiva/nova?timeId=${time.id}'/>">Criar Retrospectiva</a>
+				<a class="infos-retrospectiva_nova" href="<c:url value='/retrospectiva/nova?timeId=${timeRetrospectivas.timeId}'/>">Criar Retrospectiva</a>
 				<a class="infos-retrospectiva_disposicao glyphicon glyphicon-th-large --minimized" data-selected></a>
 				<a class="infos-retrospectiva_disposicao glyphicon glyphicon-stop --maximized"></a>
 			</div>
 		</div>
 		<ul class="lista-retrospectivas --minimized">
-			<c:forEach var="retro" items="${retrospectivas}">
+			<c:forEach var="lousa" items="${timeRetrospectivas.lousas}">
 				<li class="retrospectiva">
-					<a href="<c:url value='/retrospectiva/mostra?id=${retro.id}'/>">
-						<img alt="${retro.lousa.nome}" src="${retro.lousa.endereco}" class="retrospectiva-imagem"></img>
+					<a href="<c:url value='/retrospectiva/mostra?id=${lousa.retroId}'/>">
+						<img alt="${lousa.nome}" src="${lousa.endereco}" class="retrospectiva-imagem"></img>
 					</a>
 				</li>
 			</c:forEach>

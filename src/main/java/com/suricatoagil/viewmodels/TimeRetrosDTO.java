@@ -44,4 +44,8 @@ public class TimeRetrosDTO {
 		return timeId;
 	}
 	
+	public boolean isPessoal() {
+		return timeId == null;
+	}
+	
 }

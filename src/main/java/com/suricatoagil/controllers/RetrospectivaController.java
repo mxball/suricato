@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.suricatoagil.actions.ListaRetrospectivasAction;
 import com.suricatoagil.daos.ComentarioDao;
 import com.suricatoagil.daos.LousaDao;
 import com.suricatoagil.daos.PostItDao;
@@ -52,6 +53,9 @@ public class RetrospectivaController {
 	
 	@Autowired
 	private AtualizaRetrospectiva atualizaRetrospectiva;
+	
+	@Autowired
+	private ListaRetrospectivasAction listaRetrospectivasAction;
 
 	@RequestMapping("/mostra")
 	public String mostraRetrospectiva(Integer id, Model model, Principal principal) {
@@ -107,18 +111,34 @@ public class RetrospectivaController {
 	}
 	
 	@RequestMapping("time/abertas")
-	public String listaRetrospectivasAbertasDoTime(int timeId, Model model, Principal principal) {
-		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
-		model.addAttribute("time", timeDao.load(timeId));
-		model.addAttribute("retrospectivas", retrospectivaDao.listaRetrospectivasAbertasDoTime(timeId));
+	public String listaRetrospectivasAbertasDoTime(int timeId, Principal principal, Model model) {
+		Usuario usuario = usuarioDao.buscaPorNome(principal.getName());
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("timeRetrospectivas", listaRetrospectivasAction.geraListaRetrospectivasAbertasDo(timeId));
 		return "retrospectiva/lista";
 	}
 	
 	@RequestMapping("time/fechadas")
-	public String listaRetrospectivasFechadasDoTime(int timeId, Model model, Principal principal) {
-		model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
-		model.addAttribute("time", timeDao.load(timeId));
-		model.addAttribute("retrospectivas", retrospectivaDao.listaRetrospectivasEncerradasDoTime(timeId));
+	public String listaRetrospectivasFechadasDoTime(int timeId, Principal principal,Model model) {
+		Usuario usuario = usuarioDao.buscaPorNome(principal.getName());
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("timeRetrospectivas", listaRetrospectivasAction.geraListaRetrospectivasFechadasDo(timeId));
+		return "retrospectiva/lista";
+	}
+	
+	@RequestMapping("pessoal/abertas")
+	public String listaRetrospectivasAbertasDoUsuario(Principal principal, Model model) {
+		Usuario usuario = usuarioDao.buscaPorNome(principal.getName());
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("timeRetrospectivas", listaRetrospectivasAction.geraListaRetrospectivasAbertasDo(usuario));
+		return "retrospectiva/lista";
+	}
+	
+	@RequestMapping("pessoal/fechadas")
+	public String listaRetrospectivasFechadasDoUsuario(Principal principal, Model model) {
+		Usuario usuario = usuarioDao.buscaPorNome(principal.getName());
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("timeRetrospectivas", listaRetrospectivasAction.geraListaRetrospectivasFechadasDo(usuario));
 		return "retrospectiva/lista";
 	}
 

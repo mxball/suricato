@@ -3,7 +3,15 @@
 <link rel="stylesheet" href="<c:url value='/assets/css/retros.css'/>">
 <h2 class="lista-times">Retrospectivas</h2>
 <c:forEach var="timeRetros" items="${mapaTimes.timesRetrosAbertas}">
-	<a href="<c:url value='/retrospectiva/time/abertas?timeId=${timeRetros.timeId}'/>" class="time" style="background-color: #${timeRetros.cor}">
+	<c:choose>
+		<c:when test="${timeRetros.pessoal}">
+		 	<c:set var="url" value="/retrospectiva/pessoal/abertas"></c:set>
+		</c:when>
+		<c:otherwise>
+	 		<c:set var="url" value="/retrospectiva/time/abertas?timeId=${timeRetros.timeId}"></c:set>
+		</c:otherwise>
+	</c:choose>
+	<a href="<c:url value='${url}'/>" class="time" style="background-color: #${timeRetros.cor}">
 		<h3 class="time-nome">${timeRetros.nomeTime}</h3>
 		<span class="time-quantidade">
 			<span class="--numero">${timeRetros.quantidadeDeRetros}</span> Retrospectivas
@@ -19,7 +27,15 @@
 </div>
 <h2 class="lista-times">Retrospectivas terminadas</h2>
 <c:forEach var="timeRetros" items="${mapaTimes.timesRetrosFechadas}">
-	<a href="<c:url value='/retrospectiva/time/fechadas?timeId=${timeRetros.timeId}'/>" class="time" style="background-color: #${timeRetros.cor}">
+	<c:choose>
+		<c:when test="${timeRetros.pessoal}">
+		 	<c:set var="url" value="/retrospectiva/pessoal/fechadas"></c:set>
+		</c:when>
+		<c:otherwise>
+	 		<c:set var="url" value="/retrospectiva/time/fechadas?timeId=${timeRetros.timeId}"></c:set>
+		</c:otherwise>
+	</c:choose>
+	<a href="<c:url value='${url}'/>" class="time" style="background-color: #${timeRetros.cor}">
 		<h3 class="time-nome">${timeRetros.nomeTime}</h3>
 		<span class="time-quantidade">
 			<span class="--numero">${timeRetros.quantidadeDeRetros}</span> Retrospectivas

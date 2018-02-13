@@ -21,6 +21,21 @@ public class RetrospectivaDao {
 		manager.persist(retrospectiva);
 	}
 
+	public List<Retrospectiva> listaRetrospectivasAbertasPessoaisDo(Usuario usuario) {
+		return manager.createQuery("from Retrospectiva r where r.criador = :usuario and r.time is null and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
+					.setParameter("usuario", usuario)
+					.setParameter("hoje", LocalDate.now())
+					.getResultList();
+	}
+	
+
+	public List<Retrospectiva>listaRetrospectivasFechadasPessoaisDo(Usuario usuario) {
+		return manager.createQuery("from Retrospectiva r where r.criador = :usuario and r.time is null and r.dataFim < :hoje", Retrospectiva.class)
+				.setParameter("usuario", usuario)
+				.setParameter("hoje", LocalDate.now())
+				.getResultList();
+	}
+	
 	public List<Retrospectiva> listaRetrospectivasAbertasDoUsuario(Integer idUsuario) {
 		return manager.createQuery("select r from Retrospectiva r where r.criador.id = :id and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
 					.setParameter("id", idUsuario)
