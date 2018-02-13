@@ -40,6 +40,8 @@ public class Usuario {
 	@Email(message="E-mail inválido")
 	@Column(unique = true)
 	private String email;
+
+	private String foto;
 	
 	@ManyToOne
 	@NotNull
@@ -153,6 +155,14 @@ public class Usuario {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getFoto() {
+		return this.foto;
+	}
+	
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 }

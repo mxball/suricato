@@ -23,29 +23,36 @@
 		<div class="corpo">
 			<h2 class="corpo-descricao">Editar Perfil</h2>
 			<span class="corpo-sucesso">${atualizado}</span>
-			<form action="<c:url value='/usuario/edita'/>" class="cadastro" method="post">
+			<form action="<c:url value='/usuario/edita'/>" class="cadastro" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<label class="cadastro-descricao" for="nome">
-					Nome <form:errors path='usuario.nome' class="cadastro-erro"/>
-				</label>
-				<input type='text' name='nome' id="nome" class="cadastro-campo" value="${usuario.nome}" placeholder="Nome do usuário"/>
-
-				<label class="cadastro-descricao" for="email">
-					E-mail <form:errors path='usuario.email' class="cadastro-erro"/>
-				</label>
-				<input type='text' name='email' id="email" class="cadastro-campo" value="${usuario.email}" placeholder="E-mail do usuário"/>
-
-				<label class="cadastro-descricao" for="senha">
-					Senha <form:errors path='usuario.senha' class="cadastro-erro"/>
-				</label>
-				<input type='password' name='senha' id="senha" class="cadastro-campo" placeholder="Nova senha"/>
-
-				<label class="cadastro-descricao" for="confirmaSenha">
-					Repetir senha <form:errors path='usuario.confirmaSenha' class="cadastro-erro"/>
-				</label>
-				<input type='password' name='confirmaSenha' id="confirmaSenha" class="cadastro-campo" placeholder="Repetir a senha"/>
-				
-				<button type="submit" class="cadastro-botao">CRIAR</button>
+				<div class="cadastro-foto">
+					<input type="file" name="file" id="foto" class="cadastro-foto_campo"/>
+					<img alt="foto-perfil" src="<c:url value='/usuario/perfil'/>" class="cadastro-foto_imagem">
+					<label for="foto" class="cadastro-foto_descricao">Atuliazar foto</label>
+				</div>
+				<div class="cadastro-dados">				
+					<label class="cadastro-descricao" for="nome">
+						Nome <form:errors path='usuario.nome' class="cadastro-erro"/>
+					</label>
+					<input type='text' name='nome' id="nome" class="cadastro-campo" value="${usuario.nome}" placeholder="Nome do usuário"/>
+	
+					<label class="cadastro-descricao" for="email">
+						E-mail <form:errors path='usuario.email' class="cadastro-erro"/>
+					</label>
+					<input type='text' name='email' id="email" class="cadastro-campo" value="${usuario.email}" placeholder="E-mail do usuário"/>
+	
+					<label class="cadastro-descricao" for="senha">
+						Senha <form:errors path='usuario.senha' class="cadastro-erro"/>
+					</label>
+					<input type='password' name='senha' id="senha" class="cadastro-campo" placeholder="Nova senha"/>
+	
+					<label class="cadastro-descricao" for="confirmaSenha">
+						Repetir senha <form:errors path='usuario.confirmaSenha' class="cadastro-erro"/>
+					</label>
+					<input type='password' name='confirmaSenha' id="confirmaSenha" class="cadastro-campo" placeholder="Repetir a senha"/>
+					
+					<button type="submit" class="cadastro-botao">CRIAR</button>
+				</div>
 			</form>
 		</div>
 		<%@include file="/WEB-INF/views/footer.jsp" %>
@@ -53,5 +60,5 @@
 	<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
 	<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
-	<script src="<c:url value='/assets/js/nova.js'/>"></script>
+	<script src="<c:url value='/assets/js/foto.js'/>"></script>
 </html>	

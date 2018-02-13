@@ -4,10 +4,15 @@ import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,10 +26,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.ServletContextResource;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.suricatoagil.actions.CadastroUsuarioAction;
 import com.suricatoagil.daos.UsuarioDao;
 import com.suricatoagil.models.Usuario;
+import com.suricatoagil.storage.StorageFileNotFoundException;
+import com.suricatoagil.storage.StorageService;
 import com.suricatoagil.viewmodels.AdicionaUsuarioTimeDTO;
 import com.suricatoagil.viewmodels.CadastroUsuarioDTO;
 import com.suricatoagil.viewmodels.NovoUsuarioDTO;
@@ -36,7 +45,11 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioDao usuarioDao;
 	@Autowired
-	private CadastroUsuarioAction cadastroUsuarioAction;
+	private CadastroUsuarioAction cadastroUsuarioAction;	
+	@Autowired
+	private StorageService storageService;
+	@Autowired
+	private ServletContext servletContext;
 
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(@RequestParam(value = "error", required = false) String error, Model model) {
@@ -93,7 +106,7 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/usuario/edita", method=RequestMethod.POST)
-	public String editaUsuario(@ModelAttribute("usuario") @Valid NovoUsuarioDTO novoUsuario, BindingResult bindingResult, Principal principal, Model model) {
+	public String editaUsuario(@ModelAttribute("usuario") @Valid NovoUsuarioDTO novoUsuario, BindingResult bindingResult, @RequestParam("file") MultipartFile file, Principal principal, Model model) {
 		Usuario usuarioLogado = usuarioDao.buscaPorNome(principal.getName());
 		if(novoUsuario.isSenhasDiferentes()) {
 			bindingResult.rejectValue("senha", "senha.diferentes", "As senhas estão diferentes!");
@@ -108,7 +121,6 @@ public class UsuarioController {
 			model.addAttribute("usuario", novoUsuario);
 			return "usuario/edita";
 		}
-		
 		if(novoUsuario.hasSenha()) {
 			usuarioLogado.setSenha(novoUsuario.getSenhaCriptada());
 		}
@@ -118,10 +130,28 @@ public class UsuarioController {
 		if(!novoUsuario.getEmail().equals(usuarioLogado.getEmail())) {
 			usuarioLogado.setEmail(novoUsuario.getEmail());
 		}
+		if(!file.isEmpty()) {			
+			String caminhoFoto = storageService.store(file, usuarioLogado.getNome());
+			usuarioLogado.setFoto(caminhoFoto);
+		}
 		usuarioDao.atualiza(usuarioLogado);
 		model.addAttribute("usuario", new NovoUsuarioDTO(usuarioLogado));
 		model.addAttribute("atualizado", "Usuário atualizado com sucesso");
 		return "usuario/edita";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/usuario/perfil", method = RequestMethod.GET)
+	public ResponseEntity<Resource> imagemDoUsuario(Principal principal) {
+		Usuario usuarioLogado = usuarioDao.buscaPorNome(principal.getName());
+		Resource resource;
+		try {
+			resource = storageService.loadAsResource(usuarioLogado.getNome());
+		} catch(StorageFileNotFoundException ex) {
+			resource = new ServletContextResource(servletContext, "/assets/images/defaultUser.png");			
+		}
+	    HttpHeaders headers = new HttpHeaders();
+	    return new ResponseEntity<>(resource, headers, HttpStatus.OK);
 	}
 	
 }
