@@ -21,14 +21,9 @@
 				<div id="postIt_${postIt.id}" class="postIt comConteudo ${postIt.cor}" style="left: ${postIt.posicaoHorizontal}%; top: ${postIt.posicaoVertical}%;">
 					<a href="#" class="editar"></a>
 					<a href="#" class="remover"></a>
-					<a href="#" class="like default"></a>
-					<a href="#" class="dislike default"></a>
+					<a href="#" class="like default">${postIt.numeroVotos}</a>
+					<a href="#" class="dislike default">${postIt.numeroDeslikes}</a>
 					<p class="conteudo">${postIt.conteudo}</p>
-					<div class="dotVotes">
-						<c:forEach begin="1" end="${postIt.numeroVotos}">
-							<div class="dotVote"></div>
-						</c:forEach>
-					</div>
 				</div>
 			</c:forEach>
 			<c:forEach var="comentario" items="${comentarios}" varStatus="status">

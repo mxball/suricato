@@ -67,4 +67,17 @@ public class PostItDao {
 					.getResultList();
 	}
 
+	public void atualizaNumeroDeslikes(PostIt postIt) {
+		EntityManagerFactory managerFactory = manager.getEntityManagerFactory();
+		EntityManager entityManager = managerFactory.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.createQuery("update PostIt set numeroDeslikes = :numero where id = :id")
+					.setParameter("numero", postIt.getNumeroDeslikes())
+					.setParameter("id", postIt.getId())
+					.executeUpdate();
+		transaction.commit();
+		
+	}
+
 }

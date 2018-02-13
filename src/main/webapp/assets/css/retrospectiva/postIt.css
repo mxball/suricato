@@ -23,19 +23,31 @@
 }
 
 .postIt .default {
-	width: 1.1em;
+	color: #9f53ed;
+	width: 2.2em;
 	height: 1.1em;
-	display: inline-block;
+	display: inline-flex;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	margin: 0.1em 0em 0em 0.6em;
+	margin: 0.4em 0em 0em 0.6em;
+	text-decoration: none;
 }
 
-.postIt .like {
-	background-image: url("../../images/like.png");
+.postIt .like:after {
+	background: url("../../images/like.png") no-repeat;
+    background-size: 1.1em 1.1em;
+    content: '';
+    height: 1.1em;
+    margin-left: 3px;
+    width: 1.1em;
 }
-.postIt .dislike{
-	background-image: url("../../images/dislike.png");
+.postIt .dislike:after{
+	background: url("../../images/dislike.png") no-repeat;
+    background-size: 1.1em 1.1em;
+    content: '';
+    height: 1.1em;
+    margin-left: 3px;
+    width: 1.1em;
 }
 
 .postIt .dotVotes {

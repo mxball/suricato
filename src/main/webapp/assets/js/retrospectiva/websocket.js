@@ -21,45 +21,35 @@ function createLinkEdita() {
 	return createLink("editar", editaElemento);
 }
 
-function createLike() {
-	var like = createLink("like", adicionaDot);
-	like.onclick = adicionaDot;
+function createLike(numeroLikes) {
+	var like = createLink("like", adicionaLike);
+	like.onclick = adicionaLike;
 	like.classList.add("default");
+	like.textContent=numeroLikes;
 	return like;
 }
 
-function createDislike() {
-	var dislike = createLink("dislike", removeDot);
-	dislike.onclick = removeDot;
-	dislike.classList.add("default");
-	return dislike;
+function createDeslike(numeroDeslikes) {
+	var deslike = createLink("dislike", adicionaDeslike);
+	deslike.onclick = adicionaDeslike;
+	deslike.classList.add("default");
+	deslike.textContent=numeroDeslikes;
+	return deslike;
 }
 
-function createDotVotes() {
-	var dotVotes = document.createElement('div');
-	dotVotes.classList.add("dotVotes");
-	return dotVotes;
-}
-
-function createDotVote() {
-	var dotVote = document.createElement("div");
-	dotVote.classList.add("dotVote");
-	return dotVote;
-}
-
-function adicionaDot() {
+function adicionaLike() {
 	var elemento = $(this).parent();
-	var conteudo = new Conteudo(elemento, "adicionaDotVote");
+	var conteudo = new Conteudo(elemento, "adicionaLike");
 	conteudo.setId(elemento.attr("id").split('_')[1]);
 	conteudo.adicionaNumeroVotos();
 	enviaMensagem(conteudo);
 }
 
-function removeDot() {
+function adicionaDeslike() {
 	var elemento = $(this).parent();
-	var conteudo = new Conteudo(elemento, "removeDotVote");
+	var conteudo = new Conteudo(elemento, "adicionaDeslike");
 	conteudo.setId(elemento.attr("id").split('_')[1]);
-	conteudo.removeNumeroVotos();
+	conteudo.adicionaDeslike();
 	enviaMensagem(conteudo);
 }
 
@@ -83,7 +73,8 @@ function Conteudo(elemento, operacao) {
 	this.largura = elemento.width();
 	this.altura = elemento.height(); 
 	this.cor = elemento.hasClass("postIt") ? elemento.attr("class").match(/\bcor[^\s]+\b/)[0] : "";
-	this.numeroVotos = elemento.find(".dotVotes .dotVote").length;
+	this.numeroVotos = parseInt(elemento.find(".like").text());
+	this.numeroDeslikes = parseInt(elemento.find(".dislike").text());
 	
 	this.setId = function(id) {
 		this.id = parseInt(id);
@@ -105,10 +96,8 @@ function Conteudo(elemento, operacao) {
 		this.numeroVotos++;
 	}
 	
-	this.removeNumeroVotos = function() {
-		if(this.numeroVotos > 0) {
-			this.numeroVotos--;
-		}
+	this.adicionaDeslike = function() {
+		this.numeroDeslikes++;
 	}
 	
 	this.getJson = function() {
@@ -122,7 +111,8 @@ function Conteudo(elemento, operacao) {
 			'largura'           : this.largura,
 			'altura'            : this.altura,
 			'cor'               : this.cor,
-			'numeroVotos'       : this.numeroVotos
+			'numeroVotos'       : this.numeroVotos,
+			'numeroDeslikes'    : this.numeroDeslikes
 		};
 	}
 	
@@ -147,8 +137,8 @@ stompClient.connect({}, function (frame) {
 			if(json.tipoConteudo == "postIt") {
 				elemento.classList.add(json.cor);
 				elemento.id = "postIt_" + json.id;
-				elemento.appendChild(createLike());
-				elemento.appendChild(createDislike());
+				elemento.appendChild(createLike(json.numeroVotos));
+				elemento.appendChild(createDeslike(json.numeroDeslikes));
 			} else if(json.tipoConteudo == "comentario")  {
 				elemento.style.width = json.largura + "px";
 				elemento.style.minHeight = json.altura + "px";
@@ -160,19 +150,15 @@ stompClient.connect({}, function (frame) {
 			elemento.appendChild(createLinkEdita());
 			var conteudo = createConteudo(json.texto);
 			elemento.appendChild(conteudo);
-			var dotVotes = createDotVotes();
-			for (var i = 0; i < json.numeroVotos; i++) {
-				dotVotes.appendChild(createDotVote());
-			}
-			elemento.appendChild(dotVotes);
+			
 			lousa.appendChild(elemento);
 			elemento.click(getAcao);
 		} else if(json.operacao == "remove") {
 			$("#lousa #" + json.tipoConteudo + "_" + json.id).remove();
-		} else if(json.operacao == "adicionaDotVote") {
-			$("#lousa #" + json.tipoConteudo + "_" + json.id + " .dotVotes").append(createDotVote());
-		} else if(json.operacao == "removeDotVote") {
-			$("#lousa #" + json.tipoConteudo + "_" + json.id + " .dotVotes .dotVote").first().remove();			
+		} else if(json.operacao == "adicionaLike") {
+			$("#lousa #" + json.tipoConteudo + "_" + json.id + " .like").text(json.numeroVotos);
+		} else if(json.operacao == "adicionaDeslike") {
+			$("#lousa #" + json.tipoConteudo + "_" + json.id + " .dislike").text(json.numeroDeslikes);			
 		}
 	});
 });

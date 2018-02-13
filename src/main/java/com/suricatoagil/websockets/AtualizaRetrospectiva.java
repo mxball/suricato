@@ -30,8 +30,10 @@ public class AtualizaRetrospectiva {
 				postItDao.removeAsync(postIt);
 			} else if(operacao.equals("atualiza")) {
 				postItDao.updateAsync(postIt);
-			} else if(operacao.equals("adicionaDotVote") || operacao.equals("removeDotVote")) {
+			} else if(operacao.equals("adicionaLike")) {
 				postItDao.atualizaNumeroVotos(postIt);
+			} else if(operacao.equals("adicionaDeslike")) {
+				postItDao.atualizaNumeroDeslikes(postIt);
 			}
 		} else if (conteudo.getTipoConteudo().equals("comentario")) {
 			Comentario comentario = conteudo.getComentario();

@@ -33,22 +33,26 @@ public class PostIt {
 	
 	@Min(0)
 	private int numeroVotos;
+	
+	@Min(0)
+	private int numeroDeslikes;
 
 	public PostIt() {
 	}
 
 	public PostIt(String conteudo, Double posicaoHorizontal,
-			Double posicaoVertical, String cor, int numeroVotos) {
+			Double posicaoVertical, String cor, int numeroVotos, int numeroDeslikes) {
 		this.conteudo = conteudo;
 		this.posicaoHorizontal = posicaoHorizontal;
 		this.posicaoVertical = posicaoVertical;
 		this.cor = cor;
 		this.numeroVotos = numeroVotos;
+		this.numeroDeslikes = numeroDeslikes;
 	}
 
 	public PostIt(String conteudo, Double posicaoHorizontal,
-			Double posicaoVertical, String cor, Retrospectiva retrospectiva, int numeroVotos) {
-		this(conteudo, posicaoHorizontal, posicaoVertical, cor, numeroVotos);
+			Double posicaoVertical, String cor, Retrospectiva retrospectiva, int numeroVotos, int numeroDeslikes) {
+		this(conteudo, posicaoHorizontal, posicaoVertical, cor, numeroVotos, numeroDeslikes);
 		this.retrospectiva = retrospectiva;
 	}
 
@@ -140,5 +144,12 @@ public class PostIt {
 	public void setNumeroVotos(int numeroVotos) {
 		this.numeroVotos = numeroVotos;
 	}
+	
+	public int getNumeroDeslikes() {
+		return numeroDeslikes;
+	}
 
+	public void setNumeroDeslikes(int numeroDeslikes) {
+		this.numeroDeslikes = numeroDeslikes;
+	}
 }

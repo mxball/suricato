@@ -62,8 +62,8 @@ document.body.addEventListener("keyup", function(event) {
 
 $(".remover").click(removeElemento);
 $(".editar").click(editaElemento);
-$(".like").on("click", adicionaDot);
-$(".dislike").on("click", removeDot);
+$(".like").on("click", adicionaLike);
+$(".dislike").on("click", adicionaDeslike);
 
 function removeElemento() {
 	var elemento = $(this.parentNode);
