@@ -74,10 +74,10 @@ let contadorCores = 1;
 const cores = ["#699ce0", "#6de069", "#eb5fea", "#68e1ff", "#ff6885", "#ffb647"];
 
 function arrumaCores() {
-	document.querySelectorAll(".integrante").forEach(integrante => {
+	for(var integrante of document.querySelectorAll(".integrante")) {
 		integrante.style.backgroundColor = cores[contadorCores % cores.length];
 		contadorCores++
-	});
+	}
 }
 
 arrumaCores();

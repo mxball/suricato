@@ -43,3 +43,17 @@ body {
     top: 50%;
     transform: translateY(-50%);
 }
+
+@media ( max-width: 1200px) {
+	.rodape-home {
+		margin-left: 90px;
+		margin-right: 90px;
+	}
+}
+
+@media ( max-width: 1080px) {
+	.rodape-home {
+		margin-left: 45px;
+		margin-right: 45px;
+	}
+}

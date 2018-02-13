@@ -63,3 +63,21 @@
 	line-height: 0px;
 	width: 60px;
 }
+
+@media ( max-width: 1200px) {
+	.cabecalho-home {
+		margin-left: 90px;
+	}
+	.cabecalho-usuario {
+		margin-right: 90px;
+	}
+}
+
+@media ( max-width: 1080px) {
+	.cabecalho-home {
+		margin-left: 45px;
+	}
+	.cabecalho-usuario {
+		margin-right: 45px;
+	}
+}

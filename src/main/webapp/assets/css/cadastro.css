@@ -70,21 +70,3 @@
 .--data .cadastro-campo {
 	margin-top: 7px;
 }
-
-@media (max-width : 1400px) {
-	
-	.corpo {
-		width: 835px;
-		margin-left: auto;
-		margin-right: auto;
-	}	
-	
-}
-
-@media (max-width : 980px) {
-	
-	.corpo {
-		width: 565px;
-	}
-	
-}

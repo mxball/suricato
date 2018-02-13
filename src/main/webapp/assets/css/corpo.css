@@ -1,8 +1,9 @@
 .corpo {
-	display: block;
-	margin-left: 180px;
-	margin-right: 180px;
 	background-color: #fdfcff;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1495px;
 }
 
 .corpo-sucesso {
@@ -22,4 +23,22 @@
 	font-weight: bold;
 	margin-top: 20px;
 	letter-spacing: -0.3px;
+}
+
+@media ( max-width: 1780px) {
+	.corpo {
+		width: 1195px;
+	}
+}
+
+@media ( max-width: 1485px) {
+	.corpo {
+		width: 895px;
+	}	
+}
+
+@media ( max-width: 1000px) {
+	.corpo {
+		width: 595px;
+	}
 }
