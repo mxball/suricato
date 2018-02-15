@@ -36,7 +36,7 @@ public class TimeDao {
 	}
 
 	public List<Time> buscaTimesDo(Usuario usuario) {
-		return manager.createQuery("select t from Time t join t.integrantes i where i.nome = :nome and i.id = :id ", Time.class)
+		return manager.createQuery("select distinct t from Time t join t.integrantes i where i.nome = :nome and i.id = :id ", Time.class)
 				.setParameter("nome", usuario.getNome())
 				.setParameter("id", usuario.getId())
 				.getResultList();

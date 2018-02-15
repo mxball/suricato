@@ -51,7 +51,7 @@
 					</label>
 					<input type='password' name='confirmaSenha' id="confirmaSenha" class="cadastro-campo" placeholder="Repetir a senha"/>
 					
-					<button type="submit" class="cadastro-botao">CRIAR</button>
+					<button type="submit" class="cadastro-botao">SALVAR</button>
 				</div>
 			</form>
 		</div>
