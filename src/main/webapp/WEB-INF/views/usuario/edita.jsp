@@ -26,9 +26,9 @@
 			<form action="<c:url value='/usuario/edita'/>" class="cadastro" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="cadastro-foto">
-					<input type="file" name="file" id="foto" class="cadastro-foto_campo"/>
-					<img alt="foto-perfil" src="<c:url value='/usuario/perfil'/>" class="cadastro-foto_imagem">
-					<label for="foto" class="cadastro-foto_descricao">Atuliazar foto</label>
+					<input type="file" name="file" id="foto" class="cadastro-foto_campo foto-arquivo"/>
+					<img alt="foto-perfil" src="<c:url value='/usuario/perfil'/>" class="cadastro-foto_imagem foto-visualiza">
+					<label for="foto" class="cadastro-foto_descricao foto-texto">Atuliazar foto</label>
 				</div>
 				<div class="cadastro-dados">				
 					<label class="cadastro-descricao" for="nome">

@@ -70,9 +70,12 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/usuario/cadastro", method = RequestMethod.POST)
-	public String novoUsuario(@ModelAttribute("usuario") @Valid CadastroUsuarioDTO cadastroUsuarioDTO, BindingResult bindingResult, Model model) {
+	public String novoUsuario(@ModelAttribute("usuario") @Valid CadastroUsuarioDTO cadastroUsuarioDTO, BindingResult bindingResult, @RequestParam("file") MultipartFile file, Model model) {
 		if(cadastroUsuarioDTO.isSenhasDiferentes()) {
 			bindingResult.rejectValue("senha", "senha.diferentes", "As senhas estão diferentes!");
+		}
+		if(usuarioDao.jahExisteUsuarioComEmail(cadastroUsuarioDTO.getEmail())) {
+			bindingResult.rejectValue("email", "email.existe", "E-mail " + cadastroUsuarioDTO.getEmail() + " já existe");
 		}
 		if(usuarioDao.jahExisteUsuarioChamado(cadastroUsuarioDTO.getNome())) {
 			bindingResult.rejectValue("nome", "nome.existe", "Usuario " + cadastroUsuarioDTO.getNome() + " já existe");
@@ -85,6 +88,10 @@ public class UsuarioController {
 		List<SimpleGrantedAuthority> authorities = Arrays.asList( new SimpleGrantedAuthority( usuario.getPermissao().getNome() ) );
 		Authentication authentication = new UsernamePasswordAuthenticationToken(usuario.getNome(), usuario.getSenha(), authorities);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+		if(!file.isEmpty()) {			
+			String caminhoFoto = storageService.store(file, usuario.getNome());
+			usuario.setFoto(caminhoFoto);
+		}
 		usuarioDao.save(usuario);
 		return "redirect:/index";
 	}

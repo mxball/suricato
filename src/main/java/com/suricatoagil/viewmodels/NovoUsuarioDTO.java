@@ -5,8 +5,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.suricatoagil.models.Usuario;
 
@@ -23,16 +21,9 @@ public class NovoUsuarioDTO {
 	
 	private String confirmaSenha;
 	
-	public String foto;
-
 	public NovoUsuarioDTO(Usuario usuario) {
 		this.nome = usuario.getNome();
 		this.email = usuario.getEmail();
-		if(usuario.getFoto() == null || usuario.getFoto().isEmpty()) {			
-			this.foto = "/assets//images/defaultUser.png";
-		} else {
-			this.foto = usuario.getFoto();
-		}
 	}
 	
 	/**
@@ -87,11 +78,4 @@ public class NovoUsuarioDTO {
 		return !this.senha.isEmpty();
 	}
 	
-	public String getFoto() {
-		return foto;
-	}
-	
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
 }

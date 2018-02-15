@@ -101,3 +101,29 @@
 	font-family: 'Open Sans', sans-serif;
 	margin-bottom: 3px;
 }
+
+.login-usuario_arquivo {
+	display: none;
+}
+
+.login-usuario_perfil {
+	border: solid 1px #e4d9f4;
+	border-radius: 5px;
+	display: block;
+	height: 100px;
+	margin-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80px;
+}
+
+.login-usuario_selecionarFoto {
+	color: #826c98;
+	cursor: pointer;
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: -0.1px;
+	text-align: center;
+}
