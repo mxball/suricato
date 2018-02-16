@@ -106,7 +106,7 @@
 
 .infos-retrospectiva_disposicao.--minimized,
 .infos-retrospectiva_disposicao.--maximized {
-	color: #d8d8d8;
+	color: #d1cad9;
 	display: inline-block;
 	vertical-align: top;
 	line-height: 30px;
@@ -128,7 +128,7 @@
 }
 
 .infos-retrospectiva_disposicao[data-selected] {
-	color:#969696 
+	color:#ab9dbc; 
 }
 
 

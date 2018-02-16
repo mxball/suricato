@@ -87,6 +87,25 @@ public class Time {
 	public String getCor() {
 		return cor;
 	}
+	
+	public String getCorGradiente() {
+		if(cor.equals("9f53ed")) {
+			return "6c18c3";
+		} else if(cor.equals("68e1ff")) {
+			return "24b0d3";
+		} else if(cor.equals("ffb647")) {
+			return "e59316";
+		} else if(cor.equals("ff6885")) {
+			return "d73d5b";
+		} else if(cor.equals("6de069")) {
+			return "4dcd49";
+		} else if(cor.equals("699ce0")) {
+			return "3571c1";
+		} else if(cor.equals("eb5fea")) {
+			return "c231c1";
+		}
+		return "000";
+	}
 
 	public void setCor(String cor) {
 		this.cor = cor;

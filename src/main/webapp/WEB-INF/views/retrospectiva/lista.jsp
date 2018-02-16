@@ -5,17 +5,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css'/>">
 	<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 	<link rel="stylesheet" href="<c:url value='/assets/css/corpo.css'/>">
 	<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/lista.css'/>">
-	<link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css'/>">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Home page</title>
 </head>
 <body>
 	<%@include file="../header.jsp" %>
-	<div class="time" style="background-color: #${timeRetrospectivas.cor}">
+	<div class="time" style="background: linear-gradient(to bottom, #${timeRetrospectivas.cor}, #${timeRetrospectivas.corGradiente})">
 		<h2 class="time-nome">${timeRetrospectivas.titulo}</h2>
 		<c:if test="${timeRetrospectivas.deTime}">
 			<a class="time-editar glyphicon glyphicon-cog" href="<c:url value='/time/mostra?timeId=${timeRetrospectivas.timeId}'/>"></a>

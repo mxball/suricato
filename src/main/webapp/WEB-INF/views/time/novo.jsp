@@ -6,9 +6,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css'/>">
+		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/corpo.css'/>">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
 		<link rel="stylesheet" href="<c:url value='/assets/css/cadastro.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/time/integrante.css'/>">
