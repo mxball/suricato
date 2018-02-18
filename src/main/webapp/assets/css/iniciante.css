@@ -54,10 +54,10 @@
     font-size: 122px;
     height: 112px;
     left: 50%;
-    line-height: 105px;
+    line-height: 112px;
     opacity: 0.05;
     position: absolute;
-    top: 50%;
+    top: 52%;
     transform: translate(-50%, -50%);
     width: 112px;
 }

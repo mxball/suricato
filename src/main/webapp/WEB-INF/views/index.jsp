@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="<c:url value='/assets/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 	<link rel="stylesheet" href="<c:url value='/assets/css/corpo.css'/>">
 	<link rel="stylesheet" href="<c:url value='/assets/css/menu.css'/>">

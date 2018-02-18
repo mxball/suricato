@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-<link href="<c:url value='/assets/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="<c:url value='/assets/css/iniciante.css'/>">
 </script>
 
@@ -12,7 +11,7 @@
 	</a>
 	<a class="opcao --time" href="<c:url value='/time/novo'/>">
 		<span class="glyphicon glyphicon-plus"></span>
-		<span class="opcao-texto">Criar time</span>
+		<span class="opcao-texto">Criar Time</span>
 	</a>
 </div>
 <script type="text/javascript" src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
