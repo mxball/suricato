@@ -13,6 +13,10 @@
 	background-color: #6de069;
 }
 
+.cadastro-botao:hover {
+	cursor: pointer;
+}
+
 .cadastro-foto_imagem {
 	border: solid 1px #e4d9f4;
  	border-radius: 5px;

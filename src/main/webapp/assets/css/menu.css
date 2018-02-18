@@ -32,6 +32,11 @@ body {
 	width: 170px;
 }
 
+.menu-opcao:hover {
+	color: #ffffff;
+	text-decoration: none;	
+}
+
 .menu-opcao.--retro:before {
 	align-self: center;
 	background: url("../images/iconeRetro.png") no-repeat;

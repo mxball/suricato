@@ -55,6 +55,9 @@
 	margin-top: 20px;
 	width: 250px;
 }
+.cadastro-botao:hover {
+	cursor: pointer;
+}
 
 .--retrospectiva {
 	background-color: #68e1ff;
