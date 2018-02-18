@@ -34,30 +34,30 @@
 				<div class="cadastro-foto foto">
 					<input type="file" name="file" id="foto" class="cadastro-foto_campo foto-arquivo"/>
 					<img alt="foto-perfil" src="<c:url value='/usuario/perfil'/>" class="cadastro-foto_imagem foto-visualiza">
-					<label for="foto" class="cadastro-foto_descricao foto-texto">Atualizar foto</label>
+					<label for="foto" class="cadastro-foto_descricao foto-texto"><fmt:message key="user.photo.update"/></label>
 				</div>
 				<div class="cadastro-dados">				
 					<label class="cadastro-descricao" for="nome">
-						Nome <form:errors path='usuario.nome' class="cadastro-erro"/>
+						<fmt:message key="user.name"/> <form:errors path='usuario.nome' class="cadastro-erro"/>
 					</label>
-					<input type='text' name='nome' id="nome" class="cadastro-campo" value="${usuario.nome}" placeholder="Nome do usuário"/>
+					<input type='text' name='nome' id="nome" class="cadastro-campo" value="${usuario.nome}" placeholder="<fmt:message key="user.name"/>"/>
 	
 					<label class="cadastro-descricao" for="email">
-						E-mail <form:errors path='usuario.email' class="cadastro-erro"/>
+						<fmt:message key="user.email"/> <form:errors path='usuario.email' class="cadastro-erro"/>
 					</label>
-					<input type='text' name='email' id="email" class="cadastro-campo" value="${usuario.email}" placeholder="E-mail do usuário"/>
+					<input type='text' name='email' id="email" class="cadastro-campo" value="${usuario.email}" placeholder="<fmt:message key="user.email"/>"/>
 	
 					<label class="cadastro-descricao" for="senha">
-						Senha <form:errors path='usuario.senha' class="cadastro-erro"/>
+						<fmt:message key="user.password"/> <form:errors path='usuario.senha' class="cadastro-erro"/>
 					</label>
-					<input type='password' name='senha' id="senha" class="cadastro-campo" placeholder="Nova senha"/>
+					<input type='password' name='senha' id="senha" class="cadastro-campo" placeholder="<fmt:message key="user.password.new"/>"/>
 	
 					<label class="cadastro-descricao" for="confirmaSenha">
-						Repetir senha <form:errors path='usuario.confirmaSenha' class="cadastro-erro"/>
+						<fmt:message key="user.confirm.password"/> <form:errors path='usuario.confirmaSenha' class="cadastro-erro"/>
 					</label>
-					<input type='password' name='confirmaSenha' id="confirmaSenha" class="cadastro-campo" placeholder="Repetir a senha"/>
+					<input type='password' name='confirmaSenha' id="confirmaSenha" class="cadastro-campo" placeholder="<fmt:message key="user.confirm.password"/>"/>
 					
-					<button type="submit" class="cadastro-botao">SALVAR</button>
+					<button type="submit" class="cadastro-botao"><fmt:message key="user.save.button"/></button>
 				</div>
 			</form>
 		</div>
