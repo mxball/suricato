@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<c:url value='/assets/css/language.css'/>">
 <link rel="stylesheet" href="<c:url value='/assets/css/footer.css'/>">
 <footer class="rodape">
 	<a href="<c:url value="/"/>" class="rodape-home">

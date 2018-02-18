@@ -44,10 +44,21 @@ body {
     transform: translateY(-50%);
 }
 
+.linguagem {
+	position: absolute;
+	right: 140px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 @media ( max-width: 1200px) {
 	.rodape-home {
 		margin-left: 90px;
 		margin-right: 90px;
+	}
+	
+	.linguagem {
+		right: 90px;
 	}
 }
 
@@ -55,5 +66,9 @@ body {
 	.rodape-home {
 		margin-left: 45px;
 		margin-right: 45px;
+	}
+	
+	.linguagem {
+		right: 45px;
 	}
 }
