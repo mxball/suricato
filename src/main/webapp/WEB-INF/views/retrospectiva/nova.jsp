@@ -1,5 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="suricato" %>
 <!DOCTYPE html>
@@ -22,19 +23,19 @@
 	<body>
 		<%@include file="../header.jsp" %>
 		<div class="corpo">
-			<h2 class="corpo-descricao">Criar Retrospectiva</h2>
+			<h2 class="corpo-descricao"><fmt:message key="retrospective.new.title"/></h2>
 			<form:form role="form" commandName="retrospectiva" servletRelativeAction="/retrospectiva/cria" class="cadastro" method="post">			
 				<label for="time" class="cadastro-descricao">
-					Time <form:errors path='adicionaRetrospectivaDTO.timeId' class="cadastro-erro"/> 
+					<fmt:message key="retrospective.team"/> <form:errors path='adicionaRetrospectivaDTO.timeId' class="cadastro-erro"/> 
 				</label>
 				<select name="timeId" id="time" class="cadastro-campo">
-					<option value="">Pessoal</option>
+					<option value=""><fmt:message key="retrospective.individual"/></option>
 					<c:forEach var="time" items="${usuario.conjuntoTimes}">
 						<option value="${time.id}" ${time.id eq timeId ? 'selected' : '' }>${time.nome}</option>
 					</c:forEach>
 				</select>
 				<label for="idLousa" class="cadastro-descricao">
-					Atividade <form:errors path='adicionaRetrospectivaDTO.lousaId' class="cadastro-erro"/>
+					<fmt:message key="retrospective.activity"/> <form:errors path='adicionaRetrospectivaDTO.lousaId' class="cadastro-erro"/>
 				</label>
 				<select name="lousaId"  id="idLousa" onchange="mostraLousa()" class="cadastro-campo">
 					<c:forEach items="${lousas}" var="lousa" varStatus="status">
@@ -51,9 +52,15 @@
 						</div>
 					</c:forEach>
 				</div>
-				<suricato:calendario id="dataInicio" label="Data início:" value="${hoje}"/>
-				<suricato:calendario id="dataFim" label="Data fim:"/>
-				<button type="submit" class="cadastro-botao --retrospectiva">Criar</button>
+				<label for="dataInicio" class="calendario cadastro-descricao --data">
+					<fmt:message key='retrospective.date.begin'/>
+					<suricato:calendario id="dataInicio" value="${hoje}"/>
+				</label>
+				<label for="dataFim" class="calendario cadastro-descricao --data">
+					<fmt:message key='retrospective.date.end'/>
+					<suricato:calendario id="dataFim"/>
+				</label>
+				<button type="submit" class="cadastro-botao --retrospectiva"><fmt:message key="retrospective.new.button"/></button>
 			</form:form>
 		</div>
 		<%@include file="/WEB-INF/views/footer.jsp" %>
