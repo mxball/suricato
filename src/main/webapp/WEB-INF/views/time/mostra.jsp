@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,16 +19,16 @@
 	<body>
 		<%@include file="/WEB-INF/views/header.jsp" %>
 		<div class="corpo">
-			<h2 class="corpo-descricao">Criar time</h2>
+			<h2 class="corpo-descricao"><fmt:message key="team.edit.title"/></h2>
 			<form action="<c:url value='/time/atualizar'/>" class="cadastro" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<input type='hidden' value="${time.id}" name="id"/>
 				<label class="cadastro-descricao" for="nome">
-					Time <form:errors path='time.nome' class="cadastro-erro"/>
+					<fmt:message key="team"/> <form:errors path='time.nome' class="cadastro-erro"/>
 				</label>
-				<input type='text' name='nome' id="nome" class="cadastro-campo" value="${time.nome}" placeholder="Nome do time"/>
+				<input type='text' name='nome' id="nome" class="cadastro-campo" value="${time.nome}" placeholder="<fmt:message key="team.name"/>"/>
 				<label class="cadastro-descricao" for="Participantes">
-					Participantes <form:errors path='time.integrantes' class="cadastro-erro"/>
+					<fmt:message key="team.members"/> <form:errors path='time.integrantes' class="cadastro-erro"/>
 				</label>
 				<label class="cadastro-campo --lista-integrantes" for="novoIntegrante">
 					<c:forEach var="integrante" items="${time.integrantes}">
@@ -39,7 +40,7 @@
 				</label>
 				
 				<label class="cadastro-descricao">
-					Label <form:errors path='time.cor' class="cadastro-erro"/>
+					<fmt:message key="team.color"/> <form:errors path='time.cor' class="cadastro-erro"/>
 				</label>
 				
 				<input type="radio" name="cor" id="cor-azul" value="68e1ff" class="--seletorCor" ${time.cor eq '68e1ff' ? 'checked' : ''}>
@@ -60,7 +61,7 @@
 				<input type="radio" name="cor" id="cor-rosa" value="eb5fea" class="--seletorCor" ${time.cor eq 'eb5fea' ? 'checked' : ''}>
 				<label for="cor-rosa" class="cadastro-campo_cor --rosa"></label>
 				
-				<button type="submit" class="cadastro-botao">Atualiza</button>
+				<button type="submit" class="cadastro-botao"><fmt:message key="team.edit.button"/></button>
 			</form>
 		</div>
 		<%@include file="/WEB-INF/views/footer.jsp" %>
