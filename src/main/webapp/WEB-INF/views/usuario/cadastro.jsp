@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="<c:url value='/assets/css/language.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/usuario/login.css'/>">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">

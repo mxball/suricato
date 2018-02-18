@@ -127,3 +127,9 @@
 	letter-spacing: -0.1px;
 	text-align: center;
 }
+
+.linguagem {
+	bottom: 20px;
+	position: absolute;
+	right: 20px;
+}

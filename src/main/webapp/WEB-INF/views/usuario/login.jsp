@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="<c:url value='/assets/css/language.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/usuario/login.css'/>">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
@@ -31,8 +32,8 @@
 				</a>
 			</span>
 			<select class="linguagem">
-				<option value="pt">Português</option>
-				<option value="en">English</option>
+				<option value="pt" class="linguagem-opcao">Português</option>
+				<option value="en" class="linguagem-opcao">English</option>
 			</select>
 		</fieldset>
 	</body>
