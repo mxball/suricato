@@ -12,6 +12,7 @@
 		<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
 		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/corpo.css'/>">
+		<link rel="stylesheet" href="<c:url value='/assets/css/menu.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/jquery-impromptu.min.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/jquery-ui.css'/>">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
@@ -21,15 +22,18 @@
 	</head>
 	<body>
 		<%@include file="../header.jsp" %>
+		<div class="menu">
+			<a href="/" class="menu-opcao --retro">Retrospectivas</a>
+			<a href="/usuario/edita" class="menu-opcao --perfil --selecionado">Editar Perfil</a>
+		</div>
 		<div class="corpo">
-			<h2 class="corpo-descricao">Editar Perfil</h2>
 			<span class="corpo-sucesso">${atualizado}</span>
 			<form action="<c:url value='/usuario/edita'/>" class="cadastro" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<div class="cadastro-foto">
+				<div class="cadastro-foto foto">
 					<input type="file" name="file" id="foto" class="cadastro-foto_campo foto-arquivo"/>
 					<img alt="foto-perfil" src="<c:url value='/usuario/perfil'/>" class="cadastro-foto_imagem foto-visualiza">
-					<label for="foto" class="cadastro-foto_descricao foto-texto">Atuliazar foto</label>
+					<label for="foto" class="cadastro-foto_descricao foto-texto">Atualizar foto</label>
 				</div>
 				<div class="cadastro-dados">				
 					<label class="cadastro-descricao" for="nome">

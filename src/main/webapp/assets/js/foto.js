@@ -11,4 +11,4 @@ inputFile.addEventListener("change", function(event) {
 		
 		reader.readAsDataURL($input.files[0]);
 	}
-})
+});

@@ -1,7 +1,7 @@
 .cadastro-foto {
-	float: left;
-	width: 82px;
+	display: flex;
 	margin-right: 20px;
+	margin-bottom: 20px;
 }
 
 .cadastro-dados {
@@ -16,9 +16,9 @@
 .cadastro-foto_imagem {
 	border: solid 1px #e4d9f4;
  	border-radius: 5px;
- 	display: block;
 	height: 100px;
-	width: 100%;
+	margin-right: 20px;
+	width: 80px;
 }
 
 .cadastro-foto_campo {
@@ -26,11 +26,24 @@
 }
 
 .cadastro-foto_descricao {
+	border: solid 1px #9f53ed;
+	border-radius: 5px;
+	color: #9f53ed;
+	display: block;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
 	font-weight: bold;
+	height: 30px;
 	letter-spacing: -0.1px;
-	color: #826c98;
+	padding-bottom: 7px;
+	padding-top: 8px;	
+	width: 120px;
+	text-align: center;
+}
+
+.cadastro-foto_descricao:hover {
+	background-color: #9f53ed;
+	color: #ffffff;
 }
 
 .cadastro-foto_descricao:hover {
