@@ -52,15 +52,17 @@ public class UsuarioController {
 	@Autowired
 	private ServletContext servletContext;
 
-	@RequestMapping(value="/login", method = RequestMethod.GET)
+	@RequestMapping(value={"/login", "/usuario/login"}, method = RequestMethod.GET)
 	public String login(@RequestParam(value = "error", required = false) String error, Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
+
 		    return "redirect:index";
 		}
 		if (error != null) {
 			model.addAttribute("error", "Invalid username and password!");
 		}
+
 		return "usuario/login";
 	}
 	

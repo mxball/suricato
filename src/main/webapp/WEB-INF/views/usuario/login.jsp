@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,14 +18,23 @@
 				<c:if test="${not empty error}">
 					<span class="login-usuario_error" id="login-errors">${error}</span>
 				</c:if>
-				<input type='text' name='username' class="login-usuario_dado" placeholder="Usuário"/>
-				<input type='password' name='password' class="login-usuario_dado" placeholder="Senha"/>
+				
+				<input type='text' name='username' class="login-usuario_dado" placeholder="<fmt:message key="user.name"/>"/>
+				<input type='password' name='password' class="login-usuario_dado" placeholder="<fmt:message key="user.password"/>"/>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<button type="submit" class="login-usuario_botao">LOGIN</button>
 			</form>
 			<span class="login-usuario_acao">
-				Não possui cadastro? <a href='<c:url value="/usuario/cadastro"/>' class="--link">Cadastre-se já</a>
+				<fmt:message key="user.new.text"/>
+				<a href='<c:url value="/usuario/cadastro"/>' class="--link">
+					<fmt:message key="user.signup"/>
+				</a>
 			</span>
+			<select class="linguagem">
+				<option value="pt">Português</option>
+				<option value="en">English</option>
+			</select>
 		</fieldset>
 	</body>
+	<script src="<c:url value='/assets/js/language.js'/>"></script>
 </html>
