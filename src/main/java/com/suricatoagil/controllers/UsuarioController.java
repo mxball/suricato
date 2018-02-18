@@ -74,13 +74,13 @@ public class UsuarioController {
 	@RequestMapping(value="/usuario/cadastro", method = RequestMethod.POST)
 	public String novoUsuario(@ModelAttribute("usuario") @Valid CadastroUsuarioDTO cadastroUsuarioDTO, BindingResult bindingResult, @RequestParam("file") MultipartFile file, Model model) {
 		if(cadastroUsuarioDTO.isSenhasDiferentes()) {
-			bindingResult.rejectValue("senha", "senha.diferentes", "As senhas estão diferentes!");
+			bindingResult.rejectValue("senha", "senha.diferentes");
 		}
 		if(usuarioDao.jahExisteUsuarioComEmail(cadastroUsuarioDTO.getEmail())) {
-			bindingResult.rejectValue("email", "email.existe", "E-mail " + cadastroUsuarioDTO.getEmail() + " já existe");
+			bindingResult.rejectValue("email", "email.existe");
 		}
 		if(usuarioDao.jahExisteUsuarioChamado(cadastroUsuarioDTO.getNome())) {
-			bindingResult.rejectValue("nome", "nome.existe", "Usuario " + cadastroUsuarioDTO.getNome() + " já existe");
+			bindingResult.rejectValue("nome", "nome.existe");
 		}
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("usuarioDTO", cadastroUsuarioDTO);
@@ -119,13 +119,13 @@ public class UsuarioController {
 	public String editaUsuario(@ModelAttribute("usuario") @Valid NovoUsuarioDTO novoUsuario, BindingResult bindingResult, @RequestParam("file") MultipartFile file, Principal principal, Model model) {
 		Usuario usuarioLogado = usuarioDao.buscaPorNome(principal.getName());
 		if(novoUsuario.isSenhasDiferentes()) {
-			bindingResult.rejectValue("senha", "senha.diferentes", "As senhas estão diferentes!");
+			bindingResult.rejectValue("senha", "senha.diferentes");
 		}
 		if(!usuarioLogado.getNome().equals(novoUsuario.getNome()) && usuarioDao.jahExisteUsuarioChamado(novoUsuario.getNome())) {
-			bindingResult.rejectValue("nome", "nome.existe", "Usuario " + novoUsuario.getNome() + " já existe");
+			bindingResult.rejectValue("nome", "nome.existe");
 		}
 		if(!novoUsuario.getEmail().equals(usuarioLogado.getEmail()) && usuarioDao.jahExisteUsuarioComEmail(novoUsuario.getEmail())) {
-			bindingResult.rejectValue("email", "email.existe", "E-mail " + novoUsuario.getEmail() + " já existe");
+			bindingResult.rejectValue("email", "email.existe");
 		}
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("usuario", novoUsuario);

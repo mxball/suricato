@@ -8,18 +8,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class CadastroUsuarioDTO {
 
-	@NotBlank(message="Usuário não pode ser vazio")
-	@Size(min=5, message="Nome do usuário deve conter pelo menos 5 caracteres")
+	@NotBlank
+	@Size(min=5)
 	private String nome;
 	
-	@NotBlank(message="E-mail não pode ser vazio")
-	@Email(message="E-mail inválido")
+	@NotBlank
+	@Email
 	private String email;
 
-	@NotBlank(message="Senha não pode ser vazia")
+	@NotBlank
 	private String senha;
 	
-	@NotBlank(message="Confirmação de senha não pode ser vazia")	
+	@NotBlank	
 	private String confirmaSenha;
 
 	public String getNome() {
