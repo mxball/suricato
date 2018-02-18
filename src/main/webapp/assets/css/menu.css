@@ -1,0 +1,92 @@
+body {
+	z-index: -10;
+}
+
+.corpo {
+	margin-left: 322px;
+	width: 1255px;
+}
+
+.menu {
+  	background-color: #3d2853;
+  	height: 100vh;
+	position: fixed;
+	padding-top: 60px;
+	top: 0;
+	width: 300px;
+	z-index: -1;
+}
+
+.menu-opcao {
+	color: #ffffff;
+	display: flex;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	height: 40px;
+	letter-spacing: 0.4px;
+	line-height: 40px;
+	margin-left: 130px;
+	margin-top: 20px;
+	padding-left: 16px;
+	text-decoration: none;
+	width: 170px;
+}
+
+.menu-opcao.--retro:before {
+	align-self: center;
+	background: url("../images/iconeRetro.png") no-repeat;
+    background-size: 15px 13px;
+    content: '';
+    display: inline-block;
+    height: 13px;
+    margin-right: 7px;
+    width: 15px;
+}
+
+.menu-opcao.--perfil:before {
+	align-self: center;
+	background: url("../images/iconeUsuario.png") no-repeat;
+	background-position: center;
+    background-size: 7px 15px;
+    content: '';
+    display: inline-block;
+    height: 15px;
+    margin-right: 5px;
+    width: 15px;
+}
+
+.menu-opcao.--selecionado {
+	background-color: #241237;
+}
+
+@media ( max-width: 1705px) {
+	.corpo {
+		width: 1005px;
+	}
+}
+
+@media ( max-width: 1450px) {
+	.corpo {
+		width: 755px;
+	}
+}
+
+@media ( max-width: 1200px) {
+	.corpo {
+		margin-left: 262px;
+	}
+	
+	.menu {
+		width: 240px;
+	}	
+	
+	.menu-opcao {
+		margin-left: 75px;
+	}
+}
+
+@media ( max-width: 1090px) {
+	.corpo {
+		width: 505px;
+	}
+}
