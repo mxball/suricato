@@ -1,5 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="suricato" %>
 <!DOCTYPE html>
@@ -23,8 +24,8 @@
 	<body>
 		<%@include file="../header.jsp" %>
 		<div class="menu">
-			<a href="/" class="menu-opcao --retro">Retrospectivas</a>
-			<a href="/usuario/edita" class="menu-opcao --perfil --selecionado">Editar Perfil</a>
+			<a href="/" class="menu-opcao --retro"><fmt:message key="retrospective"/></a>
+			<a href="/usuario/edita" class="menu-opcao --perfil --selecionado"><fmt:message key="user.edit"/></a>
 		</div>
 		<div class="corpo">
 			<span class="corpo-sucesso">${atualizado}</span>
