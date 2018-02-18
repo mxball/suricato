@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="suricato" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,10 +27,10 @@
 		<div class="infos">
 			<div class="infos-time">
 				<span class="infos-time_dado" style="color: #${timeRetrospectivas.cor}">
-					<span class="--numero">${timeRetrospectivas.numeroRetrospectivas}</span> Retrospectivas
+					<span class="--numero">${timeRetrospectivas.numeroRetrospectivas}</span> <fmt:message key="list.retrospectives"/>
 				</span>
 				<span class="infos-time_dado" style="color: #${timeRetrospectivas.cor}">
-					<span class="--numero">${timeRetrospectivas.numeroIntegrantes }</span> Participantes
+					<span class="--numero">${timeRetrospectivas.numeroIntegrantes }</span> <fmt:message key="list.team.members"/>
 				</span>
 				<div class="infos-lista_fotos">
 					<c:forEach var="integrante" items="${timeRetrospectivas.integrantes}">
@@ -37,11 +38,11 @@
 					</c:forEach>
 				</div>
 				<c:if test="${timeRetrospectivas.deTime}">
-					<a class="infos-time_integrante" href="<c:url value='/time/mostra?timeId=${timeRetrospectivas.timeId}'/>">Add membros</a>
+					<a class="infos-time_integrante" href="<c:url value='/time/mostra?timeId=${timeRetrospectivas.timeId}'/>"><fmt:message key="list.team.add.member"/></a>
 				</c:if>
 			</div>
 			<div class="infos-retrospectiva">
-				<a class="infos-retrospectiva_nova" href="<c:url value='/retrospectiva/nova?timeId=${timeRetrospectivas.timeId}'/>">Criar Retrospectiva</a>
+				<a class="infos-retrospectiva_nova" href="<c:url value='/retrospectiva/nova?timeId=${timeRetrospectivas.timeId}'/>"><fmt:message key="list.new.retrospective"/></a>
 				<a class="infos-retrospectiva_disposicao glyphicon glyphicon-th-large --minimized" data-selected></a>
 				<a class="infos-retrospectiva_disposicao glyphicon glyphicon-stop --maximized"></a>
 			</div>
