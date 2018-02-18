@@ -14,5 +14,10 @@ window.onload = function() {
 		window.location.href = url;
 	});
 	
-	seletorLinguagem.value = document.cookie.substring(document.cookie.indexOf("lang") + 5, document.cookie.indexOf("lang") + 7);
+	const cookieLangIndex = document.cookie.indexOf("lang");
+	if(cookieLangIndex >= 0) {		
+		seletorLinguagem.value = document.cookie.substring(cookieLangIndex + 5, cookieLangIndex + 7);
+	} else {
+		seletorLinguagem.value = "pt";
+	}
 }
