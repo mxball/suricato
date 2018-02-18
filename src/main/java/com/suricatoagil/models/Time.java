@@ -26,7 +26,7 @@ public class Time {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotBlank(message="Nome do time não pode ser vazio")
+	@NotBlank
 	@Column(unique = true)
 	private String nome;
 	
@@ -37,7 +37,7 @@ public class Time {
 	@OneToMany(mappedBy="time")
 	private Set<Retrospectiva> retrospectivas = new HashSet<>();
 	
-	@NotBlank(message="Escolha a cor do seu time")
+	@NotBlank
 	private String cor;
 
 	public Integer getId() {
