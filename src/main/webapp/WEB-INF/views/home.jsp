@@ -14,7 +14,14 @@
 		</c:otherwise>
 	</c:choose>
 	<a href="<c:url value='${url}'/>" class="time" style="background: linear-gradient(to bottom, #${timeRetros.cor}, #${timeRetros.corGradiente})">
-		<h3 class="time-nome">${timeRetros.nomeTime}</h3>
+		<c:choose>
+			<c:when test="${timeRetros.nomeTime eq 'Pessoal'}">
+				<h3 class="time-nome"><fmt:message key="retrospective.individual"/></h3>
+			</c:when>
+			<c:otherwise>
+				<h3 class="time-nome">${timeRetros.nomeTime}</h3>
+			</c:otherwise>
+		</c:choose>
 		<span class="time-quantidade">
 			<span class="--numero">${timeRetros.quantidadeDeRetros}</span> <fmt:message key="home.retrospective"/>
 		</span>

@@ -18,7 +18,17 @@
 <body>
 	<%@include file="../header.jsp" %>
 	<div class="time" style="background: linear-gradient(to bottom, #${timeRetrospectivas.cor}, #${timeRetrospectivas.corGradiente})">
-		<h2 class="time-nome">${timeRetrospectivas.titulo}</h2>
+	
+		<c:choose>
+			<c:when test="${timeRetrospectivas.titulo eq 'Pessoal'}">
+				<h2 class="time-nome"><fmt:message key="retrospective.individual"/></h2>
+			</c:when>
+			<c:otherwise>
+				<h2 class="time-nome">${timeRetrospectivas.titulo}</h2>
+			</c:otherwise>
+		</c:choose>
+	
+		
 		<c:if test="${timeRetrospectivas.deTime}">
 			<a class="time-editar glyphicon glyphicon-cog" href="<c:url value='/time/mostra?timeId=${timeRetrospectivas.timeId}'/>"></a>
 		</c:if>
