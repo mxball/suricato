@@ -25,13 +25,17 @@ body {
 	width: 100%;
 }
 
-.rodape-home {
+.rodape-conteudo {
 	border-top: 2px solid rgba(0,0,0, 0.06);
 	color: #eee7f7;
 	display: block;
  	height: 60px;
 	margin-left: 140px;
-	margin-right: 140px;
+	margin-right: 140px;	
+}
+
+.rodape-home {
+ 	height: 60px;
 	text-decoration: none;
 }
 
@@ -52,7 +56,7 @@ body {
 }
 
 @media ( max-width: 1200px) {
-	.rodape-home {
+	.rodape-conteudo {
 		margin-left: 90px;
 		margin-right: 90px;
 	}
@@ -63,7 +67,7 @@ body {
 }
 
 @media ( max-width: 1080px) {
-	.rodape-home {
+	.rodape-conteudo {
 		margin-left: 45px;
 		margin-right: 45px;
 	}
