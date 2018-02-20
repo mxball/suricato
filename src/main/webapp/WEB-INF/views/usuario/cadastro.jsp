@@ -17,9 +17,11 @@
 			<img alt="Logo suricato" src="<c:url value="/assets/images/logo-suricato.svg"/>" class="login-titulo">
 			<form action="<c:url value='/usuario/cadastro'/>" class="login-usuario" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="file" name="file" id="foto" class="login-usuario_arquivo foto-arquivo"/>
-				<img alt="foto-perfil" src="<c:url value='/assets/images/defaultUser.png'/>" class="login-usuario_perfil foto-visualiza">
-				<label for="foto" class="login-usuario_selecionarFoto foto-texto"><fmt:message key="user.photo"/></label>
+				<div class="login-usuario_foto">
+					<input type="file" name="file" id="foto" class="login-usuario_arquivo foto-arquivo --trocaNomeArquivo"/>
+					<img alt="foto-perfil" src="<c:url value='/assets/images/defaultUser.png'/>" class="login-usuario_perfil foto-visualiza">
+					<label for="foto" class="login-usuario_selecionarFoto foto-texto"><fmt:message key="user.photo"/></label>
+				</div>
 				<form:errors path='usuario.nome' cssClass="login-usuario_error"/>
 				<input type='text' name='nome' class="login-usuario_dado" value="${cadastroUsuarioDTO.nome}" placeholder="<fmt:message key="user.name"/>"/>
 				<form:errors path='usuario.email' cssClass="login-usuario_error"/>

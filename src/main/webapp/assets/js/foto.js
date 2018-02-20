@@ -10,5 +10,9 @@ inputFile.addEventListener("change", function(event) {
 		};
 		
 		reader.readAsDataURL($input.files[0]);
+		if($input.classList.contains("--trocaNomeArquivo")) {
+			const labelImagem = document.querySelector(".foto-texto")
+			labelImagem.textContent = $input.files[0].name
+		}
 	}
 });

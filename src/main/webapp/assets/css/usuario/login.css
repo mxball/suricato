@@ -102,30 +102,39 @@
 	margin-bottom: 3px;
 }
 
+.login-usuario_foto {
+	display: flex;
+	height: 32px;
+	line-height: 32px;
+	margin-bottom: 20px;
+}
+
 .login-usuario_arquivo {
 	display: none;
 }
 
 .login-usuario_perfil {
-	border: solid 1px #e4d9f4;
-	border-radius: 5px;
-	display: block;
-	height: 100px;
-	margin-bottom: 5px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 80px;
+	border: solid 2px #d7caea;
+	border-radius: 32px;
+	box-sizing: border-box;
+	display: inline-block;
+	height: 32px;
+	margin-right: 15px;
+	width: 32px;
 }
 
 .login-usuario_selecionarFoto {
-	color: #826c98;
+	color: #d7caea;
 	cursor: pointer;
-	display: block;
+	display: inline-block;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 12px;
+	font-size: 24px;
 	font-weight: bold;
-	letter-spacing: -0.1px;
-	text-align: center;
+	letter-spacing: -0.3px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	width: 86%;
 }
 
 .linguagem {
