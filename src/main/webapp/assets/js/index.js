@@ -15,7 +15,6 @@ $(document).ready(function() {
 });
 
 $('#tipo-aberta').click(function(){
-	console.log("clicando");
 	$('.lista-fechadas').addClass("hideme");
 	$('.lista-abertas').removeClass("hideme");
 });

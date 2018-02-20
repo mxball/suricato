@@ -124,6 +124,7 @@ var usuarioNome = lousa.dataset.usuarioNome;
 var stompClient = null;
 var socket = new SockJS('/retrospective-websocket');
 stompClient = Stomp.over(socket);
+stompClient.debug = null;
 stompClient.connect({}, function (frame) {
 	stompClient.subscribe('/message/retrospectiva/asndjkahsdjhds/' + retrospectivaId, function (conteudoJson) {
 		var json = JSON.parse(conteudoJson.body);
