@@ -68,11 +68,17 @@
 	text-decoration: none;
 }
 
+
 .infos-time_integrante {
 	border: 1px solid #4bdd46;
 	color: #4bdd46;
 }
 
+.infos-time_integrante:hover {
+	background-color: #4bdd46;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+	color: #ffffff;
+}
 
 .infos-lista_fotos {
 	display: inline-block;
@@ -112,6 +118,12 @@
 	vertical-align: top;
 }
 
+.infos-retrospectiva_nova:hover {
+	background-color: #30c3e7;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+	color: #ffffff;
+}
+
 .infos-retrospectiva_disposicao.--minimized,
 .infos-retrospectiva_disposicao.--maximized {
 	color: #d1cad9;
@@ -139,20 +151,10 @@
 	color:#ab9dbc; 
 }
 
-
-.infos-time_integrante:hover {
-	color: #4bdd46;
-}
-
-.infos-retrospectiva_nova:hover {
-	color: #30c3e7;
-}
-
 .lista-retrospectivas {
 	display: block;
 	margin: 0 auto;
 }
-
 
 .lista-retrospectivas.--maximized {
 	width: 1080px;

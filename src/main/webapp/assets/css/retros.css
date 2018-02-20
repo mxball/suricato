@@ -77,8 +77,9 @@
 }
 
 .cadastro.--retrospectiva:hover {
-	border: solid 1px #588ed6;
-	color: #588ed6;
+	background-color: #30c3e7;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+	color: #ffffff;
 }
 
 .cadastro.--time {
@@ -87,6 +88,7 @@
 }
 
 .cadastro.--time:hover {
-	border: solid 1px #f4a020;
-	color: #f4a020;
+	background-color: #fdad33;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+	color: #ffffff;
 }

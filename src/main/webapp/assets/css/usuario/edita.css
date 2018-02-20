@@ -47,6 +47,7 @@
 
 .cadastro-foto_descricao:hover {
 	background-color: #9f53ed;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
 	color: #ffffff;
 }
 

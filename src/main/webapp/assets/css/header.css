@@ -64,6 +64,12 @@
 	width: 60px;
 }
 
+.logout:hover {
+	background-color: #ab68f0;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+	color: #ffffff;
+}
+
 @media ( max-width: 1200px) {
 	.cabecalho-home {
 		margin-left: 90px;
