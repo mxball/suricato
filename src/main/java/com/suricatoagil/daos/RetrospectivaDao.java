@@ -22,7 +22,7 @@ public class RetrospectivaDao {
 	}
 
 	public List<Retrospectiva> listaRetrospectivasAbertasPessoaisDo(Usuario usuario) {
-		return manager.createQuery("from Retrospectiva r where r.criador = :usuario and r.time is null and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
+		return manager.createQuery("select r from Retrospectiva r where r.criador = :usuario and r.time is null and (r.dataFim >= :hoje or r.dataFim is null)", Retrospectiva.class)
 					.setParameter("usuario", usuario)
 					.setParameter("hoje", LocalDate.now())
 					.getResultList();
@@ -30,7 +30,7 @@ public class RetrospectivaDao {
 	
 
 	public List<Retrospectiva>listaRetrospectivasFechadasPessoaisDo(Usuario usuario) {
-		return manager.createQuery("from Retrospectiva r where r.criador = :usuario and r.time is null and r.dataFim < :hoje", Retrospectiva.class)
+		return manager.createQuery("select r from Retrospectiva r where r.criador = :usuario and r.time is null and r.dataFim < :hoje", Retrospectiva.class)
 				.setParameter("usuario", usuario)
 				.setParameter("hoje", LocalDate.now())
 				.getResultList();
@@ -75,7 +75,7 @@ public class RetrospectivaDao {
 	}
 
 	public List<Retrospectiva> buscaRetrosPessoaisDo(Usuario usuario) {
-		return manager.createQuery("from Retrospectiva r where r.criador = :usuario and r.time is null", Retrospectiva.class)
+		return manager.createQuery("select r from Retrospectiva r where r.criador = :usuario and r.time is null", Retrospectiva.class)
 					.setParameter("usuario", usuario)
 					.getResultList();
 	}
