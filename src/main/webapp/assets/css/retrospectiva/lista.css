@@ -17,6 +17,15 @@
 .time-editar {
 	font-size: 26px;
 }
+.time-editar:after {
+	background: url("../../images/iconeEngrenagem.png") no-repeat;
+	background-size: 25px;
+	content: '';
+    display: inline-block;
+	height: 25px;
+    margin-left: 10px;
+	width: 25px;
+}
 
 .time-editar:hover {
 	cursor: pointer;

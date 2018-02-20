@@ -30,7 +30,7 @@
 	
 		
 		<c:if test="${timeRetrospectivas.deTime}">
-			<a class="time-editar glyphicon glyphicon-cog" href="<c:url value='/time/mostra?timeId=${timeRetrospectivas.timeId}'/>"></a>
+			<a class="time-editar" href="<c:url value='/time/mostra?timeId=${timeRetrospectivas.timeId}'/>"></a>
 		</c:if>
 	</div>
 	<div class="corpo">
