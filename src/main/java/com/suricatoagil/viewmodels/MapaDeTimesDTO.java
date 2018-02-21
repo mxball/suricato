@@ -29,18 +29,18 @@ public class MapaDeTimesDTO {
 				timesRetrosFechadas.add(new TimeRetrosDTO(quantidadeFechadas, numeroIntegrantes, time.getId(), time.getNome(), time.getCor()));
 			}
 		}
+		int quantidadeAbertas = 0;
+		int quantidadeFechadas = 0;
 		for (Retrospectiva retrospectiva : retrospectivasPessoais) {
-			int quantidadeAbertas = 0;
-			int quantidadeFechadas = 0;
 			if(retrospectiva.isAberta()) {
 				quantidadeAbertas++;
 			} else {
 				quantidadeFechadas++;
 			}
-			timesRetrosAbertas.add(new TimeRetrosDTO(quantidadeAbertas, 1, "Pessoal", "eb5fea"));
-			if(quantidadeFechadas > 0) {				
-				timesRetrosAbertas.add(new TimeRetrosDTO(quantidadeFechadas, 1, "Pessoal", "eb5fea"));
-			}
+		}
+		timesRetrosAbertas.add(new TimeRetrosDTO(quantidadeAbertas, 1, "Pessoal", "eb5fea"));
+		if(quantidadeFechadas > 0) {
+			timesRetrosAbertas.add(new TimeRetrosDTO(quantidadeFechadas, 1, "Pessoal", "eb5fea"));
 		}
 	}
 	
