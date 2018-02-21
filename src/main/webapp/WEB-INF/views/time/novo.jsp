@@ -7,6 +7,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="icon" type="image/png" href="<c:url value='/assets/images/logo.png'/>" />
 		<link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/corpo.css'/>">

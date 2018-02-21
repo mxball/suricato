@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<link rel="icon" type="image/png" href="<c:url value='/assets/images/logo.png'/>" />
 	<link rel="stylesheet" href="<c:url value='/assets/css/bootstrap.min.css'/>">
 	<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">
 	<link rel="stylesheet" href="<c:url value='/assets/css/corpo.css'/>">

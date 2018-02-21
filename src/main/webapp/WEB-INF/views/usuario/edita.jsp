@@ -8,6 +8,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Nova retrospectiva</title>
+		<link rel="icon" type="image/png" href="<c:url value='/assets/images/logo.png'/>" />
 		<script src="<c:url value='/assets/js/jquery-2.1.4.js'/>"></script>
 		<script src="<c:url value='/assets/js/jquery-impromptu.js'/>"></script>
 		<script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>

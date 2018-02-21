@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="icon" type="image/png" href="<c:url value='/assets/images/logo.png'/>" />
 		<link rel="stylesheet" href="<c:url value='/assets/css/jquery-impromptu.min.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/jquery-ui.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/reset.css'/>">

@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="<c:url value='/assets/css/menu.css'/>">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
+	<link rel="icon" type="image/png" href="<c:url value='/assets/images/logo.png'/>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Home page</title>
 </head>
