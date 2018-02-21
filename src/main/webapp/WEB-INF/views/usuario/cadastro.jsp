@@ -20,7 +20,7 @@
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="login-usuario_foto">
 					<input type="file" name="file" id="foto" class="login-usuario_arquivo foto-arquivo --trocaNomeArquivo"/>
-					<img alt="foto-perfil" src="<c:url value='/assets/images/defaultUser.png'/>" class="login-usuario_perfil foto-visualiza">
+					<img alt="foto-perfil" src="<c:url value='/assets/images/vazio.png'/>" class="login-usuario_perfil foto-visualiza">
 					<label for="foto" class="login-usuario_selecionarFoto foto-texto"><fmt:message key="user.photo"/></label>
 				</div>
 				<form:errors path='usuario.nome' cssClass="login-usuario_error"/>

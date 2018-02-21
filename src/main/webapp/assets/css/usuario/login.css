@@ -114,6 +114,9 @@
 }
 
 .login-usuario_perfil {
+	background: url("../../images/iconeCamera.png") no-repeat;
+	background-position: center;
+	background-size: 19px 20px;
 	border: solid 2px #d7caea;
 	border-radius: 32px;
 	box-sizing: border-box;
