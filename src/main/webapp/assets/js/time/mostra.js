@@ -89,7 +89,7 @@ function criaSpan(id, value) {
 	span.style.backgroundColor = cores[contadorCores % cores.length];
 	span.style.marginRight = "4px";
 	let remove = document.createElement("a");
-	remove.dataset.usuarioId = id;
+	remove.dataset.posicao = id;
 	remove.className = "integrante-remove glyphicon glyphicon-remove";
 	span.appendChild(remove);
 	contadorCores++
@@ -97,14 +97,28 @@ function criaSpan(id, value) {
 }
 
 listaIntegrantes.onclick = (event) => {
-	if(event.target.classList.contains("integrante-remove")) {
-		const id = event.target.dataset.usuarioId;
-		document.querySelector("#integrante_nome_" + id).remove();
-		document.querySelector("#integrante_id_" + id).remove();
-		event.target.parentNode.remove();
-		atualizaInput();
+	const $target = event.target;
+	if($target.classList.contains("integrante-remove")) {
+		if($target.dataset.usuarioId) {
+			$.get("/time/removeUsuario", { usuarioId: $target.dataset.usuarioId, timeId: $target.dataset.timeId },
+						function(result) {
+							apagaUsuarioDaTela($target);
+						}
+					)
+		} else {
+			apagaUsuarioDaTela($target);
+		}
 	}
 }
+
+function apagaUsuarioDaTela(usuarioRemove) {
+	const id = usuarioRemove.dataset.posicao;
+	document.querySelector("#integrante_nome_" + id).remove();
+	document.querySelector("#integrante_id_" + id).remove();
+	usuarioRemove.parentNode.remove();
+	atualizaInput();	
+}
+
 
 document.querySelector(".cadastro").onsubmit = () => {
 	const camposId = document.querySelectorAll(".cadastro-campo_id");

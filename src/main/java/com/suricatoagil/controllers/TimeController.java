@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.suricatoagil.daos.TimeDao;
 import com.suricatoagil.daos.UsuarioDao;
@@ -71,5 +73,10 @@ public class TimeController {
 		return "redirect:/time/mostra?id=" + timeLoaded.getId();
 	}
 	
-	
+	@RequestMapping(value="/removeUsuario", method=RequestMethod.GET)
+	@ResponseBody
+	public String removeIntegrante(@RequestParam Integer usuarioId, @RequestParam Integer timeId) {		
+		timeDao.removeUsuarioDo(timeId, usuarioId);
+		return "ok";
+	}
 }

@@ -41,6 +41,14 @@ public class TimeDao {
 				.setParameter("id", usuario.getId())
 				.getResultList();
 	}
+
+	public void removeUsuarioDo(int timeId, int usuarioId) {
+		manager.createNativeQuery("delete from time_usuario where time_id = :timeId and usuario_id = :usuarioId")
+			.setParameter("timeId", timeId)
+			.setParameter("usuarioId", usuarioId)
+			.executeUpdate();
+		
+	}
 	
 	
 }

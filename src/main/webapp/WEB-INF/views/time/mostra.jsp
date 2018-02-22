@@ -32,10 +32,15 @@
 					<fmt:message key="team.members"/> <form:errors path='time.integrantes' class="cadastro-erro"/>
 				</label>
 				<label class="cadastro-campo --lista-integrantes" for="novoIntegrante">
-					<c:forEach var="integrante" items="${time.integrantes}">
-						<span class="integrante">${integrante.nome}</span>
-						<input type='hidden' value="${integrante.id}" class="cadastro-campo_id"/>
-						<input type='hidden' value="${integrante.nome}" class="cadastro-campo_nome"/>
+					<c:forEach var="integrante" items="${time.integrantes}" varStatus="status">
+						<span class="integrante">
+							${integrante.nome}
+							<c:if test="${integrante != usuario }">
+								<a class="integrante-remove glyphicon glyphicon-remove" data-usuario-id="${integrante.id}" data-time-id="${time.id}" data-posicao="${status.index}"></a>
+							</c:if>
+						</span>
+						<input type='hidden' value="${integrante.id}" class="cadastro-campo_id" id="integrante_nome_${status.index}"/>
+						<input type='hidden' value="${integrante.nome}" class="cadastro-campo_nome" id="integrante_id_${status.index}"/>
 					</c:forEach>
 					<input type="text" class="integrante-adiciona" id="novoIntegrante">
 				</label>
