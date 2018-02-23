@@ -1,9 +1,11 @@
 package com.suricatoagil.controllers;
 
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -33,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.suricatoagil.actions.CadastroUsuarioAction;
 import com.suricatoagil.daos.UsuarioDao;
 import com.suricatoagil.models.Usuario;
+import com.suricatoagil.services.EmailsService;
 import com.suricatoagil.storage.StorageFileNotFoundException;
 import com.suricatoagil.storage.StorageService;
 import com.suricatoagil.viewmodels.AdicionaUsuarioTimeDTO;
@@ -51,6 +54,8 @@ public class UsuarioController {
 	private StorageService storageService;
 	@Autowired
 	private ServletContext servletContext;
+	@Autowired
+	private EmailsService emailsService;
 
 	@RequestMapping(value={"/login", "/usuario/login"}, method = RequestMethod.GET)
 	public String login(@RequestParam(value = "error", required = false) String error, Model model) {

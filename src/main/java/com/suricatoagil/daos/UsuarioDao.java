@@ -55,4 +55,11 @@ public class UsuarioDao {
 		return usuarios.size() > 0;
 	}
 
+	public Usuario buscaPorEmail(String email) {
+		Usuario usuario = (Usuario) manager.createQuery("select u from Usuario u where u.email = :email")
+				.setParameter("email", email)
+				.getSingleResult();
+		return usuario;
+	}
+
 }
