@@ -21,7 +21,7 @@ public class TimeDao {
 	}
 
 	public Time load(Integer id) {
-		return (Time) manager.createQuery("select t from Time t left join fetch t.integrantes  where t.id = :id")
+		return (Time) manager.createQuery("select t from Time t where t.id = :id")
 				.setParameter("id", id)
 				.getSingleResult();
 	}

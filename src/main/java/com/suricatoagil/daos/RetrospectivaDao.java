@@ -69,7 +69,7 @@ public class RetrospectivaDao {
 	}
 
 	public Retrospectiva loadWebSocket(Integer retrospectivaId) {
-		return (Retrospectiva) manager.createQuery("select r from Retrospectiva r left join fetch r.time t left join fetch t.integrantes where r.id = :id")
+		return (Retrospectiva) manager.createQuery("select r from Retrospectiva r left join fetch r.time t left join t.integrantes where r.id = :id")
 					.setParameter("id", retrospectivaId)
 					.getSingleResult();
 	}
