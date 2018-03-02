@@ -143,4 +143,12 @@ public class ConteudoJson {
 		return comentario;
 	}
 
+	public boolean isValido() {
+		return tipoConteudo != null && !tipoConteudo.isEmpty() && operacao != null && !operacao.isEmpty()
+				&& texto != null && posicaoHorizontal != null && posicaoHorizontal >= 0 
+				&& posicaoVertical != null && posicaoVertical >= 0 && largura != null && largura > 0 
+				&& altura != null && altura > 0 && cor != null && numeroVotos >= 0 
+				&& numeroDeslikes >= 0;
+	}
+
 }

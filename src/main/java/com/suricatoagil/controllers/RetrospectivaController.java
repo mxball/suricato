@@ -146,7 +146,7 @@ public class RetrospectivaController {
 	@SendTo("/message/retrospectiva/asndjkahsdjhds/{retrospectivaId}")
 	public ConteudoJson atualizaRetrospectiva(ConteudoJson conteudo, @DestinationVariable("retrospectivaId") Integer retrospectivaId, @DestinationVariable("nomeUsuario") String nomeUsuario) {
 		Retrospectiva retrospectiva = retrospectivaDao.loadWebSocket(retrospectivaId);
-		if(retrospectiva.isPublica() || (!nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario)))) {
+		if(conteudo.isValido() && (retrospectiva.isPublica() || (!nomeUsuario.isEmpty() && retrospectiva.isUsuarioAutorizado(usuarioDao.buscaPorNome(nomeUsuario))))) {
 			atualizaRetrospectiva.atualiza(retrospectiva, conteudo);
 			return conteudo;
 		} else {
