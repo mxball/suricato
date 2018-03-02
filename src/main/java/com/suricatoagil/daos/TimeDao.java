@@ -49,6 +49,21 @@ public class TimeDao {
 			.executeUpdate();
 		
 	}
+
+	public boolean jahExisteTimeChamado(String nome) {
+		List<Time> times= manager.createQuery("select t from Time t where t.nome = :nome", Time.class)
+				.setParameter("nome", nome)
+				.getResultList();
+		return times.size() > 0;
+	}
+
+	public boolean jahExisteOutroTimeChamado(String nome, Integer id) {
+		List<Time> times= manager.createQuery("select t from Time t where t.nome = :nome and t.id != :id", Time.class)
+				.setParameter("nome", nome)
+				.setParameter("id", id)
+				.getResultList();
+		return times.size() > 0;
+	}
 	
 	
 }

@@ -39,6 +39,9 @@ public class TimeController {
 	
 	@RequestMapping(value="/criar", method=RequestMethod.POST)
 	public String cadastrar(@ModelAttribute("time") @Valid Time time, BindingResult bindingResult, Model model) {
+		if(timeDao.jahExisteTimeChamado(time.getNome())) {
+			bindingResult.rejectValue("nome", "team.name.exists");
+		}
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("usuario", time.getIntegrantes().iterator().next());
 			return "time/novo"; 
@@ -56,6 +59,9 @@ public class TimeController {
 
 	@RequestMapping(value="/atualizar", method=RequestMethod.POST)
 	public String atualizar(@ModelAttribute("time") @Valid Time time, BindingResult bindingResult, Model model, Principal principal) {
+		if(timeDao.jahExisteOutroTimeChamado(time.getNome(), time.getId())) {
+			bindingResult.rejectValue("nome", "team.name.exists");
+		}
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("usuario", usuarioDao.buscaPorNome(principal.getName()));
 			model.addAttribute("time", time);
