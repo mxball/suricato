@@ -55,11 +55,15 @@ public class UsuarioDao {
 		return usuarios.size() > 0;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Usuario buscaPorEmail(String email) {
-		Usuario usuario = (Usuario) manager.createQuery("select u from Usuario u where u.email = :email")
-				.setParameter("email", email)
-				.getSingleResult();
-		return usuario;
+		List<Usuario> usuarios = manager.createQuery("select u from Usuario u where u.email = :email")
+										.setParameter("email", email)
+										.getResultList();
+		if(usuarios.size() == 1) {
+			return usuarios.get(0);
+		}
+		return null;
 	}
 
 }

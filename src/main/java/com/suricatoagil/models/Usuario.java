@@ -164,5 +164,10 @@ public class Usuario {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+
+	public TokenSenha getTokenSenha() {
+		return new TokenSenha(this);
+		
+	}
 	
 }

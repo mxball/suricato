@@ -22,13 +22,13 @@
 				</c:if>
 				
 				<input type='text' name='username' class="login-usuario_dado" placeholder="<fmt:message key="user.name"/>"/>
-				<a href='<c:url value="/senha/nova"/>' class="esqueceu-senha">
-					<fmt:message key="user.password.forgot"/>
-				</a>
 				<input type='password' name='password' class="login-usuario_dado" placeholder="<fmt:message key="user.password"/>"/>
 				
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<button type="submit" class="login-usuario_botao">LOGIN</button>
+				<a href='<c:url value="/senha/nova"/>' class="esqueceu-senha">
+					<fmt:message key="user.password.forgot"/>
+				</a>
 			</form>
 			<span class="login-usuario_acao">
 				<fmt:message key="user.new.text"/>

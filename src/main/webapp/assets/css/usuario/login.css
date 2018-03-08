@@ -148,6 +148,9 @@
 
 .esqueceu-senha {
     float: right;
+    position: absolute;
+    top: 320px;
+    right: 62px;
     text-decoration: none;
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
