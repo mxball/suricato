@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="log_path">log</Property>
+		<Property name="log_file">suricatoagil</Property>
+		<Property name="log_pattern_layout">[ %-5level ] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %m%exception{full}%n</Property>
+	</Properties>
+
+	<Appenders>
+				
+    	<Console name="Console-Appender" target="SYSTEM_OUT">
+      		<PatternLayout>
+            	<Pattern>${log_pattern_layout}</Pattern>
+            </PatternLayout>
+    	</Console>			
+	
+		 <RollingFile name="DailyFile-Appender" fileName="${log_path}/${log_file}.log" filePattern="${log_path}/$${date:yyyy}/$${date:MM}/${log_file}-%d{yyyy-MM-dd}-%i.log.gz" append="true">
+            <PatternLayout>
+            	<Pattern>${log_pattern_layout}</Pattern>
+            </PatternLayout>
+            
+            <Policies>
+            	<!--dateParttern in the filePattern (%d)-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>        
+                                      
+        </RollingFile>
+		
+	</Appenders>
+	
+	
+	
+	<Loggers>
+		<Logger name="org.springframework" level="info">
+           <AppenderRef ref="DailyFile-Appender"/>
+       	</Logger>       	       	
+       	
+       	<Logger name="com.suricatoagil" level="info">
+           <AppenderRef ref="DailyFile-Appender"/>
+       	</Logger>
+       	
+       	<Logger name="org.hibernate" level="info">
+           <AppenderRef ref="DailyFile-Appender"/>
+       	</Logger>
+       	
+		<Root level="info">
+			<AppenderRef ref="Console-Appender"/>
+			<AppenderRef ref="DailyFile-Appender"/>
+		</Root>
+	</Loggers>
+</Configuration>
