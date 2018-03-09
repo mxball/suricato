@@ -26,9 +26,7 @@
 				
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<button type="submit" class="login-usuario_botao">LOGIN</button>
-				<a href='<c:url value="/senha/nova"/>' class="esqueceu-senha">
-					<fmt:message key="user.password.forgot"/>
-				</a>
+				
 			</form>
 			<span class="login-usuario_acao">
 				<fmt:message key="user.new.text"/>
