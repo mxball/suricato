@@ -25,27 +25,31 @@
             </Policies>        
                                       
         </RollingFile>
+        
+    	<RollingFile name="HibernateFile-Appender" fileName="${log_path}/hibernate.log" filePattern="${log_path}/$${date:yyyy}/$${date:MM}/hibernate-%d{yyyy-MM-dd}-%i.log.gz" append="true">
+            <PatternLayout>
+            	<Pattern>${log_pattern_layout}</Pattern>
+            </PatternLayout>
+            
+            <Policies>
+            	<!--dateParttern in the filePattern (%d)-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>        
+                                      
+        </RollingFile>
 		
 	</Appenders>
 	
 	
 	
-	<Loggers>
-		<Logger name="org.springframework" level="info">
-           <AppenderRef ref="DailyFile-Appender"/>
-       	</Logger>       	       	
-       	
-       	<Logger name="com.suricatoagil" level="info">
-           <AppenderRef ref="DailyFile-Appender"/>
-       	</Logger>
-       	
+	<Loggers>	
        	<Logger name="org.hibernate" level="info">
-           <AppenderRef ref="DailyFile-Appender"/>
+           <AppenderRef ref="HibernateFile-Appender"/>
        	</Logger>
        	
 		<Root level="info">
-			<AppenderRef ref="Console-Appender"/>
 			<AppenderRef ref="DailyFile-Appender"/>
+			<AppenderRef ref="Console-Appender"/>
 		</Root>
 	</Loggers>
 </Configuration>
