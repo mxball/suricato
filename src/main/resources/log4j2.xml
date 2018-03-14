@@ -26,7 +26,7 @@
                                       
         </RollingFile>
         
-    	<RollingFile name="HibernateFile-Appender" fileName="${log_path}/hibernate.log" filePattern="${log_path}/$${date:yyyy}/$${date:MM}/hibernate-%d{yyyy-MM-dd}-%i.log.gz" append="true">
+    	<RollingFile name="HibernateFile-Appender" fileName="${log_path}/hibernate.log" filePattern="${log_path}/old/hibernate-%d{yyyy-MM-dd}-%i.log" append="true">
             <PatternLayout>
             	<Pattern>${log_pattern_layout}</Pattern>
             </PatternLayout>
