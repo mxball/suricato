@@ -5,6 +5,7 @@
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	font-weight: bold;
+	height: 26px;
 	letter-spacing: 0.4px;
 }
 
@@ -12,13 +13,9 @@
 	background-color: #f9f5fd;
 	color: #b5a0ca;
 	font-family: 'OpenSans', sans-serif;
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: bold;
 	letter-spacing: 0.4px;
-	
-	border-radius: 5px;
-	border: solid 1px #b5a0ca;
-	
+	padding: 5px;
 	width: 150px;
-	height: 90px;
 }
