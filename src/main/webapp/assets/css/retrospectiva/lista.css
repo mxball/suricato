@@ -1,8 +1,25 @@
 .time {
 	display: block;
-	height: 80px;
-	line-height: 80px;
+	height: 90px;
+	padding-top: 5px;
 	width: 100%;
+}
+
+.home-voltar {
+	color: #ffffff;
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: -0.1px;
+	margin-bottom: 9px;
+	margin-left: 180px;
+	margin-top: 5px;
+}
+
+.home-voltar:hover {
+	color: #f9f5fd;
+	text-decoration: none;
 }
 
 .time-nome {
@@ -11,6 +28,8 @@
 	font-family: 'Open Sans', sans-serif;
 	font-size: 36px;
 	font-weight: bold;
+	height: 49px;
+	line-height: 49px;
 	margin-left: 180px;
 }
 

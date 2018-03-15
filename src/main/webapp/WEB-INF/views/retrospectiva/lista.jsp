@@ -19,7 +19,7 @@
 <body>
 	<%@include file="../header.jsp" %>
 	<div class="time" style="background: linear-gradient(to bottom, #${timeRetrospectivas.cor}, #${timeRetrospectivas.corGradiente})">
-	
+		<a href="/" class="home-voltar">< VOLTAR</a>
 		<c:choose>
 			<c:when test="${timeRetrospectivas.titulo eq 'Pessoal'}">
 				<h2 class="time-nome"><fmt:message key="retrospective.individual"/></h2>
@@ -28,8 +28,6 @@
 				<h2 class="time-nome">${timeRetrospectivas.titulo}</h2>
 			</c:otherwise>
 		</c:choose>
-	
-		
 		<c:if test="${timeRetrospectivas.deTime}">
 			<a class="time-editar" href="<c:url value='/time/mostra?timeId=${timeRetrospectivas.timeId}'/>"></a>
 		</c:if>
