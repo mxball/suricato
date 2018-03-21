@@ -1,5 +1,5 @@
 .login {
-	background-color: #fdfcff;
+	background-color: #f9f5fd;
 	border: solid 1px #e4d9f4;
 	border-radius: 5px;
 	left: 50%;
@@ -15,9 +15,8 @@
 	color: #9f53ed;
 	display: block;
 	height: 64px;
-	margin: 0 auto 60px;
+	margin: 0 auto 50px;
 	object-fit: contain;
-	width: 251px;
 }
 
 .login-usuario {
@@ -27,7 +26,7 @@
 }
 
 .login-usuario_dado {
-	background-color: #fdfcff;
+	background-color: #f9f5fd;
 	border-top: none;
 	border-left: none;
 	border-right: none;
