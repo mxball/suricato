@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="<c:url value='/assets/css/usuario/login.css'/>">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
-		<title>Login</title>
+		<title>Senha | Suricato Agil</title>
 	</head>
 	<body>
 		<fieldset class="login">

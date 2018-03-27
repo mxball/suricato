@@ -15,7 +15,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
 		<link rel="stylesheet" href="<c:url value='/assets/css/cadastro.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/time/integrante.css'/>">
-		<title>Novo time</title>
+		<title>Edita time | Suricato Agil</title>
 	</head>
 	<body>
 		<%@include file="/WEB-INF/views/header.jsp" %>

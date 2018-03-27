@@ -14,7 +14,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Home page</title>
+	<title>Dashboard Retrospectivas | Suricato Agil</title>
 </head>
 <body>
 	<%@include file="../header.jsp" %>

@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/postIt.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/retrospectiva/comentario.css'/>">
 		<link rel="stylesheet" href="<c:url value='/assets/css/header.css'/>">
-		<title>Retrospectiva</title>
+		<title>Retrospectiva | Suricato Agil</title>
 	</head>
 	<body>
 		<div id="lousa" data-usuario-nome="${pageContext.request.userPrincipal.name}" data-retrospectiva-id="${retrospectiva.id}">
