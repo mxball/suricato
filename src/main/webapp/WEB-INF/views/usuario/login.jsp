@@ -11,7 +11,8 @@
 		<link rel="stylesheet" href="<c:url value='/assets/css/usuario/login.css'/>">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
-		<title>Suricato Agil | <fmt:message key="welcome.description"/></title>
+		<title>Suricato Agil | Conduzindo retrospectivas de forma remota</title>
+		<meta name="description" content="Crie uma lousa virtual no Suricato e facilite a retrospectiva do seu time independente de onde seus integrantes estejam.">
 	</head>
 	<body>
 		<fieldset class="login">
